@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4F6D692958B2F7001614A3 /* MainTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabbar.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F4F6D682958B2F6001614A3 /* MainTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbar.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F4F6D662958B2D4001614A3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F6D682958B2F6001614A3 /* MainTabbar.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2F4F6D672958B2D4001614A3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2F9E870929576A0C00DD72D6 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		2F9E86FB29576A0C00DD72D6 = {
 			isa = PBXGroup;
 			children = (
@@ -73,8 +91,9 @@
 		2F9E870629576A0C00DD72D6 /* NoteBookApp */ = {
 			isa = PBXGroup;
 			children = (
+				2F4F6D662958B2D4001614A3 /* Common */,
+				2F4F6D672958B2D4001614A3 /* Home */,
 				2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */,
-				2F9E870929576A0C00DD72D6 /* HomeView.swift */,
 				2F9E870B29576A0D00DD72D6 /* Assets.xcassets */,
 				2F9E870D29576A0D00DD72D6 /* Preview Content */,
 			);
@@ -197,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F4F6D692958B2F7001614A3 /* MainTabbar.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 			);

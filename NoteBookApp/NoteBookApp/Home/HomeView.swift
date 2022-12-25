@@ -90,6 +90,59 @@ struct HomeView: View {
         .padding([.leading, .trailing, .top], 25)
     }
     
+    fileprivate func toDoListItems() -> some View {
+        return ScrollView(.horizontal) {
+            HStack() {
+                ForEach(0..<3) { _ in
+                    Button {
+                        
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("Shopping")
+                                .font(.custom("Roboto", size: 16))
+                                .fontWeight(.medium)
+                                .foregroundColor( Color("blue_oxford"))
+                            HStack {
+                                Image("ic_home_location_thumb")
+                                
+                                Image("ic_home_audio_thumb")
+                            }
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Image("icon_deadline")
+                                Text("today")
+                                    .font(.custom("Roboto", size: 10))
+                                    .foregroundColor(Color("blue_secondary"))
+                            }
+                        }
+                        .padding(.all, 10)
+                    }
+                    .frame(
+                        width: 116,
+                        height: 144
+                    )
+                    .background(.white)
+                    .cornerRadius(15)
+                    .shadow(color: Color("mischka"), radius: 2.0, y: 4)
+                }
+            }
+        }
+    }
+    
+    fileprivate func toDoListsView() -> some View {
+        return VStack(alignment: .leading) {
+            Text("To-do-lists")
+                .fontWeight(.bold)
+                .font(.subheadline)
+                .foregroundColor(Color("gull_gray"))
+                .padding(.bottom, 8)
+            
+            toDoListItems()
+                .frame(height: 149)
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color("blue_light")
@@ -115,55 +168,8 @@ struct HomeView: View {
                 VStack(alignment: .leading) {
                     headerView()
                     reminderView()
-                    
-                    VStack(alignment: .leading) {
-                        Text("To-do-lists")
-                            .fontWeight(.bold)
-                            .font(.subheadline)
-                            .foregroundColor(Color("gull_gray"))
-                            .padding(.bottom, 8)
-                        
-                        ScrollView(.horizontal) {
-                            HStack() {
-                                ForEach(0..<3) { _ in
-                                    Button {
-                                        
-                                    } label: {
-                                        VStack(alignment: .leading) {
-                                            Text("Shopping")
-                                                .font(.custom("Roboto", size: 16))
-                                                .fontWeight(.medium)
-                                                .foregroundColor( Color("blue_oxford"))
-                                            HStack {
-                                                Image("ic_home_location_thumb")
-                                                
-                                                Image("ic_home_audio_thumb")
-                                            }
-                                            Spacer()
-                                            HStack {
-                                                Spacer()
-                                                Image("icon_deadline")
-                                                Text("today")
-                                                    .font(.custom("Roboto", size: 10))
-                                                    .foregroundColor(Color("blue_secondary"))
-                                            }
-                                        }
-                                        .padding(.all, 10)
-                                    }
-                                    .frame(
-                                        width: 116,
-                                        height: 144
-                                    )
-                                    .background(.white)
-                                    .cornerRadius(15)
-                                    .shadow(color: Color("mischka"), radius: 2.0, y: 4)
-                                }
-                            }
-                            .frame(height: 149)
-                        }
-                    }
-                    .padding([.leading, .trailing, .top], 25)
-                    
+                    toDoListsView()
+                        .padding([.leading, .trailing, .top], 25)
                 }
             }
             
