@@ -91,7 +91,7 @@ struct HomeView: View {
     }
     
     fileprivate func toDoListItems() -> some View {
-        return ScrollView(.horizontal) {
+        return ScrollView(.horizontal, showsIndicators: false) {
             HStack() {
                 ForEach(0..<3) { _ in
                     Button {
@@ -127,7 +127,9 @@ struct HomeView: View {
                     .shadow(color: Color("mischka"), radius: 2.0, y: 4)
                 }
             }
+            .frame(height: 160)
         }
+        
     }
     
     fileprivate func toDoListsView() -> some View {
@@ -139,9 +141,11 @@ struct HomeView: View {
                 .padding(.bottom, 8)
             
             toDoListItems()
-                .frame(height: 149)
         }
+        .padding([.leading, .trailing, .top], 25)
     }
+    
+    @State var selectedItemTitle: String = "Home"
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -153,25 +157,30 @@ struct HomeView: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
             
+            ScrollView {
+                VStack(alignment: .leading) {
+                    headerView()
+                    reminderView()
+                    toDoListsView()
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(height: 150)
+                }
+            }
+            
             Button {
                 
             } label: {
                 HStack {
                     Spacer()
                     Image("btn_add")
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 80)
                         .padding(.trailing, 20)
                 }
             }
             
-            ScrollView {
-                VStack(alignment: .leading) {
-                    headerView()
-                    reminderView()
-                    toDoListsView()
-                        .padding([.leading, .trailing, .top], 25)
-                }
-            }
+            MainTabbar(selectedItemTitle: $selectedItemTitle)
             
         }
     }
