@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
-		2F9E870A29576A0C00DD72D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* ContentView.swift */; };
+		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
 		2F9E870F29576A0D00DD72D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */; };
 		2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */; };
@@ -27,13 +27,11 @@
 /* Begin PBXFileReference section */
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
-		2F9E870929576A0C00DD72D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2F9E870B29576A0D00DD72D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2F9E871429576A0D00DD72D6 /* NoteBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppTests.swift; sourceTree = "<group>"; };
-		2F9E872229576A0D00DD72D6 /* NoteBookAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppUITests.swift; sourceTree = "<group>"; };
-		2F9E872429576A0D00DD72D6 /* NoteBookAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +57,6 @@
 			children = (
 				2F9E870629576A0C00DD72D6 /* NoteBookApp */,
 				2F9E871729576A0D00DD72D6 /* NoteBookAppTests */,
-				2F9E872129576A0D00DD72D6 /* NoteBookAppUITests */,
 				2F9E870529576A0C00DD72D6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,7 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */,
-				2F9E870929576A0C00DD72D6 /* ContentView.swift */,
+				2F9E870929576A0C00DD72D6 /* HomeView.swift */,
 				2F9E870B29576A0D00DD72D6 /* Assets.xcassets */,
 				2F9E870D29576A0D00DD72D6 /* Preview Content */,
 			);
@@ -98,15 +95,6 @@
 				2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */,
 			);
 			path = NoteBookAppTests;
-			sourceTree = "<group>";
-		};
-		2F9E872129576A0D00DD72D6 /* NoteBookAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2F9E872229576A0D00DD72D6 /* NoteBookAppUITests.swift */,
-				2F9E872429576A0D00DD72D6 /* NoteBookAppUITestsLaunchTests.swift */,
-			);
-			path = NoteBookAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9E870A29576A0C00DD72D6 /* ContentView.swift in Sources */,
+				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
