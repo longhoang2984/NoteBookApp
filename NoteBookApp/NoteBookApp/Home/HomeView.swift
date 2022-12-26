@@ -8,8 +8,52 @@
 import SwiftUI
 
 struct HomeView: View {
-    fileprivate func headerView() -> some View {
-        return VStack(alignment: .trailing) {
+    
+    @State var toDoItems: [ItemViewModel] = [
+        ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline"),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline"),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline"),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline")
+    ]
+    
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            Color("blue_light")
+                .edgesIgnoringSafeArea(.all)
+            
+            Image("bg")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView {
+                VStack(alignment: .leading) {
+                    headerView
+                    reminderView
+                    toDoListsView
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(height: 150)
+                }
+            }
+            
+            Button {
+                
+            } label: {
+                HStack {
+                    Spacer()
+                    Image("btn_add")
+                        .padding(.bottom, 80)
+                        .padding(.trailing, 20)
+                }
+            }
+            
+        }
+    }
+    
+    private var headerView: some View {
+        VStack(alignment: .trailing) {
             HStack {
                 Spacer()
                 VStack(alignment: .trailing) {
@@ -46,8 +90,23 @@ struct HomeView: View {
         .padding(.top, 60)
     }
     
-    fileprivate func reminderItemView() -> some View {
-        return Button {
+    private var reminderView: some View {
+        VStack(alignment: .leading) {
+            Text("Reminder")
+                .fontWeight(.bold)
+                .font(.subheadline)
+                .foregroundColor(Color("gull_gray"))
+                .padding(.bottom, 8)
+            
+            ForEach(0..<2) { _ in
+                reminderItemView
+            }
+        }
+        .padding([.leading, .trailing, .top], 25)
+    }
+    
+    private var reminderItemView: some View {
+        Button {
             
         } label: {
             HStack(alignment: .center, spacing: 16) {
@@ -75,136 +134,38 @@ struct HomeView: View {
         .shadow(color: Color("mischka"), radius: 4.0)
     }
     
-    fileprivate func reminderView() -> some View {
-        return VStack(alignment: .leading) {
-            Text("Reminder")
-                .fontWeight(.bold)
-                .font(.subheadline)
-                .foregroundColor(Color("gull_gray"))
-                .padding(.bottom, 8)
-            
-            ForEach(0..<2) { _ in
-                reminderItemView()
-            }
-        }
-        .padding([.leading, .trailing, .top], 25)
-    }
-    
-    fileprivate func toDoListItems() -> some View {
-        return ScrollView(.horizontal, showsIndicators: false) {
-            HStack() {
-                ForEach(0..<3) { _ in
-                    Button {
-                        
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text("Shopping")
-                                .font(.custom("Roboto", size: 16))
-                                .fontWeight(.medium)
-                                .foregroundColor( Color("blue_oxford"))
-                            HStack {
-                                Image("ic_home_location_thumb")
-                                
-                                Image("ic_home_audio_thumb")
-                            }
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                Image("icon_deadline")
-                                Text("today")
-                                    .font(.custom("Roboto", size: 10))
-                                    .foregroundColor(Color("blue_secondary"))
-                            }
-                        }
-                        .padding(.all, 10)
-                    }
-                    .frame(
-                        width: 116,
-                        height: 144
-                    )
-                    .background(.white)
-                    .cornerRadius(15)
-                    .shadow(color: Color("mischka"), radius: 2.0, y: 4)
-                }
-            }
-            .frame(height: 160)
-        }
-        
-    }
-    
-    fileprivate func toDoListsView() -> some View {
-        return VStack(alignment: .leading) {
+    private var toDoListsView: some View {
+        VStack(alignment: .leading) {
             Text("To-do-lists")
                 .fontWeight(.bold)
                 .font(.subheadline)
                 .foregroundColor(Color("gull_gray"))
                 .padding(.bottom, 8)
             
-            toDoListItems()
+            toDoListItems
         }
         .padding([.leading, .trailing, .top], 25)
     }
     
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            Color("blue_light")
-                .edgesIgnoringSafeArea(.all)
-            
-            Image("bg")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            
-            ScrollView {
-                VStack(alignment: .leading) {
-                    headerView()
-                    reminderView()
-                    toDoListsView()
-                    HStack {
-                        Spacer()
+    private var toDoListItems: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 13) {
+                ForEach($toDoItems, id: \.self) { item in
+                    Button {
+                        
+                    } label: {
+                        CardItemView(item: item)
+                            .frame(
+                                width: 116,
+                                height: 144
+                            )
                     }
-                    .frame(height: 150)
+                    
                 }
             }
-            
-            Button {
-                
-            } label: {
-                HStack {
-                    Spacer()
-                    Image("btn_add")
-                        .padding(.bottom, 80)
-                        .padding(.trailing, 20)
-                }
-            }
-            
+            .frame(height: 160)
         }
-    }
-}
-
-struct BlueButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(configuration.isPressed ? .white : Color("blue_oxford"))
-            .background(configuration.isPressed ? Color("blue_secondary") : .white)
-            
-    }
-}
-
-struct RoundedCorner: Shape {
-    
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-    
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
+        
     }
 }
 

@@ -12,6 +12,9 @@
 		2F82C5332959DDB800708795 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5322959DDB800708795 /* NotesView.swift */; };
 		2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5342959DDBF00708795 /* CalendarView.swift */; };
 		2F82C5372959DDC700708795 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5362959DDC700708795 /* PasswordView.swift */; };
+		2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5392959E44E00708795 /* RoundedCorner.swift */; };
+		2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C53C2959E48200708795 /* BlueButtonStyle.swift */; };
+		2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C53E2959E4F900708795 /* CardItemView.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -35,6 +38,9 @@
 		2F82C5322959DDB800708795 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		2F82C5342959DDBF00708795 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		2F82C5362959DDC700708795 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		2F82C5392959E44E00708795 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		2F82C53C2959E48200708795 /* BlueButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonStyle.swift; sourceTree = "<group>"; };
+		2F82C53E2959E4F900708795 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -65,6 +71,8 @@
 		2F4F6D662958B2D4001614A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2F82C53B2959E47400708795 /* UI */,
+				2F82C5382959E43C00708795 /* Helpers */,
 				2F4F6D682958B2F6001614A3 /* MainTabView.swift */,
 				2F82C52C2959DCCC00708795 /* MainView.swift */,
 			);
@@ -101,6 +109,23 @@
 				2F82C5362959DDC700708795 /* PasswordView.swift */,
 			);
 			path = Password;
+			sourceTree = "<group>";
+		};
+		2F82C5382959E43C00708795 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2F82C5392959E44E00708795 /* RoundedCorner.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2F82C53B2959E47400708795 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2F82C53C2959E48200708795 /* BlueButtonStyle.swift */,
+				2F82C53E2959E4F900708795 /* CardItemView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		2F9E86FB29576A0C00DD72D6 = {
@@ -252,9 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
+				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
 				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,
+				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
