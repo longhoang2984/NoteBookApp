@@ -104,7 +104,7 @@ struct TabbarItemView: View {
             } label: {
                 VStack {
                     item.tabbarItem.image
-                        .scaleEffect(item == selectedItem ? 0 : 1)
+                        .scaleEffect(item == selectedItem ? 0.001 : 1)
                         .offset(y: item == selectedItem ? 0 : 10)
                         .opacity(item == selectedItem ? 0 : 1)
                     Text(item.tabbarItem.title)

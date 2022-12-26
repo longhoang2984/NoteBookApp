@@ -26,8 +26,8 @@ struct CardItemView: View {
                 .fontWeight(.medium)
                 .foregroundColor( Color("blue_oxford"))
             HStack {
-                ForEach(item.images, id: \.self) { image in
-                    Image(image)
+                ForEach(item.images.indices, id: \.self) { index in
+                    Image(item.images[index])
                 }
             }
             Spacer()
