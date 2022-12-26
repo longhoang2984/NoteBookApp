@@ -145,8 +145,6 @@ struct HomeView: View {
         .padding([.leading, .trailing, .top], 25)
     }
     
-    @State var selectedItemTitle: String = "Home"
-    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color("blue_light")
@@ -179,8 +177,6 @@ struct HomeView: View {
                         .padding(.trailing, 20)
                 }
             }
-            
-            MainTabbar(selectedItemTitle: $selectedItemTitle)
             
         }
     }

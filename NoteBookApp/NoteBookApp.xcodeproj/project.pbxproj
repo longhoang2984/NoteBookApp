@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F4F6D692958B2F7001614A3 /* MainTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabbar.swift */; };
+		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
+		2F82C52D2959DCCC00708795 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C52C2959DCCC00708795 /* MainView.swift */; };
+		2F82C5332959DDB800708795 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5322959DDB800708795 /* NotesView.swift */; };
+		2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5342959DDBF00708795 /* CalendarView.swift */; };
+		2F82C5372959DDC700708795 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5362959DDC700708795 /* PasswordView.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -26,7 +30,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F4F6D682958B2F6001614A3 /* MainTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbar.swift; sourceTree = "<group>"; };
+		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		2F82C52C2959DCCC00708795 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2F82C5322959DDB800708795 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		2F82C5342959DDBF00708795 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		2F82C5362959DDC700708795 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -57,7 +65,8 @@
 		2F4F6D662958B2D4001614A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2F4F6D682958B2F6001614A3 /* MainTabbar.swift */,
+				2F4F6D682958B2F6001614A3 /* MainTabView.swift */,
+				2F82C52C2959DCCC00708795 /* MainView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -68,6 +77,30 @@
 				2F9E870929576A0C00DD72D6 /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		2F82C52E2959DD3100708795 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				2F82C5322959DDB800708795 /* NotesView.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		2F82C5302959DD3D00708795 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				2F82C5342959DDBF00708795 /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		2F82C5312959DD4300708795 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				2F82C5362959DDC700708795 /* PasswordView.swift */,
+			);
+			path = Password;
 			sourceTree = "<group>";
 		};
 		2F9E86FB29576A0C00DD72D6 = {
@@ -93,6 +126,9 @@
 			children = (
 				2F4F6D662958B2D4001614A3 /* Common */,
 				2F4F6D672958B2D4001614A3 /* Home */,
+				2F82C52E2959DD3100708795 /* Notes */,
+				2F82C5302959DD3D00708795 /* Calendar */,
+				2F82C5312959DD4300708795 /* Password */,
 				2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */,
 				2F9E870B29576A0D00DD72D6 /* Assets.xcassets */,
 				2F9E870D29576A0D00DD72D6 /* Preview Content */,
@@ -216,7 +252,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F4F6D692958B2F7001614A3 /* MainTabbar.swift in Sources */,
+				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
+				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
+				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,
+				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
+				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 			);
