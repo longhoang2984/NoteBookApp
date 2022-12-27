@@ -55,7 +55,7 @@ struct MainTabView<Content: View>: View {
                 CustomTabView(tabbarItems: tabbarItems, selectedItem: $selectedItem)
             }
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 

@@ -13,19 +13,29 @@ public struct ItemViewModel: Identifiable, Hashable {
     public var images: [String]
     public var deadline: String
     public var deadlineIcon: String
+    public var isLock: Bool
 }
 
 struct CardItemView: View {
     
     @Binding var item: ItemViewModel
+    let items = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(item.title)
-                .font(.custom("Roboto", size: 16))
-                .fontWeight(.medium)
-                .foregroundColor( Color("blue_oxford"))
             HStack {
+                Text(item.title)
+                    .font(.custom("Roboto", size: 16))
+                    .fontWeight(.medium)
+                    .foregroundColor( Color("blue_oxford"))
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Image("icon_lock")
+                    .opacity(item.isLock ? 1 : 0)
+            }
+            HStack(spacing: 4) {
                 ForEach(item.images.indices, id: \.self) { index in
                     Image(item.images[index])
                 }
@@ -39,6 +49,7 @@ struct CardItemView: View {
                     .foregroundColor(Color("blue_secondary"))
             }
         }
+        .frame(minHeight: 144)
         .padding(.all, 10)
         .background(.white)
         .cornerRadius(15)
@@ -48,6 +59,6 @@ struct CardItemView: View {
 
 struct CardItemView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        NotesView()
     }
 }

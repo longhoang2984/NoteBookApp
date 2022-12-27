@@ -10,22 +10,14 @@ import SwiftUI
 struct HomeView: View {
     
     @State var toDoItems: [ItemViewModel] = [
-        ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline"),
-        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline"),
-        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline"),
-        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline")
+        ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline", isLock: true),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
+        ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false)
     ]
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Color("blue_light")
-                .edgesIgnoringSafeArea(.all)
-            
-            Image("bg")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            
             ScrollView {
                 VStack(alignment: .leading) {
                     headerView
@@ -49,6 +41,17 @@ struct HomeView: View {
                 }
             }
             
+        }
+        .background {
+            ZStack {
+                Color("blue_light")
+                    .edgesIgnoringSafeArea(.all)
+                
+                Image("bg")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
     }
     
@@ -87,7 +90,6 @@ struct HomeView: View {
                 .cornerRadius(96 / 2, corners: [.topLeft, .bottomLeft])
             }
         }
-        .padding(.top, 60)
     }
     
     private var reminderView: some View {
@@ -156,8 +158,7 @@ struct HomeView: View {
                     } label: {
                         CardItemView(item: item)
                             .frame(
-                                width: 116,
-                                height: 144
+                                width: 116
                             )
                     }
                     
