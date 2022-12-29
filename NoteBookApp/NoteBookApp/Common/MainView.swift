@@ -11,20 +11,23 @@ struct MainView: View {
     @State var selectedItem: TabbarItemType = .home
     @ViewBuilder
     func getView(item: TabbarItemType) -> some View {
-        switch selectedItem {
-        case .home:
-            HomeView()
-        case .notes:
-            NotesView()
-        case .calendar:
-            CalendarView()
-        case .password:
-            PasswordView()
-        }
+
+            switch selectedItem {
+            case .home:
+                HomeView()
+            case .notes:
+                NotesView()
+            case .calendar:
+                CalendarView()
+            case .password:
+                PasswordView()
+            }   
     }
     
     var body: some View {
-        MainTabView(selectedItem: $selectedItem, content: getView)
+        NavigationView {
+            MainTabView(selectedItem: $selectedItem, content: getView)
+        }
     }
 }
 

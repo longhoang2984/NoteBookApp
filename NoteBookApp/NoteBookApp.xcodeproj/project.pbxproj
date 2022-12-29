@@ -24,6 +24,7 @@
 		2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1335295DBF4D00A87157 /* PasswordListView.swift */; };
 		2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */; };
 		2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1339295DC51E00A87157 /* PasswordItemView.swift */; };
+		2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA133B295DFEA700A87157 /* NewPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		2FAA1335295DBF4D00A87157 /* PasswordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordListView.swift; sourceTree = "<group>"; };
 		2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAdd.swift; sourceTree = "<group>"; };
 		2FAA1339295DC51E00A87157 /* PasswordItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordItemView.swift; sourceTree = "<group>"; };
+		2FAA133B295DFEA700A87157 /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */,
 				2FAA1335295DBF4D00A87157 /* PasswordListView.swift */,
 				2FAA1339295DC51E00A87157 /* PasswordItemView.swift */,
+				2FAA133B295DFEA700A87157 /* NewPasswordView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */,
 				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
+				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,

@@ -15,33 +15,63 @@ struct PasswordListView: View {
         PasswordItem(id: UUID().uuidString, name: "Credit Card PIN", login: "123-456-789", password: "12345", link: "vpbank.com.vn"),
         PasswordItem(id: UUID().uuidString, name: "Mail Password", login: "mama@gamil.com", password: "12345", link: "gmail.com"),
         PasswordItem(id: UUID().uuidString, name: "Instagram Password", login: "mama@gmail.com", password: "12345", link: "instagram.com"),
-        PasswordItem(id: UUID().uuidString, name: "Credit Card PIN", login: "123-456-789", password: "12345", link: "vpbank.com.vn"),
-        PasswordItem(id: UUID().uuidString, name: "Mail Password", login: "mama@gamil.com", password: "12345", link: "gmail.com"),
-        PasswordItem(id: UUID().uuidString, name: "Instagram Password", login: "mama@gmail.com", password: "12345", link: "instagram.com"),
-        PasswordItem(id: UUID().uuidString, name: "Credit Card PIN", login: "123-456-789", password: "12345", link: "vpbank.com.vn"),
-        PasswordItem(id: UUID().uuidString, name: "Mail Password", login: "mama@gamil.com", password: "12345", link: "gmail.com"),
-        PasswordItem(id: UUID().uuidString, name: "Instagram Password", login: "mama@gmail.com", password: "12345", link: "instagram.com"),
-        PasswordItem(id: UUID().uuidString, name: "Credit Card PIN", login: "123-456-789", password: "12345", link: "vpbank.com.vn"),
-        PasswordItem(id: UUID().uuidString, name: "Mail Password", login: "mama@gamil.com", password: "12345", link: "gmail.com"),
-        PasswordItem(id: UUID().uuidString, name: "Instagram Password", login: "mama@gmail.com", password: "12345", link: "instagram.com"),
     ]
+    @State var showDeleteConfirmDialog = false
+    @State var deletingItem: PasswordItem?
+    @State var editingItem: PasswordItem?
+    @State var showNewPasswordView = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
+            
             Color.blueLight.ignoresSafeArea()
             
             ScrollView {
                 ForEach($items, id: \.self.id) { item in
-                    PasswordItemView(item: item)
+                    PasswordItemView(item: item, onDeleteItem: { item in
+                        deletingItem = item
+                        showDeleteConfirmDialog.toggle()
+                    }, onEditItem: { item in
+                        editingItem = item
+                        showNewPasswordView.toggle()
+                    })
+                    .confirmationDialog("deletePasswordItem", isPresented: $showDeleteConfirmDialog) {
+                        Button("Delete", role: .destructive) {
+                            if let index = items.firstIndex(where: { $0.id == deletingItem?.id }) {
+                                _ = withAnimation {
+                                    items.remove(at: index)
+                                }
+                            }
+                        }
+                    } message: {
+                        Text("Do you want to delete this password?")
+                    }
                 }
                 HStack {
                     Spacer()
                 }
                 .frame(height: 100)
             }
-            ButtonAdd {
-                print("onTapped")
+            
+            NavigationLink(isActive: $showNewPasswordView) {
+                NewPasswordView(item: editingItem) { item in
+                    if editingItem != nil {
+                        if let index = items.firstIndex(where: { $0.id == item.id }) {
+                            items[index] = item
+                        }
+                    } else {
+                        items.append(item)
+                    }
+                }
+            } label: {
+                EmptyView()
             }
+            .navigationTitle("")
+            
+            ButtonAdd {
+                showNewPasswordView.toggle()
+            }
+            
         }.safeAreaInset(edge: .top) {
             HStack {
                 headerView

@@ -9,10 +9,10 @@ import SwiftUI
 
 public struct PasswordItem: Identifiable {
     public let id: String
-    public let name: String
-    public let login: String
-    public let password: String
-    public let link: String
+    public var name: String
+    public var login: String
+    public var password: String
+    public var link: String
     
     
     public init(id: String, name: String, login: String, password: String, link: String) {
@@ -22,12 +22,22 @@ public struct PasswordItem: Identifiable {
         self.password = password
         self.link = link
     }
+    
+    public init() {
+        self.id = UUID().uuidString
+        self.name = ""
+        self.login = ""
+        self.password = ""
+        self.link = ""
+    }
 }
 
 struct PasswordItemView: View {
     
     @Binding var item: PasswordItem
     @State var showing: Bool = false
+    var onDeleteItem: ((PasswordItem) -> Void)?
+    var onEditItem: ((PasswordItem) -> Void)?
     
     var body: some View {
         Button {
@@ -101,13 +111,13 @@ struct PasswordItemView: View {
                 HStack {
                     Spacer()
                     Button {
-                        
+                        onEditItem?(item)
                     } label: {
                         Image("icon_edit")
                     }
                     
                     Button {
-                        
+                        onDeleteItem?(item)
                     } label: {
                         Image("icon_delete")
                     }
