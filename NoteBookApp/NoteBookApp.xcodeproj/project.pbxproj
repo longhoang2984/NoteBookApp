@@ -20,6 +20,7 @@
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
 		2F9E870F29576A0D00DD72D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */; };
 		2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */; };
+		2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2F9E871429576A0D00DD72D6 /* NoteBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppTests.swift; sourceTree = "<group>"; };
+		2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		2F82C5312959DD4300708795 /* Password */ = {
 			isa = PBXGroup;
 			children = (
+				2FAA1332295DA6D600A87157 /* SubViews */,
 				2F82C5362959DDC700708795 /* PasswordView.swift */,
 			);
 			path = Password;
@@ -175,6 +178,14 @@
 				2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */,
 			);
 			path = NoteBookAppTests;
+			sourceTree = "<group>";
+		};
+		2FAA1332295DA6D600A87157 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
+				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,

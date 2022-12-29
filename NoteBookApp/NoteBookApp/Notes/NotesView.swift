@@ -39,9 +39,7 @@ struct NotesView: View {
     ]
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            Color("blue_light")
-            
+        ZStack(alignment: .bottom) {            
             ScrollView {
                 ForEach($toDoItemGroups, id: \.self.id) { $item in
                     VStack(alignment: .leading) {
@@ -92,12 +90,15 @@ struct NotesView: View {
             }
             
             Button {
-                
+                var group = toDoItemGroups[1]
+                var items = group.items
+                items.append(ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline", isLock: true))
+                group.items = items
+                toDoItemGroups[1] = group
             } label: {
                 HStack {
                     Spacer()
                     Image("btn_add")
-                        .padding(.bottom, 80)
                         .padding(.trailing, 20)
                 }
             }
@@ -144,4 +145,5 @@ extension Color {
     static var blueSecondary = Color("blue_secondary")
     static var blueOxford = Color("blue_oxford")
     static var blueLight = Color("blue_light")
+    static var mischka = Color("mischka")
 }

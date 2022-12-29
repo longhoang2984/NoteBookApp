@@ -36,8 +36,7 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     Image("btn_add")
-                        .padding(.bottom, 80)
-                        .padding(.trailing, 20)
+                        .padding(.trailing, 10)
                 }
             }
             
