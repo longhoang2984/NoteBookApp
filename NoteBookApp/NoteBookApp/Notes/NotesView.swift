@@ -57,7 +57,6 @@ struct NotesView: View {
                                 Color.blueSecondary
                             }
                             .cornerRadius(20, corners: [.topRight, .bottomRight])
-                            .padding(.top, 20)
                             
                             Spacer()
                         }
@@ -76,17 +75,11 @@ struct NotesView: View {
             }
             .safeAreaInset(edge: .top) {
                 HStack {
-                    ZStack(alignment: .center) {
-                        Text("Notes")
-                            .foregroundColor(.blueOxford)
-                            .font(.custom("Roboto", size: 20))
-                            .fontWeight(.bold)
-                            .opacity(isSearching ? 0 : 1)
-                        
-                        headerView
-                            .padding(.horizontal, 16)
-                    }
+                    headerView
+                        .padding()
                 }
+                .background(Color.blueLight)
+                .shadow(radius: 0)
             }
             
             Button {
@@ -109,17 +102,26 @@ struct NotesView: View {
     @ViewBuilder
     var headerView: some View {
         if !isSearching {
-            HStack {
-                Spacer()
-                Button {
-                    withAnimation {
-                        isSearching.toggle()
-                        isFocused = true
+            ZStack(alignment: .center) {
+                Text("Notes")
+                    .foregroundColor(.blueOxford)
+                    .font(.custom("Roboto", size: 20))
+                    .fontWeight(.bold)
+                    .opacity(isSearching ? 0 : 1)
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        withAnimation {
+                            isSearching.toggle()
+                            isFocused = true
+                        }
+                    } label: {
+                        Image("ic_search")
                     }
-                } label: {
-                    Image("ic_search")
                 }
             }
+            
         } else {
             HStack {
                 Image("ic_search")
@@ -145,5 +147,6 @@ extension Color {
     static var blueSecondary = Color("blue_secondary")
     static var blueOxford = Color("blue_oxford")
     static var blueLight = Color("blue_light")
+    static var blueBubble = Color("blue_bubble")
     static var mischka = Color("mischka")
 }

@@ -30,14 +30,8 @@ struct HomeView: View {
                 }
             }
             
-            Button {
-                
-            } label: {
-                HStack {
-                    Spacer()
-                    Image("btn_add")
-                        .padding(.trailing, 10)
-                }
+            ButtonAdd {
+                print("onTapped")
             }
             
         }

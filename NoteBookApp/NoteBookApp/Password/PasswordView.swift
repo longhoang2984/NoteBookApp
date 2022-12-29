@@ -17,17 +17,24 @@ struct PasswordView: View {
         ZStack() {
             mainView
         }
+        .onAppear {
+            type = UserDefaults.standard.string(forKey: "password") == nil ? .create : .input
+        }
     }
     
     @ViewBuilder
     var mainView: some View {
-        switch type {
-        case .create:
-            createPwView
-        case .repeat:
-            repeatPwView
-        case .input:
-            inputPwView
+        if type == .input && password == UserDefaults.standard.string(forKey: "password") {
+            PasswordListView()
+        } else {
+            switch type {
+            case .create:
+                createPwView
+            case .repeat:
+                repeatPwView
+            case .input:
+                inputPwView
+            }
         }
     }
     
@@ -62,6 +69,7 @@ struct PasswordView: View {
                 } else if repeatPW.count < 4 {
                     repeatPW += input
                     if repeatPW.count == 4 && repeatPW == password {
+                        UserDefaults.standard.set(password, forKey: "password")
                         password = ""
                         type = .input
                     }
