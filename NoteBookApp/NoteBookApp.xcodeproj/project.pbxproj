@@ -16,6 +16,7 @@
 		2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C53C2959E48200708795 /* BlueButtonStyle.swift */; };
 		2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C53E2959E4F900708795 /* CardItemView.swift */; };
 		2F841A08295EC5F800F3E7CB /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A07295EC5F800F3E7CB /* InputField.swift */; };
+		2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A09295ECEA100F3E7CB /* CustomDialog.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		2F82C53C2959E48200708795 /* BlueButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonStyle.swift; sourceTree = "<group>"; };
 		2F82C53E2959E4F900708795 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		2F841A07295EC5F800F3E7CB /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
+		2F841A09295ECEA100F3E7CB /* CustomDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDialog.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				2F82C53E2959E4F900708795 /* CardItemView.swift */,
 				2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */,
 				2F841A07295EC5F800F3E7CB /* InputField.swift */,
+				2F841A09295ECEA100F3E7CB /* CustomDialog.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
 				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
+				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
