@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 public struct PasswordItem: Identifiable {
     public let id: String
@@ -38,6 +39,7 @@ struct PasswordItemView: View {
     @State var showing: Bool = false
     var onDeleteItem: ((PasswordItem) -> Void)?
     var onEditItem: ((PasswordItem) -> Void)?
+    @State var showPassword: Bool = false
     
     var body: some View {
         Button {
@@ -90,9 +92,28 @@ struct PasswordItemView: View {
                     .smallPasswordItemTitle()
                     .padding(.top, 16)
                 
-                Text(item.password)
-                    .smallPasswordItemContent()
-                    .padding(.top, 4)
+                HStack(alignment: .center) {
+                    Text("\( showPassword ? item.password : String(item.password.map { _ in "••" }.joined()))")
+                        .smallPasswordItemContent()
+                        .padding(.top, 4)
+                    
+                    Button {
+                        UIPasteboard.general.setValue(item.password,
+                                   forPasteboardType: UTType.plainText.identifier)
+                    } label: {
+                        Image(systemName: "doc.on.clipboard")
+                            .foregroundColor(.bluePrimary)
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        showPassword.toggle()
+                    } label: {
+                        Image(systemName: showPassword ? "eye.slash" : "eye")
+                            .foregroundColor(.mischka)
+                    }
+                }
                 
                 Text("Link")
                     .smallPasswordItemTitle()
