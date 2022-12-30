@@ -61,6 +61,7 @@ struct InputPasswordView: View {
                             onButtonPressed(input)
                         } label: {
                             passwordImageButton(input: input)
+                                .frame(width: 61, height: 61)
                         }
                         .buttonStyle(PasswordButtonStyle())
                         .cornerRadius(61 / 2)
@@ -134,11 +135,9 @@ struct InputPasswordView: View {
         if input != "touch" {
             Image(input)
                 .renderingMode(Int(input) != nil ? .template : .original)
-                .frame(width: 61, height: 61)
         } else if type == .input {
             Image(input)
                 .renderingMode(Int(input) != nil ? .template : .original)
-                .frame(width: 61, height: 61)
         }
     }
 }

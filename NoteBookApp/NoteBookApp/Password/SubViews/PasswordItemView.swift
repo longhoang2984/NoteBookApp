@@ -74,7 +74,7 @@ struct PasswordItemView: View {
         .background(showing ? Color.blueBubble : .white)
         .cornerRadius(10, corners: .allCorners)
         .padding([.horizontal, .bottom], 16)
-        .shadow(color: .mischka, radius: 4.0)
+        .shadow(color: .mischka, radius: showing ? 0 : 4.0)
     }
     
     @ViewBuilder

@@ -20,6 +20,10 @@ struct PasswordListView: View {
     @State var deletingItem: PasswordItem?
     @State var editingItem: PasswordItem?
     @State var showNewPasswordView = false
+    @State var showConfirmPasscode = false
+    
+    @State var password: String = ""
+    @State var type: InputPasswordType = .input
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -27,13 +31,18 @@ struct PasswordListView: View {
             Color.blueLight.ignoresSafeArea()
             
             ScrollView {
+                HStack {
+                    Spacer()
+                }
+                .frame(height: 10)
+                
                 ForEach($items, id: \.self.id) { item in
                     PasswordItemView(item: item, onDeleteItem: { item in
                         deletingItem = item
                         showDeleteConfirmDialog.toggle()
                     }, onEditItem: { item in
                         editingItem = item
-                        showNewPasswordView.toggle()
+                        showConfirmPasscode.toggle()
                     })
                     .confirmationDialog("deletePasswordItem", isPresented: $showDeleteConfirmDialog) {
                         Button("Delete", role: .destructive) {
@@ -79,6 +88,30 @@ struct PasswordListView: View {
             }
             .background(Color.blueLight)
             .shadow(radius: 0)
+        }
+        .customDialog(isShowing: $showConfirmPasscode) {
+            InputPasswordView(password: $password, type: $type) { input in
+                if input == "delete" {
+                    if password.count > 0 {
+                        password.removeLast()
+                    }
+                    print(password)
+                } else if input == "touch" {
+                    return
+                } else if password.count < 4 {
+                    password += input
+                    if password == UserDefaults.standard.string(forKey: "password") {
+                        showNewPasswordView.toggle()
+                        showConfirmPasscode.toggle()
+                        password = ""
+                    }
+                }
+            }
+            .cornerRadius(30)
+            .ignoresSafeArea()
+        }.onAppear {
+            editingItem = nil
+            deletingItem = nil
         }
     }
     
