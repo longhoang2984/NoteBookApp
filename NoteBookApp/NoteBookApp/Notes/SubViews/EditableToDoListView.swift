@@ -55,41 +55,33 @@ struct EditableToDoView: View {
     
     @Binding var todo: ToDoItem
     @FocusState var focus: ToDoItem?
-    @State var editing: Bool = false
+    @State var textViewHeight: CGFloat = 40
     var onSubmit: (String) -> Void
-    
+    @State private var firstResponder: Bool = true
+        
     var body: some View {
-        HStack {
+        
+        HStack(alignment: .top) {
             Button {
                 todo.isComplete.toggle()
             } label: {
                 Image(todo.isComplete ? "radio_btn_selected" : "radio_btn")
             }
             
-            ZStack {
-                HStack {
-                    Text($todo.text.wrappedValue)
-                        .strikethrough(todo.isComplete)
-                    Spacer()
-                }
-                
-                TextField("", text: $todo.text) { editingChanged in
-                        editing = editingChanged
-                    }
-                    .onSubmit {
-                        onSubmit(todo.text)
-                    }
-                    .foregroundColor(.clear)
-                    .focused($focus, equals: todo)
+            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isFirstResponder: $firstResponder) {
+                onSubmit(todo.text)
             }
+            .frame(height: textViewHeight)
+            .padding(.top, -7)
         }
+        .padding(.horizontal)
     }
 }
 
 struct EditableToDoListView_Previews: PreviewProvider {
     
     struct Preview: View {
-        let item = ToDoItem()
+        @State var item = ToDoItem()
         var items: [ToDoItem] {
             [item]
         }
@@ -97,16 +89,23 @@ struct EditableToDoListView_Previews: PreviewProvider {
         @FocusState var focus: ToDoItem?
         
         var body: some View {
-            EditableToDoListView(items: .constant(items), focusItem: _focus)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        focus = item
-                    }
+            VStack {
+                EditableToDoView(todo: $item) { _ in
+                    
                 }
+                
+                EditableToDoListView(items: .constant(items), focusItem: _focus)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            focus = item
+                        }
+                    }
+            }
         }
     }
     
     static var previews: some View {
-        Preview()
+        
+            Preview()
     }
 }

@@ -23,6 +23,7 @@ struct NewNoteView: View {
     @State private var shouldShowTodoList = false
     @State private var todoItems: [ToDoItem] = []
     @FocusState var focusState: ToDoItem?
+    @State private var textEditorHeight : CGFloat = 200
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -50,8 +51,12 @@ struct NewNoteView: View {
                         toDoList
                     }
                     .frame(maxHeight: .infinity)
+                    
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(height: 100)
                 }
-                
             }
         }.safeAreaInset(edge: .top) {
             header

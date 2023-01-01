@@ -26,8 +26,7 @@ struct InputField: View {
                 HStack {
                     Text(placeHolder)
                         .foregroundColor(.mischka)
-                        .font(.custom("Roboto", size: shouldMoveLabel ? 10 : 16))
-                        .fontWeight(.bold)
+                        .font(.custom("Roboto-Bold", size: shouldMoveLabel ? 10 : 16))
                         .offset(y: shouldMoveLabel ? -15 : 0)
                         .animation(.easeInOut, value: shouldMoveLabel)
                     Spacer()
@@ -38,6 +37,7 @@ struct InputField: View {
                     TextField("", text: $text) { editingChanged in
                         editing = editingChanged
                     }
+                    .font(.custom("Roboto-Regular", size: 16))
                     .onSubmit {
                         onSubmit?()
                     }

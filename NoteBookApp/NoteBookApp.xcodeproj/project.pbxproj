@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
 		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
+		2F6E55F329620784005E5757 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55F229620784005E5757 /* TextView.swift */; };
+		2F6E55FB2962170D005E5757 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F52962170D005E5757 /* Roboto-Light.ttf */; };
+		2F6E55FC2962170D005E5757 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F62962170D005E5757 /* Roboto-Medium.ttf */; };
+		2F6E55FD2962170D005E5757 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F72962170D005E5757 /* Roboto-Bold.ttf */; };
+		2F6E55FE2962170D005E5757 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F82962170D005E5757 /* Roboto-Black.ttf */; };
+		2F6E55FF2962170D005E5757 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F92962170D005E5757 /* Roboto-Regular.ttf */; };
+		2F6E56002962170D005E5757 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55FA2962170D005E5757 /* Roboto-Thin.ttf */; };
 		2F82C52D2959DCCC00708795 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C52C2959DCCC00708795 /* MainView.swift */; };
 		2F82C5332959DDB800708795 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5322959DDB800708795 /* NotesView.swift */; };
 		2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5342959DDBF00708795 /* CalendarView.swift */; };
@@ -53,6 +60,14 @@
 /* Begin PBXFileReference section */
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		2F6E55F229620784005E5757 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		2F6E55F52962170D005E5757 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		2F6E55F62962170D005E5757 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		2F6E55F72962170D005E5757 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		2F6E55F82962170D005E5757 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		2F6E55F92962170D005E5757 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		2F6E55FA2962170D005E5757 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		2F6E560129621811005E5757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F82C52C2959DCCC00708795 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2F82C5322959DDB800708795 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		2F82C5342959DDBF00708795 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -107,6 +122,7 @@
 		2F4F6D662958B2D4001614A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2F6E55F4296216F3005E5757 /* Fonts */,
 				2F82C53B2959E47400708795 /* UI */,
 				2F82C5382959E43C00708795 /* Helpers */,
 				2F4F6D682958B2F6001614A3 /* MainTabView.swift */,
@@ -121,6 +137,19 @@
 				2F9E870929576A0C00DD72D6 /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		2F6E55F4296216F3005E5757 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E55F82962170D005E5757 /* Roboto-Black.ttf */,
+				2F6E55F72962170D005E5757 /* Roboto-Bold.ttf */,
+				2F6E55F52962170D005E5757 /* Roboto-Light.ttf */,
+				2F6E55F62962170D005E5757 /* Roboto-Medium.ttf */,
+				2F6E55F92962170D005E5757 /* Roboto-Regular.ttf */,
+				2F6E55FA2962170D005E5757 /* Roboto-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		2F82C52E2959DD3100708795 /* Notes */ = {
@@ -167,6 +196,7 @@
 				2F841A07295EC5F800F3E7CB /* InputField.swift */,
 				2F841A09295ECEA100F3E7CB /* CustomDialog.swift */,
 				2F6E55EE2961E29A005E5757 /* FloatingButton.swift */,
+				2F6E55F229620784005E5757 /* TextView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -215,6 +245,7 @@
 		2F9E870629576A0C00DD72D6 /* NoteBookApp */ = {
 			isa = PBXGroup;
 			children = (
+				2F6E560129621811005E5757 /* Info.plist */,
 				2F4F6D662958B2D4001614A3 /* Common */,
 				2F4F6D672958B2D4001614A3 /* Home */,
 				2F82C52E2959DD3100708795 /* Notes */,
@@ -341,8 +372,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6E56002962170D005E5757 /* Roboto-Thin.ttf in Resources */,
+				2F6E55FC2962170D005E5757 /* Roboto-Medium.ttf in Resources */,
+				2F6E55FF2962170D005E5757 /* Roboto-Regular.ttf in Resources */,
 				2F9E870F29576A0D00DD72D6 /* Preview Assets.xcassets in Resources */,
+				2F6E55FD2962170D005E5757 /* Roboto-Bold.ttf in Resources */,
 				2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */,
+				2F6E55FB2962170D005E5757 /* Roboto-Light.ttf in Resources */,
+				2F6E55FE2962170D005E5757 /* Roboto-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +414,7 @@
 				2F8ABCB82961772600086755 /* PlatformColor.swift in Sources */,
 				2F8ABCBE2961783100086755 /* AppTextAlignment.swift in Sources */,
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
+				2F6E55F329620784005E5757 /* TextView.swift in Sources */,
 				2F8ABCBC296177C500086755 /* PlatformImage.swift in Sources */,
 				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
@@ -534,6 +572,7 @@
 				DEVELOPMENT_TEAM = GBRMF3XZ9K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoteBookApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -564,6 +603,7 @@
 				DEVELOPMENT_TEAM = GBRMF3XZ9K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoteBookApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
