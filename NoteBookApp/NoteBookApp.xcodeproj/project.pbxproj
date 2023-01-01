@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
+		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
 		2F82C52D2959DCCC00708795 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C52C2959DCCC00708795 /* MainView.swift */; };
 		2F82C5332959DDB800708795 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5322959DDB800708795 /* NotesView.swift */; };
 		2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5342959DDBF00708795 /* CalendarView.swift */; };
@@ -17,6 +18,16 @@
 		2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C53E2959E4F900708795 /* CardItemView.swift */; };
 		2F841A08295EC5F800F3E7CB /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A07295EC5F800F3E7CB /* InputField.swift */; };
 		2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A09295ECEA100F3E7CB /* CustomDialog.swift */; };
+		2F841A0D295EEF8B00F3E7CB /* NewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */; };
+		2F841A13295F4BA900F3E7CB /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F841A12295F4BA900F3E7CB /* RichTextKit */; };
+		2F841A192960687200F3E7CB /* TextStyleButtonStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F841A182960687200F3E7CB /* TextStyleButtonStack.swift */; };
+		2F8ABCB62961765F00086755 /* AppTextContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCB52961765F00086755 /* AppTextContext.swift */; };
+		2F8ABCB82961772600086755 /* PlatformColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCB72961772600086755 /* PlatformColor.swift */; };
+		2F8ABCBA2961778C00086755 /* AppTextHightlightingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCB92961778C00086755 /* AppTextHightlightingStyle.swift */; };
+		2F8ABCBC296177C500086755 /* PlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCBB296177C500086755 /* PlatformImage.swift */; };
+		2F8ABCBE2961783100086755 /* AppTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCBD2961783100086755 /* AppTextAlignment.swift */; };
+		2F8ABCC029617EAD00086755 /* AppTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCBF29617EAD00086755 /* AppTextStyle.swift */; };
+		2F8ABCC22961962F00086755 /* EditableToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8ABCC12961962F00086755 /* EditableToDoListView.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -41,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2F82C52C2959DCCC00708795 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2F82C5322959DDB800708795 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		2F82C5342959DDBF00708795 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -50,6 +62,15 @@
 		2F82C53E2959E4F900708795 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		2F841A07295EC5F800F3E7CB /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		2F841A09295ECEA100F3E7CB /* CustomDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDialog.swift; sourceTree = "<group>"; };
+		2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteView.swift; sourceTree = "<group>"; };
+		2F841A182960687200F3E7CB /* TextStyleButtonStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyleButtonStack.swift; sourceTree = "<group>"; };
+		2F8ABCB52961765F00086755 /* AppTextContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextContext.swift; sourceTree = "<group>"; };
+		2F8ABCB72961772600086755 /* PlatformColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformColor.swift; sourceTree = "<group>"; };
+		2F8ABCB92961778C00086755 /* AppTextHightlightingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextHightlightingStyle.swift; sourceTree = "<group>"; };
+		2F8ABCBB296177C500086755 /* PlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformImage.swift; sourceTree = "<group>"; };
+		2F8ABCBD2961783100086755 /* AppTextAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextAlignment.swift; sourceTree = "<group>"; };
+		2F8ABCBF29617EAD00086755 /* AppTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextStyle.swift; sourceTree = "<group>"; };
+		2F8ABCC12961962F00086755 /* EditableToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableToDoListView.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -69,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F841A13295F4BA900F3E7CB /* RichTextKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +126,8 @@
 		2F82C52E2959DD3100708795 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				2F8ABCB42961762D00086755 /* AppTextView */,
+				2F841A0B295EEF6F00F3E7CB /* SubViews */,
 				2F82C5322959DDB800708795 /* NotesView.swift */,
 			);
 			path = Notes;
@@ -142,8 +166,32 @@
 				2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */,
 				2F841A07295EC5F800F3E7CB /* InputField.swift */,
 				2F841A09295ECEA100F3E7CB /* CustomDialog.swift */,
+				2F6E55EE2961E29A005E5757 /* FloatingButton.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		2F841A0B295EEF6F00F3E7CB /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */,
+				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		2F8ABCB42961762D00086755 /* AppTextView */ = {
+			isa = PBXGroup;
+			children = (
+				2F841A182960687200F3E7CB /* TextStyleButtonStack.swift */,
+				2F8ABCB52961765F00086755 /* AppTextContext.swift */,
+				2F8ABCB72961772600086755 /* PlatformColor.swift */,
+				2F8ABCB92961778C00086755 /* AppTextHightlightingStyle.swift */,
+				2F8ABCBB296177C500086755 /* PlatformImage.swift */,
+				2F8ABCBD2961783100086755 /* AppTextAlignment.swift */,
+				2F8ABCBF29617EAD00086755 /* AppTextStyle.swift */,
+			);
+			path = AppTextView;
 			sourceTree = "<group>";
 		};
 		2F9E86FB29576A0C00DD72D6 = {
@@ -222,6 +270,9 @@
 			dependencies = (
 			);
 			name = NoteBookApp;
+			packageProductDependencies = (
+				2F841A12295F4BA900F3E7CB /* RichTextKit */,
+			);
 			productName = NoteBookApp;
 			productReference = 2F9E870429576A0C00DD72D6 /* NoteBookApp.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +323,9 @@
 				Base,
 			);
 			mainGroup = 2F9E86FB29576A0C00DD72D6;
+			packageReferences = (
+				2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */,
+			);
 			productRefGroup = 2F9E870529576A0C00DD72D6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -307,17 +361,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
+				2F841A192960687200F3E7CB /* TextStyleButtonStack.swift in Sources */,
+				2F8ABCB62961765F00086755 /* AppTextContext.swift in Sources */,
+				2F8ABCBA2961778C00086755 /* AppTextHightlightingStyle.swift in Sources */,
 				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
 				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
+				2F841A0D295EEF8B00F3E7CB /* NewNoteView.swift in Sources */,
 				2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */,
+				2F8ABCC029617EAD00086755 /* AppTextStyle.swift in Sources */,
 				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,
+				2F8ABCB82961772600086755 /* PlatformColor.swift in Sources */,
+				2F8ABCBE2961783100086755 /* AppTextAlignment.swift in Sources */,
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
+				2F8ABCBC296177C500086755 /* PlatformImage.swift in Sources */,
 				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
+				2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */,
+				2F8ABCC22961962F00086755 /* EditableToDoListView.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */,
@@ -395,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -449,7 +513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -475,6 +539,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,6 +569,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2F841A12295F4BA900F3E7CB /* RichTextKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */;
+			productName = RichTextKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2F9E86FC29576A0C00DD72D6 /* Project object */;
 }

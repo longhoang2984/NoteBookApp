@@ -17,6 +17,7 @@ struct NotesView: View {
     @FocusState private var isFocused: Bool
     @State var isSearching: Bool = false
     @State var keywordSearching = ""
+    @State var showNewNote = false
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -27,19 +28,19 @@ struct NotesView: View {
                     ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
                     ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
                     ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false)
-            ]
+                   ]
         ),
         
         ItemGroupViewModel(
             title: "Work",
             items: [ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline", isLock: true),
-                           ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
-                           ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false)
+                    ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
+                    ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false)
                    ]),
     ]
     
     var body: some View {
-        ZStack(alignment: .bottom) {            
+        ZStack(alignment: .bottom) {
             ScrollView {
                 ForEach($toDoItemGroups, id: \.self.id) { $item in
                     VStack(alignment: .leading) {
@@ -83,11 +84,7 @@ struct NotesView: View {
             }
             
             Button {
-                var group = toDoItemGroups[1]
-                var items = group.items
-                items.append(ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline", isLock: true))
-                group.items = items
-                toDoItemGroups[1] = group
+                showNewNote.toggle()
             } label: {
                 HStack {
                     Spacer()
@@ -96,7 +93,11 @@ struct NotesView: View {
                 }
             }
         }
+        .navigationTitle("")
         .background(Color("blue_light").ignoresSafeArea())
+        .fullScreenCover(isPresented: $showNewNote) {
+            NewNoteView()
+        }
     }
     
     @ViewBuilder
@@ -142,11 +143,12 @@ struct NotesView_Previews: PreviewProvider {
     }
 }
 
-extension Color {
+public extension Color {
     static var bluePrimary = Color("blue_primary")
     static var blueSecondary = Color("blue_secondary")
     static var blueOxford = Color("blue_oxford")
     static var blueLight = Color("blue_light")
     static var blueBubble = Color("blue_bubble")
     static var mischka = Color("mischka")
+    static var appYellow = Color("yellow")
 }

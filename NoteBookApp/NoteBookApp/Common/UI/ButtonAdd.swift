@@ -11,11 +11,12 @@ struct ButtonAdd: View {
     var onTapped: (() -> Void)?
     
     var body: some View {
-        Button {
-            onTapped?()
-        } label: {
-            HStack {
-                Spacer()
+        HStack {
+            Spacer()
+            Button {
+                onTapped?()
+            } label: {
+                
                 Image("btn_add")
                     .padding(.trailing, 10)
             }
