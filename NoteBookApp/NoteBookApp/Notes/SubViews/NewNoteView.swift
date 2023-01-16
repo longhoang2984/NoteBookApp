@@ -22,7 +22,7 @@ struct NewNoteView: View {
     
     @State private var shouldShowTodoList = false
     @State private var todoItems: [ToDoItem] = []
-    @FocusState var focusState: ToDoItem?
+    @State var focusState: ToDoItem?
     @State private var textEditorHeight : CGFloat = 200
     
     var body: some View {
@@ -72,7 +72,21 @@ struct NewNoteView: View {
     @ViewBuilder
     var toDoList: some View {
         if shouldShowTodoList {
-            EditableToDoListView(items: $todoItems, focusItem: _focusState)
+            EditableToDoListView(items: $todoItems, focusItem: $focusState) { text in
+                guard let focusItem = focusState, let index = todoItems.firstIndex(where: { $0.id == focusItem.id }) else { return }
+                if !text.isEmpty {
+                    let item = ToDoItem()
+                    if (index == todoItems.count - 1) {
+                        self.todoItems.append(item)
+                    } else {
+                        self.todoItems.insert(item, at: index + 1)
+                    }
+                    focusState = item
+                } else {
+                    self.todoItems.remove(at: index)
+                    focusState = nil
+                }
+            }
         }
     }
     

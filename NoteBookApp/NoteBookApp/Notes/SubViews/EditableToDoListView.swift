@@ -24,7 +24,8 @@ public struct ToDoItem: Identifiable, Hashable {
 struct EditableToDoListView: View {
     
     @Binding var items: [ToDoItem]
-    @FocusState var focusItem: ToDoItem?
+    @Binding var focusItem: ToDoItem?
+    var onSubmit: (String) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,17 +36,8 @@ struct EditableToDoListView: View {
     @ViewBuilder
     var main: some View {
         if items.count > 0 {
-            ForEach($items) { $item in
-                EditableToDoView(todo: $item, focus: _focusItem) { text in
-                    if !text.isEmpty {
-                        let item = ToDoItem()
-                        items.append(item)
-                        focusItem = item
-                    } else {
-                        items.removeLast()
-                        focusItem = nil
-                    }
-                }
+            ForEach($items, id: \.self.id) { $item in
+                EditableToDoView(todo: $item, focus: _focusItem, onSubmit: onSubmit)
             }
         }
     }
@@ -54,10 +46,14 @@ struct EditableToDoListView: View {
 struct EditableToDoView: View {
     
     @Binding var todo: ToDoItem
-    @FocusState var focus: ToDoItem?
+    @Binding var focus: ToDoItem?
     @State var textViewHeight: CGFloat = 40
+    
+    var isEditing: Bool {
+        self.todo.id == self.focus?.id
+    }
+    
     var onSubmit: (String) -> Void
-    @State private var firstResponder: Bool = true
         
     var body: some View {
         
@@ -68,8 +64,20 @@ struct EditableToDoView: View {
                 Image(todo.isComplete ? "radio_btn_selected" : "radio_btn")
             }
             
-            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isFirstResponder: $firstResponder) {
+            let firstResponding = Binding(get: { isEditing }) { isEditing in
+                if !isEditing {
+                    focus = nil
+                }
+            }
+            
+            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: firstResponding) {
                 onSubmit(todo.text)
+            } onFocusAction: { focused in
+                if !focused {
+                    focus = nil
+                } else {
+                    focus = todo
+                }
             }
             .frame(height: textViewHeight)
             .padding(.top, -7)
@@ -86,15 +94,13 @@ struct EditableToDoListView_Previews: PreviewProvider {
             [item]
         }
         
-        @FocusState var focus: ToDoItem?
+        @Binding var focus: ToDoItem?
         
         var body: some View {
             VStack {
-                EditableToDoView(todo: $item) { _ in
-                    
-                }
+                EditableToDoView(todo: $item, focus: .constant(nil), onSubmit: { _ in })
                 
-                EditableToDoListView(items: .constant(items), focusItem: _focus)
+                EditableToDoListView(items: .constant(items), focusItem: _focus, onSubmit: { _ in })
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             focus = item
@@ -106,6 +112,6 @@ struct EditableToDoListView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-            Preview()
+        Preview(focus: .constant(nil))
     }
 }

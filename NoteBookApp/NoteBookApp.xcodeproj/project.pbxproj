@@ -40,11 +40,13 @@
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
 		2F9E870F29576A0D00DD72D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */; };
 		2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */; };
+		2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA60C372971C27800D62A98 /* ImagePicker.swift */; };
 		2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */; };
 		2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1335295DBF4D00A87157 /* PasswordListView.swift */; };
 		2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */; };
 		2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1339295DC51E00A87157 /* PasswordItemView.swift */; };
 		2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA133B295DFEA700A87157 /* NewPasswordView.swift */; };
+		2FB472722967304A005F335B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB472712967304A005F335B /* ImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,11 +95,13 @@
 		2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2F9E871429576A0D00DD72D6 /* NoteBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppTests.swift; sourceTree = "<group>"; };
+		2FA60C372971C27800D62A98 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		2FAA1335295DBF4D00A87157 /* PasswordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordListView.swift; sourceTree = "<group>"; };
 		2FAA1337295DC0AD00A87157 /* ButtonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAdd.swift; sourceTree = "<group>"; };
 		2FAA1339295DC51E00A87157 /* PasswordItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordItemView.swift; sourceTree = "<group>"; };
 		2FAA133B295DFEA700A87157 /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
+		2FB472712967304A005F335B /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 		2F4F6D662958B2D4001614A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2FB472702967302F005F335B /* ImageManager */,
 				2F6E55F4296216F3005E5757 /* Fonts */,
 				2F82C53B2959E47400708795 /* UI */,
 				2F82C5382959E43C00708795 /* Helpers */,
@@ -285,6 +290,15 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		2FB472702967302F005F335B /* ImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				2FB472712967304A005F335B /* ImageManager.swift */,
+				2FA60C372971C27800D62A98 /* ImagePicker.swift */,
+			);
+			path = ImageManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,6 +418,7 @@
 				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
 				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
+				2FB472722967304A005F335B /* ImageManager.swift in Sources */,
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
@@ -423,6 +438,7 @@
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */,
+				2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 				2F841A08295EC5F800F3E7CB /* InputField.swift in Sources */,
 			);

@@ -10,9 +10,10 @@ import SwiftUI
 public struct TextView : UIViewRepresentable {
     @Binding public var text : String
     @Binding public var heightToTransmit: CGFloat
-    @Binding public var isFirstResponder: Bool
+    @Binding public var isEditing: Bool
     
     var onReturnAction: (() -> Void)? = nil
+    var onFocusAction: ((Bool) -> Void)? = nil
     
     public func makeUIView(context: Context) -> UIView {
         let view = UIView()
@@ -41,10 +42,9 @@ public struct TextView : UIViewRepresentable {
     public func updateUIView(_ view: UIView, context: Context) {
         context.coordinator.heightBinding = $heightToTransmit
         context.coordinator.textBinding = $text
-        switch isFirstResponder {
-        case true:
+        if isEditing {
             context.coordinator.textView?.becomeFirstResponder()
-        case false:
+        } else {
             context.coordinator.textView?.resignFirstResponder()
         }
         DispatchQueue.main.async {
@@ -53,47 +53,49 @@ public struct TextView : UIViewRepresentable {
     }
     
     public func makeCoordinator() -> Coordinator {
-        return Coordinator(isFirstResponder: $isFirstResponder)
+        return Coordinator(onReturnAction:
+                            onReturnAction,
+                           onFocusAction: onFocusAction)
     }
     
     public class Coordinator : NSObject, UITextViewDelegate {
         var textBinding : Binding<String>?
         var heightBinding : Binding<CGFloat>?
-        var isFirstResponder: Binding<Bool>
         var textView : UITextView?
         var onReturnAction: (() -> Void)? = nil
+        var onFocusAction: ((Bool) -> Void)? = nil
+        var isEditing: Bool = false
         
         init(textBinding: Binding<String>? = nil,
              heightBinding: Binding<CGFloat>? = nil,
-             isFirstResponder: Binding<Bool>,
              textView: UITextView? = nil,
-             onReturnAction: (() -> Void)? = nil) {
+             onReturnAction: (() -> Void)? = nil,
+             onFocusAction: ((Bool) -> Void)? = nil,
+             isEditing: Bool = false) {
             self.textBinding = textBinding
             self.heightBinding = heightBinding
-            self.isFirstResponder = isFirstResponder
             self.textView = textView
             self.onReturnAction = onReturnAction
+            self.isEditing = isEditing
         }
         
         func runSizing() {
             guard let textView = textView else { return }
             textView.sizeToFit()
-            if !textView.text.isEmpty {
-                self.textBinding?.wrappedValue = textView.text
-                self.heightBinding?.wrappedValue = textView.frame.size.height
-            }
+            self.heightBinding?.wrappedValue = textView.frame.size.height
         }
         
         public func textViewDidChange(_ textView: UITextView) {
+            textBinding?.wrappedValue = textView.text
             runSizing()
         }
         
         public func textViewDidBeginEditing(_ textView: UITextView) {
-            self.isFirstResponder.wrappedValue = true
+            self.onFocusAction?(true)
         }
         
         public func textViewDidEndEditing(_ textView: UITextView) {
-            self.isFirstResponder.wrappedValue = false
+            self.onFocusAction?(false)
         }
         
         public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -113,9 +115,10 @@ struct TextView_Previews: PreviewProvider {
         @State var text: String = ""
         @State var heightToTransmit: CGFloat = 40
         @State public var isFirstResponder: Bool = true
+        @State public var isEditing: Bool = false
         
         var body: some View {
-            TextView(text: $text, heightToTransmit: $heightToTransmit, isFirstResponder: $isFirstResponder) {
+            TextView(text: $text, heightToTransmit: $heightToTransmit, isEditing: $isEditing) {
                 
             }
         }
