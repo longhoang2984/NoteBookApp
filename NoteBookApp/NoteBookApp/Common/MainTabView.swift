@@ -43,19 +43,30 @@ struct MainTabView<Content: View>: View {
     @ViewBuilder var content: (TabbarItemType) -> Content
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             TabView(selection: $selectedItem) {
                 ForEach(tabbarItems, id: \.self) { item in
                     content(item)
                 }
             }
             
+        }
+        .safeAreaInset(edge: .bottom) {
             VStack {
-                Spacer()
                 CustomTabView(tabbarItems: tabbarItems, selectedItem: $selectedItem)
+                    .ignoresSafeArea()
+            }
+            .background {
+                Color.clear
             }
         }
-        .ignoresSafeArea(.all, edges: .bottom)
+        .onAppear {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithTransparentBackground() // 🔑
+            appearance.backgroundColor = .clear
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
     }
 }
 

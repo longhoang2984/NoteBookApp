@@ -27,6 +27,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             MainTabView(selectedItem: $selectedItem, content: getView)
+                .ignoresSafeArea()
         }
     }
 }

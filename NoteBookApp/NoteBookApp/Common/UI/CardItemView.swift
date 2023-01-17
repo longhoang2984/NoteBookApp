@@ -19,41 +19,48 @@ public struct ItemViewModel: Identifiable, Hashable {
 struct CardItemView: View {
     
     @Binding var item: ItemViewModel
-    let items = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(item.title)
-                    .font(.custom("Roboto", size: 16))
-                    .fontWeight(.medium)
-                    .foregroundColor( Color("blue_oxford"))
-                    .lineLimit(1)
-                
+        
+        GeometryReader { geo in
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(item.title)
+                        .font(.custom("Roboto", size: 16))
+                        .fontWeight(.medium)
+                        .foregroundColor( Color("blue_oxford"))
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    
+                    Image("icon_lock")
+                        .opacity(item.isLock ? 1 : 0)
+                }
+                ScrollView {
+                    HStack(spacing: 4) {
+                        ForEach(item.images.indices, id: \.self) { index in
+                            Image(item.images[index])
+                                .resizable()
+                                .frame(width: (geo.size.width - 28) / 3,
+                                       height: (geo.size.width - 28) / 3)
+                        }
+                    }
+                }
                 Spacer()
-                
-                Image("icon_lock")
-                    .opacity(item.isLock ? 1 : 0)
-            }
-            HStack(spacing: 4) {
-                ForEach(item.images.indices, id: \.self) { index in
-                    Image(item.images[index])
+                HStack {
+                    Spacer()
+                    Image(item.deadlineIcon)
+                    Text(item.deadline)
+                        .font(.custom("Roboto", size: 10))
+                        .foregroundColor(Color("blue_secondary"))
                 }
             }
-            Spacer()
-            HStack {
-                Spacer()
-                Image(item.deadlineIcon)
-                Text(item.deadline)
-                    .font(.custom("Roboto", size: 10))
-                    .foregroundColor(Color("blue_secondary"))
-            }
+            .padding(.all, 10)
+            .background(.white)
+            .cornerRadius(15)
+            .shadow(color: Color("mischka").opacity(0.4), radius: 4.0, y: 1)
         }
-        .frame(minHeight: 144)
-        .padding(.all, 10)
-        .background(.white)
-        .cornerRadius(15)
-        .shadow(color: Color("mischka").opacity(0.4), radius: 4.0, y: 1)
     }
 }
 

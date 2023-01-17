@@ -23,10 +23,6 @@ struct HomeView: View {
                     headerView
                     reminderView
                     toDoListsView
-                    HStack {
-                        Spacer()
-                    }
-                    .frame(height: 150)
                 }
             }
             
@@ -38,12 +34,10 @@ struct HomeView: View {
         .background {
             ZStack {
                 Color("blue_light")
-                    .edgesIgnoringSafeArea(.all)
                 
                 Image("bg")
                     .resizable()
                     .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
             }
         }
     }
@@ -151,7 +145,8 @@ struct HomeView: View {
                     } label: {
                         CardItemView(item: item)
                             .frame(
-                                width: 116
+                                width: 116,
+                                height: 144
                             )
                     }
                     

@@ -88,15 +88,17 @@ struct ImageItem: View {
         .frame(width: (UIScreen.main.bounds.width - 16 - (CGFloat(numberOfImageInRow) - 1) * 8) / CGFloat(numberOfImageInRow), height: (UIScreen.main.bounds.width - 16 - (CGFloat(numberOfImageInRow) - 1) * 8) / CGFloat(numberOfImageInRow))
         .cornerRadius(15)
         .onTapGesture {
-            if !self.image.selected {
-                image.selected = true
-                selected.append(image.image)
-            } else {
-                for i in 0..<selected.count {
-                    if selected[i] == self.image.image {
-                        selected.remove(at: i)
-                        image.selected = false
-                        return
+            if !image.isCamera {
+                if !self.image.selected {
+                    image.selected = true
+                    selected.append(image.image)
+                } else {
+                    for i in 0..<selected.count {
+                        if selected[i] == self.image.image {
+                            selected.remove(at: i)
+                            image.selected = false
+                            return
+                        }
                     }
                 }
             }
