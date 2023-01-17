@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct PhotoListView: View {
+    var images: [UIImage] = []
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        LazyVGrid(columns: [GridItem](repeating: GridItem(.fixed((UIScreen.main.bounds.width - 60) / 2)), count: 2), spacing: 10) {
+            ForEach(images, id: \.self) { img in
+                Image(uiImage: img)
+                    .resizable()
+                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: (UIScreen.main.bounds.width - 60) / 2)
+                    .cornerRadius(15)
+            }
+        }
     }
 }
 

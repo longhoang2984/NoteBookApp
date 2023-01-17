@@ -52,6 +52,7 @@ struct NewNoteView: View {
                     VStack(alignment: .leading) {
                         editor
                         toDoList
+                        imgListView
                     }
                     .frame(maxHeight: .infinity)
                     
@@ -97,6 +98,13 @@ struct NewNoteView: View {
                     focusState = nil
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    var imgListView: some View {
+        if !selectedImages.isEmpty {
+            PhotoListView(images: selectedImages)
         }
     }
     

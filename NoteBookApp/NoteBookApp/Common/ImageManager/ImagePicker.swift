@@ -11,6 +11,7 @@ struct ImagePicker: View {
     @StateObject var imageManager = ImageManager()
     @State var selectedImages: [UIImage] = []
     var onSelectImage: (([UIImage]) -> Void)? = nil
+    @Environment(\.dismiss) var pop
     
     var body: some View {
         GeometryReader { _ in
@@ -38,7 +39,9 @@ struct ImagePicker: View {
                     .padding(.top, 20)
                     
                     FloatingButton(title: "Add") {
+                        onSelectImage?(selectedImages)
                         selectedImages.removeAll()
+                        pop()
                     }
                     .disabled(selectedImages.count == 0)
                 }
