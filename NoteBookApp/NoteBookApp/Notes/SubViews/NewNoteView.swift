@@ -111,7 +111,12 @@ struct NewNoteView: View {
     var editor: some View {
         RichTextEditor(text: $noteContent, context: context) {
             $0.textContentInset = CGSize(width: 10, height: 20)
+            $0.setCurrentForegroundColor(to: UIColor(named: "blue_oxford") ?? .black)
         }
+        .onAppear {
+            context.foregroundColorBinding.wrappedValue = .blueOxford
+        }
+        .foregroundColor(.blueOxford)
         .focusedValue(\.richTextContext, context)
         .frame(height: 250)
     }
@@ -133,6 +138,7 @@ struct NewNoteView: View {
                             Text("Note")
                                 .font(.custom("Roboto", size: 20))
                                 .fontWeight(.bold)
+                                .foregroundColor(.blueOxford)
                         }
                     }
                     

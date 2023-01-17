@@ -37,6 +37,7 @@ struct InputField: View {
                     TextField("", text: $text) { editingChanged in
                         editing = editingChanged
                     }
+                    .foregroundColor(.blueOxford)
                     .font(.custom("Roboto-Regular", size: 16))
                     .onSubmit {
                         onSubmit?()

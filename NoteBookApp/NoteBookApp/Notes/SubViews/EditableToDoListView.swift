@@ -80,6 +80,7 @@ struct EditableToDoView: View {
                 }
             }
             .frame(height: textViewHeight)
+            .background(Color.white)
             .padding(.top, -7)
         }
         .padding(.horizontal)

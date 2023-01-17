@@ -11,9 +11,7 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Thin.ttf</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>NoteBookApp need to photo library access to upload image for noting</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>NoteBookApp need to photo library access to upload image for noting</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>

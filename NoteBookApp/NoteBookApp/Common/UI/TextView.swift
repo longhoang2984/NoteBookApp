@@ -22,6 +22,8 @@ public struct TextView : UIViewRepresentable {
         textView.font = UIFont(name: "Roboto-Regular", size: 16)
         textView.contentInset = .zero
         textView.isScrollEnabled = false   // causes expanding height
+        textView.backgroundColor = .clear
+        textView.textColor = UIColor(named: "blue_oxford")
         context.coordinator.textView = textView
         context.coordinator.onReturnAction = onReturnAction
         textView.text = text

@@ -19,7 +19,7 @@ struct NotesView: View {
     @State var keywordSearching = ""
     @State var showNewNote = false
     
-    let columns = [GridItem](repeating: GridItem(.fixed((UIScreen.main.bounds.width - 30) / 2), spacing: 10), count: 2)
+    let columns = [GridItem](repeating: GridItem(.fixed((UIScreen.main.bounds.width - 40) / 3), spacing: 10), count: 3)
     
     @State var toDoItemGroups = [
         ItemGroupViewModel(
@@ -42,36 +42,52 @@ struct NotesView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                ForEach($toDoItemGroups, id: \.self.id) { $item in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            VStack {
-                                Text(item.title)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Roboto", size: 14))
-                                    .fontWeight(.bold)
-                                    .padding(.horizontal, 16)
-                                    .lineLimit(1)
+                VStack {
+                    ForEach($toDoItemGroups, id: \.self.id) { $item in
+                        VStack(alignment: .leading) {
+                            HStack {
+                                VStack {
+                                    Text(item.title)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Roboto", size: 14))
+                                        .fontWeight(.bold)
+                                        .padding(.horizontal, 16)
+                                        .lineLimit(1)
+                                }
+                                .frame(height: 40)
+                                .background {
+                                    Color.blueSecondary
+                                }
+                                .cornerRadius(20, corners: [.topRight, .bottomRight])
+                                
+                                Spacer()
                             }
-                            .frame(height: 40)
-                            .background {
-                                Color.blueSecondary
-                            }
-                            .cornerRadius(20, corners: [.topRight, .bottomRight])
                             
-                            Spacer()
-                        }
-                        
-                        LazyVGrid(columns: columns, alignment: .leading) {
-                            ForEach($item.items, id: \.self.id) { item in
-                                CardItemView(item: item)
-                                    .frame(width: (UIScreen.main.bounds.width - 30) / 2, height: 166)
+                            HStack {
+                                Spacer()
                             }
+                            .frame(height: 10)
+                            
+                            LazyVGrid(columns: columns, alignment: .leading) {
+                                ForEach($item.items, id: \.self.id) { item in
+                                    CardItemView(item: item)
+                                        .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: 144)
+                                }
+                            }
+                            .padding(.leading, 10)
+                            
+                            HStack {
+                                Spacer()
+                            }
+                            .frame(height: 20)
                         }
-                        .padding(.leading, 10)
                     }
+                    
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(height: 100)
                 }
-                
             }
             .safeAreaInset(edge: .top) {
                 HStack {
