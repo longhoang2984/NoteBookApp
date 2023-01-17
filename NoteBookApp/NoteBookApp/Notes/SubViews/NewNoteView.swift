@@ -25,6 +25,9 @@ struct NewNoteView: View {
     @State var focusState: ToDoItem?
     @State private var textEditorHeight : CGFloat = 200
     
+    @State var showImageLibrary: Bool = false
+    @State var selectedImages: [UIImage] = []
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
@@ -65,6 +68,13 @@ struct NewNoteView: View {
             VStack {
                 footer
             }
+        }
+        .sheet(isPresented: $showImageLibrary) {
+            ImagePicker(onSelectImage: { images in
+                selectedImages = images
+            })
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
         }
         
     }
@@ -208,7 +218,7 @@ struct NewNoteView: View {
                 .frame(maxWidth: .infinity)
                 
                 Button {
-                    
+                    showImageLibrary.toggle()
                 } label: {
                     Image("ic_img")
                 }

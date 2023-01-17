@@ -23,12 +23,17 @@ public struct Images {
 }
 
 public class ImageManager: ObservableObject {
-    @Published public var datas = [UIImage]()
+    private var datas = [UIImage]()
     private var allPhotos : PHFetchResult<PHAsset>?
-    @Published public var images: [Images] = [Images(image: UIImage(named: "")!, selected: false, isCamera: true)]
-    @Published public var grid: [Int] = []
+    private(set) var numberOfImageInRow: Int = 4
+    @Published private(set) var images: [Images] = [Images(image: UIImage(named: "make_photo")!, selected: false, isCamera: true)]
+    @Published private(set) var grid: [Int] = []
     
-    func fetchingImages(imageSize: CGSize = .init(width: 100, height: 100)) async {
+    public init(numberOfImageInRow: Int = 4) {
+        self.numberOfImageInRow = numberOfImageInRow
+    }
+    
+    func fetchingImages(imageSize: CGSize = .init(width: 400, height: 400)) async {
         guard await requestAuthorizeStatus() == .authorized else { return }
         
         let options = PHFetchOptions()
@@ -53,12 +58,14 @@ public class ImageManager: ObservableObject {
             }
             
             if self?.allPhotos?.count == self?.datas.count {
-                self?.images = self?.datas.map({ img in
-                    let image = Images(image: img, selected: false, isCamera: false)
-                    return image
-                }) ?? []
-                
-                self?.getGrid()
+                DispatchQueue.main.async { [weak self] in
+                    let imgs: [Images] = self?.datas.map({ img in
+                        let image = Images(image: img, selected: false, isCamera: false)
+                        return image
+                    }) ?? []
+                    self?.images += imgs
+                    self?.getGrid()
+                }
             }
         }
     }
@@ -73,7 +80,7 @@ public class ImageManager: ObservableObject {
     }
     
     func getGrid() {
-        for i in stride(from: 0, to: self.images.count, by: 3) {
+        for i in stride(from: 0, to: self.images.count, by: numberOfImageInRow) {
             grid.append(i)
         }
     }
