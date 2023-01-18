@@ -11,6 +11,7 @@ struct ImagePicker: View {
     @StateObject var imageManager = ImageManager()
     @State var selectedImages: [UIImage] = []
     var onSelectImage: (([UIImage]) -> Void)? = nil
+    @State var showCameraView: Bool = false
     @Environment(\.dismiss) var pop
     
     var body: some View {
@@ -24,7 +25,7 @@ struct ImagePicker: View {
                                     ForEach(index..<index+imageManager.numberOfImageInRow, id: \.self) { subIndex in
                                         HStack {
                                             if subIndex < imageManager.images.count {
-                                                ImageItem(image: imageManager.images[subIndex], selected: $selectedImages, numberOfImageInRow: imageManager.numberOfImageInRow)
+                                                ImageItem(image: imageManager.images[subIndex], selected: $selectedImages, numberOfImageInRow: imageManager.numberOfImageInRow, showCamera: $showCameraView)
                                             }
                                         }
                                     }
@@ -61,6 +62,7 @@ struct ImageItem: View {
     @State var image: Images
     @Binding var selected: [UIImage]
     var numberOfImageInRow: Int
+    @Binding var showCamera: Bool
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -101,6 +103,8 @@ struct ImageItem: View {
                         }
                     }
                 }
+            } else {
+                showCamera.toggle()
             }
         }
     }

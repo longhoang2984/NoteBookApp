@@ -71,7 +71,7 @@ struct NewNoteView: View {
             }
         }
         .sheet(isPresented: $showImageLibrary) {
-            ImagePicker(onSelectImage: { images in
+            PhotoCollectionView(onSelectImage: { images in
                 selectedImages = images
             })
                 .presentationDetents([.large])

@@ -10,15 +10,19 @@ import SwiftUI
 public struct FloatingButton: View {
     var title: String
     var onTapped: (() -> Void)?
+    var enabled: Bool
     
-    public init(title: String, onTapped: (() -> Void)? = nil) {
+    public init(title: String, enabled: Bool = true, onTapped: (() -> Void)? = nil) {
         self.title = title
         self.onTapped = onTapped
+        self.enabled = enabled
     }
     
     public var body: some View {
         Button {
-            onTapped?()
+            if enabled {
+                onTapped?()
+            }
         } label: {
             Text(title)
                 .font(.custom("Roboto", size: 20))
@@ -27,7 +31,7 @@ public struct FloatingButton: View {
                 .padding(.vertical)
                 .padding(.horizontal, 20)
                 .frame(height: 45)
-                .background(Color.appYellow)
+                .background(Color.appYellow.opacity(enabled ? 1.0 : 0.5))
                 .cornerRadius(45 / 2)
                 .shadow(color: Color.mischka, radius: 4.0)
         }
