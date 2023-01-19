@@ -35,7 +35,7 @@ public struct FloatingButton: View {
                 .cornerRadius(45 / 2)
                 .shadow(color: Color.mischka, radius: 4.0)
         }
-        .padding(.trailing, 16)
+        .padding(.trailing, 12)
     }
 }
 
