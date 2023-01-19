@@ -9,14 +9,39 @@ import SwiftUI
 
 struct PhotoListView: View {
     var images: [UIImage] = []
+    private static let itemSpacing = 12.0
+    private static let itemCornerRadius = 15.0
+    private static let itemSize = CGSize(width: 137.5, height: 137.5)
+    var onRemoveImageAtIndex: ((Int) -> Void)?
+    
+    private let columns = [
+        GridItem(.adaptive(minimum: itemSize.width, maximum: itemSize.height), spacing: itemSpacing)
+    ]
     
     var body: some View {
-        LazyVGrid(columns: [GridItem](repeating: GridItem(.fixed((UIScreen.main.bounds.width - 60) / 2)), count: 2), spacing: 10) {
+        LazyVGrid(columns: columns, spacing: Self.itemSpacing) {
             ForEach(images, id: \.self) { img in
                 Image(uiImage: img)
                     .resizable()
-                    .frame(width: (UIScreen.main.bounds.width - 60) / 2, height: (UIScreen.main.bounds.width - 60) / 2)
-                    .cornerRadius(15)
+                    .scaledToFill()
+                    .frame(width: Self.itemSize.width, height: Self.itemSize.height)
+                    .cornerRadius(Self.itemCornerRadius)
+                    .overlay(alignment: .topTrailing) {
+                        Button {
+                            if let index = images.firstIndex(of: img) {
+                                onRemoveImageAtIndex?(index)
+                            }
+                        } label: {
+                            Image(systemName: "x.circle")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .background {
+                                    Color.white.opacity(0.5)
+                                }
+                                .cornerRadius(10)
+                        }
+                        .frame(width: 40, height: 40)
+                    }
             }
         }
     }

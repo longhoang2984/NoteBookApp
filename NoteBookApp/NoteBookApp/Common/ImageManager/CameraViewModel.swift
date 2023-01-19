@@ -116,7 +116,8 @@ public final class CameraViewModel: ObservableObject {
         await photoCollection.cache.requestImage(for: asset, targetSize: CGSize(width: 256, height: 256))  { result in
             if let result = result {
                 Task { @MainActor in
-                    self.thumbnailImage = result.image
+                    guard let img = result.image else { return }
+                    self.thumbnailImage = Image(uiImage: img)
                 }
             }
         }

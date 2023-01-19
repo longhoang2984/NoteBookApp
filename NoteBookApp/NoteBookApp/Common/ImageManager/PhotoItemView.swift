@@ -16,6 +16,7 @@ struct PhotoItemView: View {
     
     @State private var image: Image?
     @State private var imageRequestID: PHImageRequestID?
+    static let cachingImageSize = PHImageManagerMaximumSize
 
     var body: some View {
         
@@ -33,8 +34,8 @@ struct PhotoItemView: View {
             guard image == nil, let cache = cache else { return }
             imageRequestID = await cache.requestImage(for: asset, targetSize: imageSize) { result in
                 Task {
-                    if let result = result {
-                        self.image = result.image
+                    if let result = result, let img = result.image {
+                        self.image = Image(uiImage: img)
                     }
                 }
             }

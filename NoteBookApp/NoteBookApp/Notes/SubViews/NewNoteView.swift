@@ -72,7 +72,7 @@ struct NewNoteView: View {
         }
         .sheet(isPresented: $showImageLibrary) {
             PhotoCollectionView(onSelectImage: { images in
-                selectedImages = images
+                selectedImages += images
             })
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
@@ -104,7 +104,12 @@ struct NewNoteView: View {
     @ViewBuilder
     var imgListView: some View {
         if !selectedImages.isEmpty {
-            PhotoListView(images: selectedImages)
+            PhotoListView(images: selectedImages) { index in
+                _ = withAnimation {
+                    selectedImages.remove(at: index)
+                }
+            }
+            .padding(.top, 12)
         }
     }
     

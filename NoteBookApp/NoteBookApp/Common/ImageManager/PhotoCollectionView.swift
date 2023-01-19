@@ -16,13 +16,18 @@ struct PhotoCollectionView: View {
     @StateObject private var model = CameraViewModel()
     
     @Environment(\.displayScale) private var displayScale
-    
+    let cache = CachedImageManager()
     private static let itemSpacing = 12.0
     private static let itemCornerRadius = 15.0
     private static let itemSize = CGSize(width: 90, height: 90)
+    private static let bigItemSize = CGSize(width: 500, height: 500)
     
     private var imageSize: CGSize {
         return CGSize(width: Self.itemSize.width * min(displayScale, 2), height: Self.itemSize.height * min(displayScale, 2))
+    }
+    
+    private var bigImageSize: CGSize {
+        return CGSize(width: Self.bigItemSize.width, height: Self.bigItemSize.height)
     }
     
     private let columns = [
@@ -73,7 +78,21 @@ struct PhotoCollectionView: View {
                     }
                     Spacer()
                     FloatingButton(title: "ADD", enabled: !selectedImages.isEmpty) {
-                        
+                        Task {
+                            await cache.stopCaching()
+                            var imgs: [UIImage] = []
+                            for asset in self.selectedImages {
+                                await model.photoCollection.cache.requestImage(for: asset, targetSize: bigImageSize, completion: { result in
+                                    guard let img = result?.image else { return }
+                                    imgs.append(img)
+                                })
+                            }
+                            
+                            await MainActor.run { [imgs] in
+                                self.onSelectImage?(imgs)
+                                pop()
+                            }
+                        }
                     }
                     
                 }
@@ -82,7 +101,7 @@ struct PhotoCollectionView: View {
     }
     
     private func photoItemView(asset: PhotoAsset) -> some View {
-        PhotoItemView(asset: asset, cache: model.photoCollection.cache, imageSize: imageSize)
+        PhotoItemView(asset: asset, cache: model.photoCollection.cache, imageSize: bigImageSize)
             .frame(width: Self.itemSize.width, height: Self.itemSize.height)
             .clipped()
             .cornerRadius(Self.itemCornerRadius)
@@ -97,12 +116,12 @@ struct PhotoCollectionView: View {
             }
             .onAppear {
                 Task {
-                    await model.photoCollection.cache.startCaching(for: [asset], targetSize: imageSize)
+                    await model.photoCollection.cache.startCaching(for: [asset], targetSize: bigImageSize)
                 }
             }
             .onDisappear {
                 Task {
-                    await model.photoCollection.cache.stopCaching(for: [asset], targetSize: imageSize)
+                    await model.photoCollection.cache.stopCaching(for: [asset], targetSize: bigImageSize)
                 }
             }
     }
