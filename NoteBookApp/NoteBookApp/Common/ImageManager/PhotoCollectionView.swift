@@ -13,7 +13,7 @@ struct PhotoCollectionView: View {
     var onSelectImage: (([UIImage]) -> Void)? = nil
     @State var showCameraView: Bool = false
     @Environment(\.dismiss) var pop
-    @StateObject private var model = CameraViewModel()
+    @StateObject private var model = CameraViewModel(saveSquareImage: true)
     
     @Environment(\.displayScale) private var displayScale
     let cache = CachedImageManager()
@@ -58,6 +58,7 @@ struct PhotoCollectionView: View {
                         }
                         .padding([.vertical], Self.itemSpacing)
                     }
+                    .padding(.top, Self.itemSpacing)
                 }
             }
             .task {
@@ -74,7 +75,14 @@ struct PhotoCollectionView: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "camera.fill")
+                        VStack {
+                            Image(systemName: "camera.fill")
+                        }
+                        .frame(width: 90, height: 45)
+                        .background(Color.blueLight)
+                        .cornerRadius(45 / 2)
+                        .shadow(radius: 0.4, y: 1)
+                        .padding(Self.itemSpacing)
                     }
                     Spacer()
                     FloatingButton(title: "ADD", enabled: !selectedImages.isEmpty) {

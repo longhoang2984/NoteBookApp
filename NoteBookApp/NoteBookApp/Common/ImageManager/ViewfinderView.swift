@@ -11,13 +11,15 @@ struct ViewfinderView: View {
     @Binding var image: Image?
     
     var body: some View {
-        GeometryReader { geometry in
+        VStack {
             if let image = image {
                 image
                     .resizable()
-                    .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .aspectRatio(1/1, contentMode: .fit)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                    .padding(.top, 50)
             }
+            Spacer()
         }
     }
 }

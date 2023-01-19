@@ -21,8 +21,10 @@ public final class CameraViewModel: ObservableObject {
     
     var isPhotoLoaded = false
     var onPhotoTaken: (() -> Void)?
+    let saveSquareImage: Bool
     
-    init() {
+    init(saveSquareImage: Bool = false) {
+        self.saveSquareImage = saveSquareImage
         Task {
             await handleCameraPreviews()
         }
@@ -63,8 +65,8 @@ public final class CameraViewModel: ObservableObject {
         guard let previewCGImage = photo.previewCGImageRepresentation(),
               let metaDataOrientation = photo.metadata[String(kCGImagePropertyOrientation)] as? UInt32,
               let cgImageOrientation = CGImagePropertyOrientation(rawValue: metaDataOrientation)
-            else { return nil }
-
+        else { return nil }
+        
         let imageOrientation = Image.Orientation(cgImageOrientation)
         let thumbnailImage = Image(decorative: previewCGImage, scale: 1, orientation: imageOrientation)
         
@@ -74,8 +76,30 @@ public final class CameraViewModel: ObservableObject {
         let previewDimensions = photo.resolvedSettings.previewDimensions
         let thumbnailSize = (width: Int(previewDimensions.width), height: Int(previewDimensions.height))
         
-        return PhotoData(thumbnailImage: thumbnailImage, thumbnailSize: thumbnailSize, imageData: imageData, imageSize: imageSize)
+        let defaultData = PhotoData(thumbnailImage: thumbnailImage, thumbnailSize: thumbnailSize, imageData: imageData, imageSize: imageSize)
+        guard let img = UIImage(data: imageData),
+              img.cgImage != nil,
+              saveSquareImage
+        else { return defaultData }
+        
+        guard let data = cropToBounds(image: img, width: img.size.width, height: img.size.width).jpegData(compressionQuality: 1)
+        else { return defaultData }
+        return PhotoData(thumbnailImage: thumbnailImage, thumbnailSize: thumbnailSize, imageData: data, imageSize: imageSize)
     }
+    
+    func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
+        
+        let cgimage = image.cgImage!
+        
+        // Create bitmap image from context using the rect
+        let imageRef: CGImage = cgimage.aspectRatio()
+        
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        
+        return image
+    }
+    
     
     func savePhoto(imageData: Data, albumName: String = "Torepa") {
         
@@ -125,15 +149,15 @@ public final class CameraViewModel: ObservableObject {
 }
 
 fileprivate struct PhotoData {
-
+    
     var thumbnailImage: Image
-
+    
     var thumbnailSize: (width: Int, height: Int)
-
+    
     var imageData: Data
-
+    
     var imageSize: (width: Int, height: Int)
-
+    
 }
 
 extension CIImage {
@@ -141,7 +165,36 @@ extension CIImage {
         let ciContext = CIContext()
         guard let cgImage = ciContext.createCGImage(self, from: self.extent) else { return nil }
         
-        return Image(decorative: cgImage, scale: 1.0, orientation: .up)
+        let imageRef = cgImage.aspectRatio()
+        
+        return Image(decorative: imageRef, scale: 1.0, orientation: .up)
+    }
+}
+
+extension CGImage {
+    func aspectRatio() -> CGImage {
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        var cgwidth: CGFloat = CGFloat(width)
+        var cgheight: CGFloat = CGFloat(height)
+        
+        // See what size is longer and create the center off of that
+        if cgwidth > cgheight {
+            posX = ((cgwidth - cgheight) / 2)
+            posY = 0
+            cgwidth = cgheight
+        } else {
+            posX = 0
+            posY = ((cgheight - cgwidth) / 2)
+            cgheight = cgwidth
+        }
+        
+        let rect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        
+        // Create bitmap image from context using the rect
+        guard let imageRef = cropping(to: rect) else { return self }
+        
+        return imageRef
     }
 }
 
