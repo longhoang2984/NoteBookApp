@@ -18,7 +18,6 @@ struct ButtonAdd: View {
             } label: {
                 
                 Image("btn_add")
-                    .padding(.trailing, 10)
             }
         }
     }

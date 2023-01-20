@@ -98,14 +98,8 @@ struct NotesView: View {
                 .shadow(radius: 0)
             }
             
-            Button {
+            ButtonAdd {
                 showNewNote.toggle()
-            } label: {
-                HStack {
-                    Spacer()
-                    Image("btn_add")
-                        .padding(.trailing, 20)
-                }
             }
         }
         .navigationTitle("")
