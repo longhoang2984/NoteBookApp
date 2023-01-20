@@ -15,10 +15,12 @@ struct RecordingAudioView: View {
     var onAddRecordFile: (URL) -> Void
     
     @State var configuration: Waveform.Configuration = .init(
+        size: CGSize(width: 220, height: 34),
         style: .striped(.init(color: UIColor(named: "blue_primary") ?? .blue, width: 4.5, spacing: 4)),
         dampening: .init(percentage: 0, sides: .both))
     
     @State var placeHolderConfiguration: Waveform.Configuration = .init(
+        size: CGSize(width: 220, height: 34),
         style: .striped(.init(color: UIColor(named: "gull_gray") ?? .blue, width: 4.5, spacing: 4)),
         dampening: .init(percentage: 0, sides: .both))
     
@@ -33,6 +35,9 @@ struct RecordingAudioView: View {
         VStack {
             playView
             recordView
+        }
+        .onDisappear {
+            model.reset()
         }
     }
     
@@ -77,8 +82,9 @@ struct RecordingAudioView: View {
                 HStack {
                     Spacer()
                     FloatingButton(title: "ADD") {
-                        model.saveRecord { saved in
-                            if saved {
+                        model.saveRecord { url in
+                            if let url = url {
+                                onAddRecordFile(url)
                                 dismiss()
                             }
                         }

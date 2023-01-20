@@ -55,6 +55,7 @@ struct NewNoteView: View {
                     VStack(alignment: .leading) {
                         editor
                         toDoList
+                        recordView
                         imgListView
                     }
                     .frame(maxHeight: .infinity)
@@ -254,6 +255,26 @@ struct NewNoteView: View {
                 .frame(maxWidth: .infinity, minHeight: 40)
             }
             .background(Color.white.ignoresSafeArea())
+        }
+    }
+    
+    @ViewBuilder
+    var recordView: some View {
+        if let url = recordURL {
+            HStack(spacing: 8) {
+                RecordedAudioPlayerView(url: url)
+                    .padding(.leading, 12)
+                
+                Button {
+                    recordURL = nil
+                } label: {
+                    Image("icon_delete")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .frame(height: 34)
+            }
         }
     }
 }

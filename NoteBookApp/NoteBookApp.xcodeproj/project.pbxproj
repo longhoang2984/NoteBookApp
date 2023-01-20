@@ -33,6 +33,7 @@
 		2F8E61A8297AAEC100A6153A /* RecordingAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E61A7297AAEC100A6153A /* RecordingAudioView.swift */; };
 		2F8E61AB297AAEF000A6153A /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E61AA297AAEF000A6153A /* RecordViewModel.swift */; };
 		2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E61AC297B2C4400A6153A /* AudioManager.swift */; };
+		2F8E61AF297B3F8200A6153A /* RecordedAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */; };
 		2F91D4C029764115002433B3 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4BF29764115002433B3 /* PhotoListView.swift */; };
 		2F91D4E62977BDB7002433B3 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4E52977BDB7002433B3 /* CameraViewModel.swift */; };
 		2F91D4E82977C02C002433B3 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4E72977C02C002433B3 /* Camera.swift */; };
@@ -95,6 +96,7 @@
 		2F8E61A7297AAEC100A6153A /* RecordingAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAudioView.swift; sourceTree = "<group>"; };
 		2F8E61AA297AAEF000A6153A /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		2F8E61AC297B2C4400A6153A /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedAudioPlayerView.swift; sourceTree = "<group>"; };
 		2F91D4BF29764115002433B3 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 		2F91D4E52977BDB7002433B3 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		2F91D4E72977C02C002433B3 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */,
 				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
 				2F91D4BF29764115002433B3 /* PhotoListView.swift */,
+				2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				2F91D4FA29781248002433B3 /* CameraView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
 				2F841A0D295EEF8B00F3E7CB /* NewNoteView.swift in Sources */,
+				2F8E61AF297B3F8200A6153A /* RecordedAudioPlayerView.swift in Sources */,
 				2F91D4F829780E4B002433B3 /* ViewfinderView.swift in Sources */,
 				2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */,
 				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,

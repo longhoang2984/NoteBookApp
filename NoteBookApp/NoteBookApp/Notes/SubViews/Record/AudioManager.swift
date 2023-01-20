@@ -79,10 +79,12 @@ public class AudioManager: NSObject {
         recorder?.delegate = self
         recorder?.isMeteringEnabled = true
         
-        session.requestRecordPermission { [weak self] isGranted in
-            guard let self = self else { return }
-            self.recordDelegate?.audioManager(manager: self, didAllowRecording: isGranted)
-            self.recorder?.prepareToRecord()
+        if session.recordPermission == .undetermined {
+            session.requestRecordPermission { [weak self] isGranted in
+                guard let self = self else { return }
+                self.recordDelegate?.audioManager(manager: self, didAllowRecording: isGranted)
+                self.recorder?.prepareToRecord()
+            }
         }
     }
     

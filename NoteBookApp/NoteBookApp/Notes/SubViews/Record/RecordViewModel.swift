@@ -28,6 +28,7 @@ final class RecordViewModel: NSObject, ObservableObject {
     @Published var playingProgress: CGFloat = 0
     @Published var playingTime: TimeInterval = 0
     @Published var showErrorSaveFile: Bool = false
+    var playingURL: URL?
     
     private let audioManager: AudioManager
     
@@ -55,8 +56,14 @@ final class RecordViewModel: NSObject, ObservableObject {
     }
     
     func playRecord() throws {
-        guard let recordingFile = audioManager.recorder?.url else { return }
-        try audioManager.playAudioFileFromURL(recordingFile)
+        var url: URL?
+        if let playingURL = playingURL {
+            url = playingURL
+        } else if let recordURL = audioManager.recorder?.url {
+            url = recordURL
+        }
+        guard let url = url else { return }
+        try audioManager.playAudioFileFromURL(url)
     }
     
     func stopPlay() {
@@ -67,17 +74,21 @@ final class RecordViewModel: NSObject, ObservableObject {
         isPlaying ? try? playRecord() : stopPlay()
     }
     
-    func saveRecord(completion: (Bool) -> Void) {
+    func saveRecord(completion: (URL?) -> Void) {
         showErrorSaveFile = false
         guard let saveURL = audioManager.recordingFileURL else { return }
         do {
             try audioManager.saveAudio(url: saveURL)
             try audioManager.deleteTempfile()
-            completion(true)
+            completion(saveURL)
         } catch {
             showErrorSaveFile = true
-            completion(false)
+            completion(nil)
         }
+    }
+    
+    func reset() {
+        audioManager.reset()
     }
     
 }
