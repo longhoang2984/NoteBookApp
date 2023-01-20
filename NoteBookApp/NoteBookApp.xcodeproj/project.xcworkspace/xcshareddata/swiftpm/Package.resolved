@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "dswaveformimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dmrschmidt/DSWaveformImage",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b3a955b03320ec54b89dc023664aef907cd92b89"
+      }
+    },
+    {
       "identity" : "richtextkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/RichTextKit.git",
