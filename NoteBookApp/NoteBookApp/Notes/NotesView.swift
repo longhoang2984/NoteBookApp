@@ -166,4 +166,5 @@ public extension Color {
     static var blueBubble = Color("blue_bubble")
     static var mischka = Color("mischka")
     static var appYellow = Color("yellow")
+    static var gullGray = Color("gull_gray")
 }

@@ -28,6 +28,9 @@ struct NewNoteView: View {
     @State var showImageLibrary: Bool = false
     @State var selectedImages: [UIImage] = []
     
+    @State var showRecordView: Bool = false
+    @State var recordURL: URL?
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
@@ -75,6 +78,13 @@ struct NewNoteView: View {
                 selectedImages += images
             })
                 .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showRecordView) {
+            RecordingAudioView { url in
+                recordURL = url
+            }
+                .presentationDetents([.height(240)])
                 .presentationDragIndicator(.visible)
         }
         
@@ -230,7 +240,7 @@ struct NewNoteView: View {
                 .frame(maxWidth: .infinity)
                 
                 Button {
-                    
+                    showRecordView.toggle()
                 } label: {
                     Image("ic_audio")
                 }
@@ -250,7 +260,7 @@ struct NewNoteView: View {
 
 struct NewNoteView_Previews: PreviewProvider {
     static var previews: some View {
-        NewNoteView()
+        NewNoteView(showRecordView: true)
     }
 }
 
