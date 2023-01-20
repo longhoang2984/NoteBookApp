@@ -88,6 +88,10 @@ final class RecordViewModel: NSObject, ObservableObject {
     }
     
     func reset() {
+        recordingTime = 0
+        recordURL = nil
+        isPlaying = false
+        playingTime = 0
         audioManager.reset()
     }
     

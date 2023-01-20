@@ -80,6 +80,10 @@ struct RecordingAudioView: View {
             }
             .safeAreaInset(edge: .bottom) {
                 HStack {
+                    FloatingButton(title: "X", color: .gullGray) {
+                        model.reset()
+                    }
+                    .padding(.leading, 12)
                     Spacer()
                     FloatingButton(title: "ADD") {
                         model.saveRecord { url in
