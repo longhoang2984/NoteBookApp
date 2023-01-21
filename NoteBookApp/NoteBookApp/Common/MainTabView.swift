@@ -41,6 +41,7 @@ struct MainTabView<Content: View>: View {
     
     @Binding var selectedItem: TabbarItemType
     @ViewBuilder var content: (TabbarItemType) -> Content
+    @Binding var showTabBar: Bool
     
     var body: some View {
         ZStack {
@@ -49,16 +50,9 @@ struct MainTabView<Content: View>: View {
                     content(item)
                 }
             }
-            
         }
         .safeAreaInset(edge: .bottom) {
-            VStack {
-                CustomTabView(tabbarItems: tabbarItems, selectedItem: $selectedItem)
-                    .ignoresSafeArea()
-            }
-            .background {
-                Color.clear
-            }
+            tabBar
         }
         .onAppear {
             let appearance = UITabBarAppearance()
@@ -66,6 +60,19 @@ struct MainTabView<Content: View>: View {
             appearance.backgroundColor = .clear
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
+    
+    @ViewBuilder
+    var tabBar: some View {
+        if showTabBar {
+            VStack {
+                CustomTabView(tabbarItems: tabbarItems, selectedItem: $selectedItem)
+                    .ignoresSafeArea()
+            }
+            .background {
+                Color.clear
+            }
         }
     }
 }

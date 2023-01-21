@@ -39,6 +39,7 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFill()
             }
+            .ignoresSafeArea()
         }
     }
     

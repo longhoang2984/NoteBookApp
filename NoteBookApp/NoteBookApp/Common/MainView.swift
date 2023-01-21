@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     @State var selectedItem: TabbarItemType = .home
+    @State var showTabBar: Bool = true
+    
     @ViewBuilder
     func getView(item: TabbarItemType) -> some View {
 
@@ -21,12 +23,15 @@ struct MainView: View {
                 CalendarView()
             case .password:
                 PasswordView()
-            }   
+            }
     }
     
     var body: some View {
         NavigationView {
-            MainTabView(selectedItem: $selectedItem, content: getView)
+            MainTabView(selectedItem: $selectedItem, content: getView, showTabBar: $showTabBar)
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
                 .ignoresSafeArea()
         }
     }

@@ -19,7 +19,12 @@ struct NotesView: View {
     @State var keywordSearching = ""
     @State var showNewNote = false
     
-    let columns = [GridItem](repeating: GridItem(.fixed((UIScreen.main.bounds.width - 40) / 3), spacing: 10), count: 3)
+    private static let itemSpacing = 8.0
+    private static let itemCornerRadius = 15.0
+    private static let itemSize = CGSize(width: 104, height: 144)
+    private let columns = [
+        GridItem(.adaptive(minimum: itemSize.width, maximum: itemSize.height), spacing: itemSpacing)
+    ]
     
     @State var toDoItemGroups = [
         ItemGroupViewModel(
@@ -68,13 +73,13 @@ struct NotesView: View {
                             }
                             .frame(height: 10)
                             
-                            LazyVGrid(columns: columns, alignment: .leading) {
+                            LazyVGrid(columns: columns, alignment: .leading, spacing: Self.itemSpacing) {
                                 ForEach($item.items, id: \.self.id) { item in
                                     CardItemView(item: item)
                                         .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: 144)
                                 }
                             }
-                            .padding(.leading, 10)
+                            .padding(.leading, 8)
                             
                             HStack {
                                 Spacer()

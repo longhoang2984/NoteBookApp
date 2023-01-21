@@ -26,94 +26,81 @@ struct PasswordListView: View {
     @State var type: InputPasswordType = .input
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
+        ZStack(alignment: .bottom) {
+            
+            Color.blueLight.ignoresSafeArea()
+            
+            ScrollView {
+                HStack {
+                    Spacer()
+                }
+                .frame(height: 10)
                 
-                Color.blueLight.ignoresSafeArea()
-                
-                ScrollView {
-                    HStack {
-                        Spacer()
-                    }
-                    .frame(height: 10)
-                    
-                    ForEach($items, id: \.self.id) { item in
-                        PasswordItemView(item: item, onDeleteItem: { item in
-                            deletingItem = item
-                            showDeleteConfirmDialog.toggle()
-                        }, onEditItem: { item in
-                            editingItem = item
-                            showConfirmPasscode.toggle()
-                        })
-                        .confirmationDialog("deletePasswordItem", isPresented: $showDeleteConfirmDialog) {
-                            Button("Delete", role: .destructive) {
-                                if let index = items.firstIndex(where: { $0.id == deletingItem?.id }) {
-                                    _ = withAnimation {
-                                        items.remove(at: index)
-                                    }
+                ForEach($items, id: \.self.id) { item in
+                    PasswordItemView(item: item, onDeleteItem: { item in
+                        deletingItem = item
+                        showDeleteConfirmDialog.toggle()
+                    }, onEditItem: { item in
+                        editingItem = item
+                        showConfirmPasscode.toggle()
+                    })
+                    .confirmationDialog("deletePasswordItem", isPresented: $showDeleteConfirmDialog) {
+                        Button("Delete", role: .destructive) {
+                            if let index = items.firstIndex(where: { $0.id == deletingItem?.id }) {
+                                _ = withAnimation {
+                                    items.remove(at: index)
                                 }
                             }
-                        } message: {
-                            Text("Do you want to delete this password?")
                         }
+                    } message: {
+                        Text("Do you want to delete this password?")
                     }
-                    HStack {
-                        Spacer()
-                    }
-                    .frame(height: 100)
                 }
-                
-                NavigationLink(isActive: $showNewPasswordView) {
-                    NewPasswordView(item: editingItem) { item in
-                        if editingItem != nil {
-                            if let index = items.firstIndex(where: { $0.id == item.id }) {
-                                items[index] = item
-                            }
-                        } else {
-                            items.append(item)
-                        }
-                    }
-                } label: {
-                    EmptyView()
-                }
-                .navigationTitle("")
-                
-                ButtonAdd {
-                    showNewPasswordView.toggle()
-                }
-                
-            }.safeAreaInset(edge: .top) {
                 HStack {
-                    headerView
-                        .padding()
+                    Spacer()
                 }
-                .background(Color.blueLight)
-                .shadow(radius: 0)
+                .frame(height: 100)
             }
-            .customDialog(isShowing: $showConfirmPasscode) {
-                InputPasswordView(password: $password, type: $type) { input in
-                    if input == "delete" {
-                        if password.count > 0 {
-                            password.removeLast()
-                        }
-                        print(password)
-                    } else if input == "touch" {
-                        return
-                    } else if password.count < 4 {
-                        password += input
-                        if password == UserDefaults.standard.string(forKey: "password") {
-                            showNewPasswordView.toggle()
-                            showConfirmPasscode.toggle()
-                            password = ""
-                        }
+            
+            ButtonAdd {
+                showNewPasswordView.toggle()
+            }
+            
+        }.safeAreaInset(edge: .top) {
+            HStack {
+                headerView
+                    .padding()
+            }
+            .background(Color.blueLight)
+            .shadow(radius: 0)
+        }
+        .fullScreenCover(isPresented: $showConfirmPasscode) {
+            InputPasswordView(password: $password, type: $type) { input in
+                if input == "delete" {
+                    if password.count > 0 {
+                        password.removeLast()
+                    }
+                    print(password)
+                } else if input == "touch" {
+                    return
+                } else if password.count < 4 {
+                    password += input
+                    if password == UserDefaults.standard.string(forKey: "password") {
+                        showNewPasswordView.toggle()
+                        showConfirmPasscode.toggle()
+                        password = ""
                     }
                 }
-                .cornerRadius(30)
-                .ignoresSafeArea()
-            }.onAppear {
-                editingItem = nil
-                deletingItem = nil
             }
+            .cornerRadius(30)
+            .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $showNewPasswordView) {
+            modifyPasswordView
+        }
+        .onAppear {
+            editingItem = nil
+            deletingItem = nil
         }
     }
     
@@ -149,6 +136,18 @@ struct PasswordListView: View {
                 .focused($isFocused)
                 .accentColor(.blueOxford)
                 .foregroundColor(.blueOxford)
+            }
+        }
+    }
+    
+    var modifyPasswordView: some View {
+        NewPasswordView(item: editingItem) { item in
+            if editingItem != nil {
+                if let index = items.firstIndex(where: { $0.id == item.id }) {
+                    items[index] = item
+                }
+            } else {
+                items.append(item)
             }
         }
     }
