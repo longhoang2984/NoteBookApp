@@ -73,10 +73,10 @@ struct NotesView: View {
                             }
                             .frame(height: 10)
                             
-                            LazyVGrid(columns: columns, alignment: .leading, spacing: Self.itemSpacing) {
+                            LazyVGrid(columns: columns, alignment: .leading) {
                                 ForEach($item.items, id: \.self.id) { item in
                                     CardItemView(item: item)
-                                        .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: 144)
+                                        .frame(height: 160)
                                 }
                             }
                             .padding(.leading, 8)

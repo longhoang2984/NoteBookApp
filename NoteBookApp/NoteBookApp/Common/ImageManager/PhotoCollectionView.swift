@@ -113,14 +113,13 @@ struct PhotoCollectionView: View {
             .frame(width: Self.itemSize.width, height: Self.itemSize.height)
             .clipped()
             .cornerRadius(Self.itemCornerRadius)
+            .shadow(color: .mischka, radius: 4.0)
             .overlay(alignment: .topTrailing) {
-                if selectedImages.first(where: { $0.identifier == asset.identifier }) != nil {
-                    Image("ic_selected")
+                Image(selectedImages.first(where: { $0.identifier == asset.identifier }) != nil ? "ic_selected" : "ic_select")
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 1)
                         .font(.callout)
                         .offset(x: -8, y: 8)
-                }
             }
             .onAppear {
                 Task {
