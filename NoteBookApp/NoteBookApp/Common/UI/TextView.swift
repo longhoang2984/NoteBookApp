@@ -107,7 +107,7 @@ public struct TextView : UIViewRepresentable {
                 return false
             }
             
-            if text == "" && range.length == 1 {
+            if textView.text == "" && text == "" {
                 onReturnAction?()
                 return false
             }

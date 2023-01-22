@@ -36,6 +36,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
     
     func requestLocation() {
@@ -62,13 +63,13 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
-        DispatchQueue.main.async {
-            self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-            
-            self.mapView.setRegion(self.region, animated: true)
-            
-            self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, animated: true)
-        }
+        self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        
+        self.mapView.setRegion(self.region, animated: true)
+        
+        self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, animated: true)
+        
+        locationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -80,6 +81,18 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         mapView.setRegion(region, animated: true)
         mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
+        
+        let request = MKLocalSearch.Request()
+        request.region = mapView.region
+        
+        let geocoder = CLGeocoder()
+        
+        let location = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)
+        geocoder.reverseGeocodeLocation(location) { [weak self] places, err in
+            guard let self = self, let places = places, let place = places.first else { return }
+            self.selectedPlace = Place(place: place)
+            self.addAnnotation()
+        }
     }
     
     func searchLocation() {
@@ -101,15 +114,18 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         text = ""
         focus = false
         
-        guard let coordinate = place.place.location?.coordinate else { return }
+        selectedPlace = place
+        addAnnotation()
+    }
+    
+    private func addAnnotation() {
+        guard let place = selectedPlace, let coordinate = place.place.location?.coordinate else { return }
         let pointAnno = MKPointAnnotation()
         pointAnno.coordinate = coordinate
         pointAnno.title = place.place.name ?? "No name"
         
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(pointAnno)
-        
-        selectedPlace = place
         
         let coorRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(coorRegion, animated: true)

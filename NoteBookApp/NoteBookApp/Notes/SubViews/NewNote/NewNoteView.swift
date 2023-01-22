@@ -40,6 +40,7 @@ struct NewNoteView: View {
                     VStack(alignment: .leading) {
                         editor
                         toDoList
+                        location
                         recordView
                         imgListView
                     }
@@ -73,9 +74,11 @@ struct NewNoteView: View {
                 .presentationDetents([.height(240)])
                 .presentationDragIndicator(.visible)
         }
-        .sheet(isPresented: $model.showImageLibrary) {
-            LocationView()
-                .presentationDetents([.medium])
+        .sheet(isPresented: $model.showLocation) {
+            LocationView { place in
+                model.location = place
+            }
+                .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }
         .scrollDismissesKeyboard(.interactively)
@@ -223,7 +226,7 @@ struct NewNoteView: View {
                 .frame(maxWidth: .infinity)
                 
                 Button {
-                    
+                    model.showLocation.toggle()
                 } label: {
                     Image("ic_location")
                 }
@@ -264,6 +267,27 @@ struct NewNoteView: View {
                 }
                 .frame(height: 34)
             }
+        }
+    }
+    
+    @ViewBuilder
+    var location: some View {
+        if let location = model.location {
+            HStack(spacing: 15) {
+                Image("ic_location")
+                Text(location.place.name ?? "")
+                    .font(.custom("Roboto-Regular", size: 16))
+                Button {
+                    model.location = nil
+                } label: {
+                    Image("icon_delete")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .frame(height: 34)
+            }
+            .padding(12)
         }
     }
 }

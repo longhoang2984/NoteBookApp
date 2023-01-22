@@ -9,15 +9,17 @@ import SwiftUI
 import MapKit
 
 struct LocationView: View {
+    @Environment(\.dismiss) var dismiss
     @StateObject var mapData = MapViewModel()
     @FocusState var focus: Bool
+    var onSelectLocation: (Place) -> Void
     
     var body: some View {
         ScrollView {
             VStack {
                 
                 mapView
-
+                
             }
         }
         .padding()
@@ -74,6 +76,17 @@ struct LocationView: View {
                     }
                 }
             }
+            .padding(.top)
+        }
+        .safeAreaInset(edge: .bottom) {
+            HStack {
+                Spacer()
+                FloatingButton(title: "ADD", enabled: mapData.selectedPlace != nil) {
+                    guard let place = mapData.selectedPlace else { return }
+                    onSelectLocation(place)
+                    dismiss()
+                }
+            }
         }
     }
     
@@ -114,6 +127,6 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView()
+        LocationView(onSelectLocation: { _ in })
     }
 }
