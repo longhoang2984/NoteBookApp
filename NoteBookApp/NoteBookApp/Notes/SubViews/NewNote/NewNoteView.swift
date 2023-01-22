@@ -11,36 +11,21 @@ import RichTextKit
 struct NewNoteView: View {
     
     @Environment(\.dismiss) var pop
-    @State var noteName: String = ""
-    @State var nameEditing = false
-    @State var categoryName: String = ""
     
     @StateObject
     var context = RichTextContext()
-    @State var noteContent = NSAttributedString.empty
-    @State var content: String = ""
-    
-    @State private var shouldShowTodoList = false
-    @State private var todoItems: [ToDoItem] = []
-    @State var focusState: ToDoItem?
-    @State private var textEditorHeight : CGFloat = 200
-    
-    @State var showImageLibrary: Bool = false
-    @State var selectedImages: [UIImage] = []
-    
-    @State var showRecordView: Bool = false
-    @State var recordURL: URL?
+    @StateObject var model = NewNoteViewModel()
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
                 VStack {
-                    InputField(editing: $nameEditing , text: $noteName, placeHolder: "Note name") {
+                    InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name") {
                         
                     }
                     
                     ZStack {
-                        InputField(editing: .constant(false), text: $categoryName, placeHolder: "Category")
+                        InputField(editing: .constant(false), text: $model.categoryName, placeHolder: "Category")
                             .disabled(true)
                         
                         HStack {
@@ -74,39 +59,43 @@ struct NewNoteView: View {
                 footer
             }
         }
-        .sheet(isPresented: $showImageLibrary) {
+        .sheet(isPresented: $model.showImageLibrary) {
             PhotoCollectionView(onSelectImage: { images in
-                selectedImages += images
+                model.selectedImages += images
             })
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }
-        .sheet(isPresented: $showRecordView) {
+        .sheet(isPresented: $model.showRecordView) {
             RecordingAudioView { url in
-                recordURL = url
+                model.recordURL = url
             }
                 .presentationDetents([.height(240)])
                 .presentationDragIndicator(.visible)
         }
-        
+        .sheet(isPresented: $model.showImageLibrary) {
+            LocationView()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+        }
+        .scrollDismissesKeyboard(.interactively)
     }
     
     @ViewBuilder
     var toDoList: some View {
-        if shouldShowTodoList {
-            EditableToDoListView(items: $todoItems, focusItem: $focusState) { text in
-                guard let focusItem = focusState, let index = todoItems.firstIndex(where: { $0.id == focusItem.id }) else { return }
+        if model.shouldShowTodoList {
+            EditableToDoListView(items: $model.todoItems, focusItem: $model.focusState) { text, index in
                 if !text.isEmpty {
                     let item = ToDoItem()
-                    if (index == todoItems.count - 1) {
-                        self.todoItems.append(item)
+                    if (index == model.todoItems.count - 1) {
+                        model.todoItems.append(item)
                     } else {
-                        self.todoItems.insert(item, at: index + 1)
+                        model.todoItems.insert(item, at: index + 1)
                     }
-                    focusState = item
+                    model.focusState = item
                 } else {
-                    self.todoItems.remove(at: index)
-                    focusState = nil
+                    model.focusState = nil
+                    model.todoItems.remove(at: index)
                 }
             }
         }
@@ -114,10 +103,10 @@ struct NewNoteView: View {
     
     @ViewBuilder
     var imgListView: some View {
-        if !selectedImages.isEmpty {
-            PhotoListView(images: selectedImages) { index in
+        if !model.selectedImages.isEmpty {
+            PhotoListView(images: model.selectedImages) { index in
                 _ = withAnimation {
-                    selectedImages.remove(at: index)
+                    model.selectedImages.remove(at: index)
                 }
             }
             .padding(.top, 12)
@@ -125,7 +114,7 @@ struct NewNoteView: View {
     }
     
     var editor: some View {
-        RichTextEditor(text: $noteContent, context: context) {
+        RichTextEditor(text: $model.noteContent, context: context) {
             $0.textContentInset = CGSize(width: 10, height: 20)
             $0.setCurrentForegroundColor(to: UIColor(named: "blue_oxford") ?? .black)
         }
@@ -174,8 +163,8 @@ struct NewNoteView: View {
     
     func addNewToDoItem() {
         let item = ToDoItem()
-        todoItems.append(item)
-        focusState = item
+        model.todoItems.append(item)
+        model.focusState = item
     }
     
     var footer: some View {
@@ -209,23 +198,23 @@ struct NewNoteView: View {
                 Spacer()
                 
                 FloatingButton(title: "Save") {
-                    print(todoItems.count)
+                    print(model.todoItems.count)
                 }
             }
             HStack {
                 Button {
-                    if !shouldShowTodoList {
+                    if !model.shouldShowTodoList {
                         addNewToDoItem()
-                        shouldShowTodoList = true
-                    } else if focusState == nil {
+                        model.shouldShowTodoList = true
+                    } else if model.focusState == nil {
                         addNewToDoItem()
                     } else {
-                        focusState = nil
-                        if todoItems.count == 1 && todoItems.first?.text.isEmpty == true {
+                        model.focusState = nil
+                        if model.todoItems.count == 1 && model.todoItems.first?.text.isEmpty == true {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                todoItems = []
+                                model.todoItems = []
                             }
-                            shouldShowTodoList = false
+                            model.shouldShowTodoList = false
                         }
                     }
                 } label: {
@@ -241,14 +230,14 @@ struct NewNoteView: View {
                 .frame(maxWidth: .infinity)
                 
                 Button {
-                    showRecordView.toggle()
+                    model.showRecordView.toggle()
                 } label: {
                     Image("ic_audio")
                 }
                 .frame(maxWidth: .infinity)
                 
                 Button {
-                    showImageLibrary.toggle()
+                    model.showImageLibrary.toggle()
                 } label: {
                     Image("ic_img")
                 }
@@ -260,13 +249,13 @@ struct NewNoteView: View {
     
     @ViewBuilder
     var recordView: some View {
-        if let url = recordURL {
+        if let url = model.recordURL {
             HStack(spacing: 8) {
                 RecordedAudioPlayerView(url: url)
                     .padding(.leading, 12)
                 
                 Button {
-                    recordURL = nil
+                    model.recordURL = nil
                 } label: {
                     Image("icon_delete")
                         .resizable()
@@ -281,7 +270,7 @@ struct NewNoteView: View {
 
 struct NewNoteView_Previews: PreviewProvider {
     static var previews: some View {
-        NewNoteView(showRecordView: true)
+        NewNoteView()
     }
 }
 

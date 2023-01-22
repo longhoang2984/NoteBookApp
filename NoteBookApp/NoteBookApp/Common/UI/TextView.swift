@@ -79,6 +79,7 @@ public struct TextView : UIViewRepresentable {
             self.textView = textView
             self.onReturnAction = onReturnAction
             self.isEditing = isEditing
+            self.onFocusAction = onFocusAction
         }
         
         func runSizing() {
@@ -102,6 +103,11 @@ public struct TextView : UIViewRepresentable {
         
         public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
             if text == "\n" && onReturnAction != nil {
+                onReturnAction?()
+                return false
+            }
+            
+            if text == "" && range.length == 1 {
                 onReturnAction?()
                 return false
             }

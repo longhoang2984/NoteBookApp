@@ -25,7 +25,7 @@ struct EditableToDoListView: View {
     
     @Binding var items: [ToDoItem]
     @Binding var focusItem: ToDoItem?
-    var onSubmit: (String) -> Void
+    var onSubmit: (_ text: String, _ index: Int) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -37,7 +37,10 @@ struct EditableToDoListView: View {
     var main: some View {
         if items.count > 0 {
             ForEach($items, id: \.self.id) { $item in
-                EditableToDoView(todo: $item, focus: _focusItem, onSubmit: onSubmit)
+                EditableToDoView(todo: $item, focus: _focusItem, onSubmit: { text in
+                    guard let index = items.firstIndex(where: { $0 == item }) else { return }
+                    onSubmit(text, index)
+                })
             }
         }
     }
@@ -72,12 +75,6 @@ struct EditableToDoView: View {
             
             TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: firstResponding) {
                 onSubmit(todo.text)
-            } onFocusAction: { focused in
-                if !focused {
-                    focus = nil
-                } else {
-                    focus = todo
-                }
             }
             .frame(height: textViewHeight)
             .background(Color.white)
@@ -101,7 +98,7 @@ struct EditableToDoListView_Previews: PreviewProvider {
             VStack {
                 EditableToDoView(todo: $item, focus: .constant(nil), onSubmit: { _ in })
                 
-                EditableToDoListView(items: .constant(items), focusItem: _focus, onSubmit: { _ in })
+                EditableToDoListView(items: .constant(items), focusItem: _focus, onSubmit: { _, _ in })
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             focus = item

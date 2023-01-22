@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CB297C547200DC03A3 /* LocationView.swift */; };
+		2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */; };
+		2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D0297C69BE00DC03A3 /* MapView.swift */; };
+		2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */; };
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
 		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
 		2F6E55F329620784005E5757 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55F229620784005E5757 /* TextView.swift */; };
@@ -72,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F4A54CB297C547200DC03A3 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		2F4A54D0297C69BE00DC03A3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2F6E55F229620784005E5757 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -147,6 +155,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F4A54CD297C69A500DC03A3 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				2F4A54CB297C547200DC03A3 /* LocationView.swift */,
+				2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */,
+				2F4A54D0297C69BE00DC03A3 /* MapView.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		2F4A54D2297D665900DC03A3 /* NewNote */ = {
+			isa = PBXGroup;
+			children = (
+				2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */,
+				2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */,
+			);
+			path = NewNote;
+			sourceTree = "<group>";
+		};
 		2F4F6D662958B2D4001614A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,8 +259,9 @@
 		2F841A0B295EEF6F00F3E7CB /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				2F4A54D2297D665900DC03A3 /* NewNote */,
+				2F4A54CD297C69A500DC03A3 /* Location */,
 				2F8E61A9297AAED700A6153A /* Record */,
-				2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */,
 				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
 				2F91D4BF29764115002433B3 /* PhotoListView.swift */,
 				2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */,
@@ -457,15 +485,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F91D4F42977FBB1002433B3 /* PhotoItemView.swift in Sources */,
+				2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */,
 				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
 				2F91D4EE2977E1D6002433B3 /* CachedImageManager.swift in Sources */,
 				2F91D4FC29781277002433B3 /* ThumbnailView.swift in Sources */,
 				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F91D4E62977BDB7002433B3 /* CameraViewModel.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
+				2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */,
 				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
 				2F91D4EA2977D381002433B3 /* PhotoCollection.swift in Sources */,
 				2FB472722967304A005F335B /* ImageManager.swift in Sources */,
+				2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */,
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F8E61AB297AAEF000A6153A /* RecordViewModel.swift in Sources */,
 				2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */,
@@ -479,6 +510,7 @@
 				2FAA1338295DC0AD00A87157 /* ButtonAdd.swift in Sources */,
 				2F82C52D2959DCCC00708795 /* MainView.swift in Sources */,
 				2F91D4F62977FC1C002433B3 /* PhotoCollectionView.swift in Sources */,
+				2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */,
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
 				2F6E55F329620784005E5757 /* TextView.swift in Sources */,
 				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
@@ -645,6 +677,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NoteBookApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NoteBookApp need to camera access to take a photo for noting";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "NoteBookApp need to location access to set location of note";
+				INFOPLIST_KEY_NSLocationUsageDescription = "NoteBookApp need to location access to set location of note";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "NoteBookApp need to location access to set location of note";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "NoteBookApp need to microphone access to upload image for noting";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "NoteBookApp need to photo library access to upload image for noting";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NoteBookApp need to photo library access to upload image for noting";
@@ -682,6 +717,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NoteBookApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "NoteBookApp need to camera access to take a photo for noting";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "NoteBookApp need to location access to set location of note";
+				INFOPLIST_KEY_NSLocationUsageDescription = "NoteBookApp need to location access to set location of note";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "NoteBookApp need to location access to set location of note";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "NoteBookApp need to microphone access to upload image for noting";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "NoteBookApp need to photo library access to upload image for noting";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NoteBookApp need to photo library access to upload image for noting";

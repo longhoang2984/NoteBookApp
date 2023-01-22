@@ -141,6 +141,6 @@ struct RecordingAudioView: View {
 
 struct RecordingAudioView_Previews: PreviewProvider {
     static var previews: some View {
-        NewNoteView(showRecordView: true)
+        RecordingAudioView(onAddRecordFile: { _ in })
     }
 }
