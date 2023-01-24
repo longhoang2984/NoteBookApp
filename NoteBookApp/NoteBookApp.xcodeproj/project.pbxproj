@@ -51,6 +51,8 @@
 		2F91D4F829780E4B002433B3 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4F729780E4B002433B3 /* ViewfinderView.swift */; };
 		2F91D4FA29781248002433B3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4F929781248002433B3 /* CameraView.swift */; };
 		2F91D4FC29781277002433B3 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4FB29781277002433B3 /* ThumbnailView.swift */; };
+		2F93FB2C2980085800FAF5D3 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 2F93FB2B2980085800FAF5D3 /* Popovers */; };
+		2F93FB2E2980098B00FAF5D3 /* NewNoteMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -118,6 +120,7 @@
 		2F91D4F729780E4B002433B3 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		2F91D4F929781248002433B3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		2F91D4FB29781277002433B3 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteMenuView.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 			files = (
 				2F8E61A6297AAC9D00A6153A /* DSWaveformImageViews in Frameworks */,
 				2F8E61A4297AAC9D00A6153A /* DSWaveformImage in Frameworks */,
+				2F93FB2C2980085800FAF5D3 /* Popovers in Frameworks */,
 				2F841A13295F4BA900F3E7CB /* RichTextKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +269,7 @@
 				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
 				2F91D4BF29764115002433B3 /* PhotoListView.swift */,
 				2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */,
+				2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				2F841A12295F4BA900F3E7CB /* RichTextKit */,
 				2F8E61A3297AAC9D00A6153A /* DSWaveformImage */,
 				2F8E61A5297AAC9D00A6153A /* DSWaveformImageViews */,
+				2F93FB2B2980085800FAF5D3 /* Popovers */,
 			);
 			productName = NoteBookApp;
 			productReference = 2F9E870429576A0C00DD72D6 /* NoteBookApp.app */;
@@ -443,6 +449,7 @@
 			packageReferences = (
 				2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				2F8E61A2297AAC9D00A6153A /* XCRemoteSwiftPackageReference "DSWaveformImage" */,
+				2F93FB2A2980085800FAF5D3 /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = 2F9E870529576A0C00DD72D6 /* Products */;
 			projectDirPath = "";
@@ -499,6 +506,7 @@
 				2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */,
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F8E61AB297AAEF000A6153A /* RecordViewModel.swift in Sources */,
+				2F93FB2E2980098B00FAF5D3 /* NewNoteMenuView.swift in Sources */,
 				2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F91D4E82977C02C002433B3 /* Camera.swift in Sources */,
@@ -833,6 +841,14 @@
 				kind = branch;
 			};
 		};
+		2F93FB2A2980085800FAF5D3 /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -850,6 +866,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F8E61A2297AAC9D00A6153A /* XCRemoteSwiftPackageReference "DSWaveformImage" */;
 			productName = DSWaveformImageViews;
+		};
+		2F93FB2B2980085800FAF5D3 /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F93FB2A2980085800FAF5D3 /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -152,16 +152,25 @@ struct NewNoteView: View {
                     
                     Spacer()
                     
-                    Button {
+                    NewNoteMenuView(show: $model.showOptions) {
                         
-                    } label: {
-                        Image("icon_more")
+                    } onPdf: {
+                        
+                    } onBlock: {
+                        
+                    } onPrint: {
+                        
+                    } onDelete: {
+                        
                     }
+
+
                 }
                 .padding(.horizontal)
             }
             .background(Color.white)
         }
+        
     }
     
     func addNewToDoItem() {

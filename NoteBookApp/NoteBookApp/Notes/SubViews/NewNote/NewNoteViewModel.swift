@@ -29,4 +29,6 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     
     @Published var showLocation: Bool = false
     @Published var location: Place?
+    
+    @Published var showOptions: Bool = false
 }
