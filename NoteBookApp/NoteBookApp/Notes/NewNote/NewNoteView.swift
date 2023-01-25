@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RichTextKit
+import Popovers
 
 struct NewNoteView: View {
     
@@ -20,21 +21,40 @@ struct NewNoteView: View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
                 VStack {
-                    InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name") {
-                        
-                    }
+                    InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name")
                     
-                    ZStack {
-                        InputField(editing: .constant(false), text: $model.categoryName, placeHolder: "Category")
-                            .disabled(true)
-                        
-                        HStack {
-                            Spacer()
-                            Image("icon_dropdown")
+                    Button {
+                        model.showCategory.toggle()
+                    } label: {
+                        ZStack {
+                            InputField(editing: .constant(false), text: .constant(model.selectedCategory?.name ?? ""), placeHolder: "Category")
+                                .disabled(true)
+                            
+                            HStack {
+                                Spacer()
+                                Image("icon_dropdown")
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
                     .padding(.bottom)
+                    .popover(present: $model.showCategory,
+                             attributes: {
+                        $0.position = .absolute(
+                            originAnchor: .bottomLeft,
+                            popoverAnchor: .topLeft
+                        )
+                        $0.rubberBandingMode = .none
+                        $0.sourceFrameInset.bottom = 100
+                        $0.onDismiss = {
+                            model.onCategoryDialogDismiss()
+                        }
+                    }) {
+                        NewNoteCategoryView(model: model)
+                        .frame(maxHeight: 200)
+                    } background: {
+                        Color.mischka.opacity(0.5)
+                    }
                     
                     TextFormatView(context: context)
                     VStack(alignment: .leading) {
@@ -64,42 +84,36 @@ struct NewNoteView: View {
             PhotoCollectionView(onSelectImage: { images in
                 model.selectedImages += images
             })
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $model.showRecordView) {
             RecordingAudioView { url in
                 model.recordURL = url
             }
-                .presentationDetents([.height(240)])
-                .presentationDragIndicator(.visible)
+            .presentationDetents([.height(240)])
+            .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $model.showLocation) {
             LocationView { place in
                 model.location = place
             }
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
         }
         .scrollDismissesKeyboard(.interactively)
+        .task {
+            model.getCategories()
+        }
     }
     
     @ViewBuilder
     var toDoList: some View {
         if model.shouldShowTodoList {
-            EditableToDoListView(items: $model.todoItems, focusItem: $model.focusState) { text, index in
-                if !text.isEmpty {
-                    let item = ToDoItem()
-                    if (index == model.todoItems.count - 1) {
-                        model.todoItems.append(item)
-                    } else {
-                        model.todoItems.insert(item, at: index + 1)
-                    }
-                    model.focusState = item
-                } else {
-                    model.focusState = nil
-                    model.todoItems.remove(at: index)
-                }
+            ForEach($model.todoItems, id: \.self.id) { $item in
+                EditableToDoView(todo: $item, focus: $model.focusState, onSubmit: {
+                    model.onSubmitInTodoItem(currentItem: item)
+                })
             }
         }
     }
@@ -152,31 +166,17 @@ struct NewNoteView: View {
                     
                     Spacer()
                     
-                    NewNoteMenuView(show: $model.showOptions) {
-                        
-                    } onPdf: {
-                        
-                    } onBlock: {
-                        
-                    } onPrint: {
-                        
-                    } onDelete: {
-                        
+                    NewNoteMenuView(show: $model.showOptions) { menu in
+                        model.selectMenu(menu)
                     }
-
-
+                    
+                    
                 }
                 .padding(.horizontal)
             }
             .background(Color.white)
         }
         
-    }
-    
-    func addNewToDoItem() {
-        let item = ToDoItem()
-        model.todoItems.append(item)
-        model.focusState = item
     }
     
     var footer: some View {
@@ -215,20 +215,7 @@ struct NewNoteView: View {
             }
             HStack {
                 Button {
-                    if !model.shouldShowTodoList {
-                        addNewToDoItem()
-                        model.shouldShowTodoList = true
-                    } else if model.focusState == nil {
-                        addNewToDoItem()
-                    } else {
-                        model.focusState = nil
-                        if model.todoItems.count == 1 && model.todoItems.first?.text.isEmpty == true {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                model.todoItems = []
-                            }
-                            model.shouldShowTodoList = false
-                        }
-                    }
+                    model.addOrRemoteTodoItem()
                 } label: {
                     Image("ic_list")
                 }
@@ -312,69 +299,6 @@ struct ViewHeightKey: PreferenceKey {
     static var defaultValue = CGFloat.zero
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
-    }
-}
-
-struct TextFormatView: View {
-    @ObservedObject
-    private var context: RichTextContext
-    
-    init(context: RichTextContext) {
-        self._context = ObservedObject(wrappedValue: context)
-    }
-    
-    var body: some View {
-        HStack {
-            ScrollView(.horizontal) {
-                HStack {
-                    
-                    editorButton(image: "bold", isActive: context.isBold) {
-                        context.isBoldBinding.wrappedValue.toggle()
-                    }
-                    
-                    
-                    editorButton(image: "italic", isActive: context.isItalic) {
-                        context.isItalic.toggle()
-                    }
-                    
-                    editorButton(image: "underline", isActive: context.isUnderlined) {
-                        context.isUnderlined.toggle()
-                    }
-                    
-                    ColorPicker("", selection: context.foregroundColorBinding)
-                    
-                    editorButton(image: "cross_out", isActive: context.isStrikethrough) {
-                        context.isStrikethrough.toggle()
-                    }
-                    
-                }
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
-                
-            }
-        }
-        .frame(height: 48)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(radius: 4.0)
-        .padding(.horizontal)
-        
-    }
-    
-    func editorButton(image: String, isActive: Bool, onTap: @escaping () -> Void) -> some View {
-        HStack {
-            Button {
-                onTap()
-            } label: {
-                Image(image)
-            }
-            .frame(width: 30, height: 30)
-            .background(isActive ? Color.blueLight : .clear)
-            
-            Rectangle()
-                .fill(Color.mischka)
-                .frame(width: 2, height: 30)
-        }
     }
 }
 

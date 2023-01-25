@@ -21,7 +21,7 @@ struct InputField: View {
     }
     
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 0) {
             ZStack {
                 HStack {
                     Text(placeHolder)
@@ -38,6 +38,7 @@ struct InputField: View {
                         editing = editingChanged
                     }
                     .foregroundColor(.blueOxford)
+                    .multilineTextAlignment(.leading)
                     .font(.custom("Roboto-Regular", size: 16))
                     .onSubmit {
                         onSubmit?()
@@ -61,12 +62,12 @@ extension View {
         return self
             .autocorrectionDisabled()
             .padding(.horizontal, 16)
-            .frame(height: 40)
+            .frame(height: 30)
     }
 }
 
 struct InputField_Previews: PreviewProvider {
     static var previews: some View {
-        InputField(editing: .constant(false), text: .constant(""))
+        InputField(editing: .constant(false), text: .constant("ABC")).disabled(true)
     }
 }

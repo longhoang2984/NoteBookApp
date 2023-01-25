@@ -83,12 +83,13 @@ public struct TextView : UIViewRepresentable {
         }
         
         func runSizing() {
-            guard let textView = textView else { return }
+            guard let textView = textView, !textView.text.isEmpty else { return }
             textView.sizeToFit()
             self.heightBinding?.wrappedValue = textView.frame.size.height
         }
         
         public func textViewDidChange(_ textView: UITextView) {
+            guard !textView.text.isEmpty else { return }
             textBinding?.wrappedValue = textView.text
             runSizing()
         }

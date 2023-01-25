@@ -21,31 +21,6 @@ public struct ToDoItem: Identifiable, Hashable {
     }
 }
 
-struct EditableToDoListView: View {
-    
-    @Binding var items: [ToDoItem]
-    @Binding var focusItem: ToDoItem?
-    var onSubmit: (_ text: String, _ index: Int) -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            main
-        }
-    }
-    
-    @ViewBuilder
-    var main: some View {
-        if items.count > 0 {
-            ForEach($items, id: \.self.id) { $item in
-                EditableToDoView(todo: $item, focus: _focusItem, onSubmit: { text in
-                    guard let index = items.firstIndex(where: { $0 == item }) else { return }
-                    onSubmit(text, index)
-                })
-            }
-        }
-    }
-}
-
 struct EditableToDoView: View {
     
     @Binding var todo: ToDoItem
@@ -56,7 +31,7 @@ struct EditableToDoView: View {
         self.todo.id == self.focus?.id
     }
     
-    var onSubmit: (String) -> Void
+    var onSubmit: () -> Void
         
     var body: some View {
         
@@ -67,14 +42,8 @@ struct EditableToDoView: View {
                 Image(todo.isComplete ? "radio_btn_selected" : "radio_btn")
             }
             
-            let firstResponding = Binding(get: { isEditing }) { isEditing in
-                if !isEditing {
-                    focus = nil
-                }
-            }
-            
-            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: firstResponding) {
-                onSubmit(todo.text)
+            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: .constant(focus?.id == todo.id)) {
+                onSubmit()
             }
             .frame(height: textViewHeight)
             .background(Color.white)
@@ -96,14 +65,7 @@ struct EditableToDoListView_Previews: PreviewProvider {
         
         var body: some View {
             VStack {
-                EditableToDoView(todo: $item, focus: .constant(nil), onSubmit: { _ in })
-                
-                EditableToDoListView(items: .constant(items), focusItem: _focus, onSubmit: { _, _ in })
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            focus = item
-                        }
-                    }
+                EditableToDoView(todo: $item, focus: .constant(nil), onSubmit: { })
             }
         }
     }

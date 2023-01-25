@@ -53,6 +53,8 @@
 		2F91D4FC29781277002433B3 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F91D4FB29781277002433B3 /* ThumbnailView.swift */; };
 		2F93FB2C2980085800FAF5D3 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 2F93FB2B2980085800FAF5D3 /* Popovers */; };
 		2F93FB2E2980098B00FAF5D3 /* NewNoteMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */; };
+		2F93FB312981343400FAF5D3 /* TextFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F93FB302981343400FAF5D3 /* TextFormatView.swift */; };
+		2F93FB362981459800FAF5D3 /* NewNoteCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F93FB352981459800FAF5D3 /* NewNoteCategoryView.swift */; };
 		2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */; };
 		2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E870929576A0C00DD72D6 /* HomeView.swift */; };
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
@@ -121,6 +123,8 @@
 		2F91D4F929781248002433B3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		2F91D4FB29781277002433B3 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
 		2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteMenuView.swift; sourceTree = "<group>"; };
+		2F93FB302981343400FAF5D3 /* TextFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatView.swift; sourceTree = "<group>"; };
+		2F93FB352981459800FAF5D3 /* NewNoteCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteCategoryView.swift; sourceTree = "<group>"; };
 		2F9E870429576A0C00DD72D6 /* NoteBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookApp.swift; sourceTree = "<group>"; };
 		2F9E870929576A0C00DD72D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 		2F4A54D2297D665900DC03A3 /* NewNote */ = {
 			isa = PBXGroup;
 			children = (
+				2F93FB2F2981342500FAF5D3 /* Subviews */,
 				2F841A0C295EEF8B00F3E7CB /* NewNoteView.swift */,
 				2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */,
 			);
@@ -215,6 +220,7 @@
 		2F82C52E2959DD3100708795 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				2F4A54D2297D665900DC03A3 /* NewNote */,
 				2F841A0B295EEF6F00F3E7CB /* SubViews */,
 				2F82C5322959DDB800708795 /* NotesView.swift */,
 			);
@@ -263,13 +269,6 @@
 		2F841A0B295EEF6F00F3E7CB /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				2F4A54D2297D665900DC03A3 /* NewNote */,
-				2F4A54CD297C69A500DC03A3 /* Location */,
-				2F8E61A9297AAED700A6153A /* Record */,
-				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
-				2F91D4BF29764115002433B3 /* PhotoListView.swift */,
-				2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */,
-				2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -277,6 +276,7 @@
 		2F8E61A9297AAED700A6153A /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				2F8E61AE297B3F8200A6153A /* RecordedAudioPlayerView.swift */,
 				2F8E61A7297AAEC100A6153A /* RecordingAudioView.swift */,
 				2F8E61AA297AAEF000A6153A /* RecordViewModel.swift */,
 				2F8E61AC297B2C4400A6153A /* AudioManager.swift */,
@@ -289,6 +289,44 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F93FB2F2981342500FAF5D3 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				2F93FB34298134C000FAF5D3 /* Popover */,
+				2F93FB33298134B300FAF5D3 /* List */,
+				2F93FB322981348000FAF5D3 /* Photo */,
+				2F4A54CD297C69A500DC03A3 /* Location */,
+				2F8E61A9297AAED700A6153A /* Record */,
+				2F93FB302981343400FAF5D3 /* TextFormatView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		2F93FB322981348000FAF5D3 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				2F91D4BF29764115002433B3 /* PhotoListView.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		2F93FB33298134B300FAF5D3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2F8ABCC12961962F00086755 /* EditableToDoListView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2F93FB34298134C000FAF5D3 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */,
+				2F93FB352981459800FAF5D3 /* NewNoteCategoryView.swift */,
+			);
+			path = Popover;
 			sourceTree = "<group>";
 		};
 		2F9E86FB29576A0C00DD72D6 = {
@@ -527,6 +565,7 @@
 				2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */,
 				2F91D4C029764115002433B3 /* PhotoListView.swift in Sources */,
 				2F8ABCC22961962F00086755 /* EditableToDoListView.swift in Sources */,
+				2F93FB312981343400FAF5D3 /* TextFormatView.swift in Sources */,
 				2F91D4F22977F5C5002433B3 /* PhotoLibrary.swift in Sources */,
 				2F91D4EC2977D726002433B3 /* PhotoAsset.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
@@ -535,6 +574,7 @@
 				2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */,
 				2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
+				2F93FB362981459800FAF5D3 /* NewNoteCategoryView.swift in Sources */,
 				2F841A08295EC5F800F3E7CB /* InputField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
