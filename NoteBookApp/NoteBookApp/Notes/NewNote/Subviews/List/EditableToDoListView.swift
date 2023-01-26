@@ -23,9 +23,10 @@ public struct ToDoItem: Identifiable, Hashable {
 
 struct EditableToDoView: View {
     
+    var model: NewNoteViewModel
     @Binding var todo: ToDoItem
     @Binding var focus: ToDoItem?
-    @State var textViewHeight: CGFloat = 40
+    @State var textViewHeight: CGFloat = 30
     
     var isEditing: Bool {
         self.todo.id == self.focus?.id
@@ -42,12 +43,18 @@ struct EditableToDoView: View {
                 Image(todo.isComplete ? "radio_btn_selected" : "radio_btn")
             }
             
-            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: .constant(focus?.id == todo.id)) {
+            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: .constant(focus?.id == todo.id), onReturnAction:  {
                 onSubmit()
-            }
+            }, onFocusAction: { isFocus in
+                if isFocus && focus?.id != todo.id {
+                    model.focus(todo)
+                } else if !isFocus && focus?.id == todo.id {
+                    model.unFocus()
+                }
+            })
             .frame(height: textViewHeight)
-            .background(Color.white)
             .padding(.top, -7)
+            .background(Color.white)
         }
         .padding(.horizontal)
     }
@@ -65,7 +72,9 @@ struct EditableToDoListView_Previews: PreviewProvider {
         
         var body: some View {
             VStack {
-                EditableToDoView(todo: $item, focus: .constant(nil), onSubmit: { })
+                EditableToDoView(model: NewNoteViewModel(),
+                                 todo: $item, focus: .constant(item),
+                                 onSubmit: { })
             }
         }
     }

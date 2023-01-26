@@ -25,7 +25,6 @@ public struct TextView : UIViewRepresentable {
         textView.backgroundColor = .clear
         textView.textColor = UIColor(named: "blue_oxford")
         context.coordinator.textView = textView
-        context.coordinator.onReturnAction = onReturnAction
         textView.text = text
         view.addSubview(textView)
         
@@ -42,74 +41,57 @@ public struct TextView : UIViewRepresentable {
     }
     
     public func updateUIView(_ view: UIView, context: Context) {
-        context.coordinator.heightBinding = $heightToTransmit
-        context.coordinator.textBinding = $text
-        if isEditing {
-            context.coordinator.textView?.becomeFirstResponder()
-        } else {
-            context.coordinator.textView?.resignFirstResponder()
-        }
         DispatchQueue.main.async {
-            context.coordinator.runSizing()
+            if isEditing {
+                context.coordinator.textView?.becomeFirstResponder()
+            } else {
+                context.coordinator.textView?.resignFirstResponder()
+            }
         }
     }
     
     public func makeCoordinator() -> Coordinator {
-        return Coordinator(onReturnAction:
-                            onReturnAction,
-                           onFocusAction: onFocusAction)
+        return Coordinator(self)
     }
     
     public class Coordinator : NSObject, UITextViewDelegate {
-        var textBinding : Binding<String>?
-        var heightBinding : Binding<CGFloat>?
+        var parent: TextView
         var textView : UITextView?
-        var onReturnAction: (() -> Void)? = nil
-        var onFocusAction: ((Bool) -> Void)? = nil
         var isEditing: Bool = false
         
-        init(textBinding: Binding<String>? = nil,
+        init(_ parent: TextView,
+            textBinding: Binding<String>? = nil,
              heightBinding: Binding<CGFloat>? = nil,
              textView: UITextView? = nil,
-             onReturnAction: (() -> Void)? = nil,
-             onFocusAction: ((Bool) -> Void)? = nil,
              isEditing: Bool = false) {
-            self.textBinding = textBinding
-            self.heightBinding = heightBinding
+            self.parent = parent
             self.textView = textView
-            self.onReturnAction = onReturnAction
             self.isEditing = isEditing
-            self.onFocusAction = onFocusAction
-        }
-        
-        func runSizing() {
-            guard let textView = textView, !textView.text.isEmpty else { return }
-            textView.sizeToFit()
-            self.heightBinding?.wrappedValue = textView.frame.size.height
         }
         
         public func textViewDidChange(_ textView: UITextView) {
-            guard !textView.text.isEmpty else { return }
-            textBinding?.wrappedValue = textView.text
-            runSizing()
+            DispatchQueue.main.async { [weak self] in
+                self?.parent.text = textView.text
+                self?.parent.heightToTransmit = textView.contentSize.height
+            }
         }
         
         public func textViewDidBeginEditing(_ textView: UITextView) {
-            self.onFocusAction?(true)
+            parent.onFocusAction?(true)
         }
         
         public func textViewDidEndEditing(_ textView: UITextView) {
-            self.onFocusAction?(false)
+            parent.onFocusAction?(false)
         }
         
         public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            if text == "\n" && onReturnAction != nil {
-                onReturnAction?()
+            if text == "\n" && parent.onReturnAction != nil {
+                parent.onReturnAction?()
                 return false
             }
             
             if textView.text == "" && text == "" {
-                onReturnAction?()
+                parent.onReturnAction?()
                 return false
             }
             
@@ -127,9 +109,14 @@ struct TextView_Previews: PreviewProvider {
         @State public var isEditing: Bool = false
         
         var body: some View {
-            TextView(text: $text, heightToTransmit: $heightToTransmit, isEditing: $isEditing) {
-                
+            VStack {
+                TextView(text: $text,
+                         heightToTransmit: $heightToTransmit,
+                         isEditing: .constant(true))
+                    .frame(height: heightToTransmit)
             }
+            .frame(maxHeight: .infinity)
+            .background(.red)
         }
     }
     

@@ -111,7 +111,7 @@ struct NewNoteView: View {
     var toDoList: some View {
         if model.shouldShowTodoList {
             ForEach($model.todoItems, id: \.self.id) { $item in
-                EditableToDoView(todo: $item, focus: $model.focusState, onSubmit: {
+                EditableToDoView(model: model, todo: $item, focus: $model.focusState, onSubmit: {
                     model.onSubmitInTodoItem(currentItem: item)
                 })
             }

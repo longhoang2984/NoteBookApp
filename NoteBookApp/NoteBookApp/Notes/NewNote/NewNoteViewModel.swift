@@ -44,22 +44,26 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     }
     
     func onSubmitInTodoItem(currentItem: ToDoItem) {
-        var item: ToDoItem?
         
         if let index = todoItems.firstIndex(where: { $0.id == currentItem.id }) {
             if todoItems[index].text.isEmpty {
-                todoItems.remove(at: index)
-            } else {
-                item = ToDoItem()
-                if (index == todoItems.count - 1) {
-                    todoItems.append(item!)
-                } else {
-                    todoItems.insert(item!, at: index + 1)
+                focusState = nil
+                if index < todoItems.count {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                        self?.todoItems.remove(at: index)
+                    }
                 }
+            } else {
+                let item = ToDoItem()
+                if (index == todoItems.count - 1) {
+                    todoItems.append(item)
+                } else {
+                    todoItems.insert(item, at: index + 1)
+                }
+                
+                self.focusState = item
             }
         }
-        
-        self.focusState = item
     }
     
     func addOrRemoteTodoItem(at index: Int? = nil) {
@@ -85,7 +89,16 @@ final class NewNoteViewModel: NSObject, ObservableObject {
         } else {
             todoItems.append(item)
         }
-        focusState = item
+        
+        self.focusState = item
+    }
+    
+    func focus(_ state: ToDoItem) {
+        self.focusState = state
+    }
+    
+    func unFocus() {
+        self.focusState = nil
     }
     
     func getCategories() {
