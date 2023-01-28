@@ -8,6 +8,7 @@
 import SwiftUI
 import RichTextKit
 import Popovers
+import MobileCoreServices
 
 struct NewNoteView: View {
     
@@ -16,61 +17,12 @@ struct NewNoteView: View {
     @StateObject
     var context = RichTextContext()
     @StateObject var model = NewNoteViewModel()
+    @Environment(\.displayScale) var displayScale
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
-                VStack {
-                    InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name")
-                    
-                    Button {
-                        model.showCategory.toggle()
-                    } label: {
-                        ZStack {
-                            InputField(editing: .constant(false), text: .constant(model.selectedCategory?.name ?? ""), placeHolder: "Category")
-                                .disabled(true)
-                            
-                            HStack {
-                                Spacer()
-                                Image("icon_dropdown")
-                            }
-                            .padding()
-                        }
-                    }
-                    .padding(.bottom)
-                    .popover(present: $model.showCategory,
-                             attributes: {
-                        $0.position = .absolute(
-                            originAnchor: .bottomLeft,
-                            popoverAnchor: .topLeft
-                        )
-                        $0.rubberBandingMode = .none
-                        $0.sourceFrameInset.bottom = 100
-                        $0.onDismiss = {
-                            model.onCategoryDialogDismiss()
-                        }
-                    }) {
-                        NewNoteCategoryView(model: model)
-                        .frame(maxHeight: 200)
-                    } background: {
-                        Color.mischka.opacity(0.5)
-                    }
-                    
-                    TextFormatView(context: context)
-                    VStack(alignment: .leading) {
-                        editor
-                        toDoList
-                        location
-                        recordView
-                        imgListView
-                    }
-                    .frame(maxHeight: .infinity)
-                    
-                    HStack {
-                        Spacer()
-                    }
-                    .frame(height: 100)
-                }
+                content
             }
         }.safeAreaInset(edge: .top) {
             header
@@ -104,6 +56,65 @@ struct NewNoteView: View {
         .scrollDismissesKeyboard(.interactively)
         .task {
             model.getCategories()
+        }
+        .sheet(isPresented: $model.showSendAcitivity) { [renderedImage = model.renderedImage] in
+            if let img = renderedImage {
+                ShareSheet(activityItems: [img])
+            }
+        }
+    }
+    
+    var content: some View {
+        VStack {
+            InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name")
+            
+            Button {
+                model.showCategory.toggle()
+            } label: {
+                ZStack {
+                    InputField(editing: .constant(false), text: .constant(model.selectedCategory?.name ?? ""), placeHolder: "Category")
+                        .disabled(true)
+                    
+                    HStack {
+                        Spacer()
+                        Image("icon_dropdown")
+                    }
+                    .padding()
+                }
+            }
+            .padding(.bottom)
+            .popover(present: $model.showCategory,
+                     attributes: {
+                $0.position = .absolute(
+                    originAnchor: .bottomLeft,
+                    popoverAnchor: .topLeft
+                )
+                $0.rubberBandingMode = .none
+                $0.sourceFrameInset.bottom = 100
+                $0.onDismiss = {
+                    model.onCategoryDialogDismiss()
+                }
+            }) {
+                NewNoteCategoryView(model: model)
+                    .frame(maxHeight: 200)
+            } background: {
+                Color.mischka.opacity(0.5)
+            }
+            
+            TextFormatView(context: context)
+            VStack(alignment: .leading) {
+                editor
+                toDoList
+                location
+                recordView
+                imgListView
+            }
+            .frame(maxHeight: .infinity)
+            
+            HStack {
+                Spacer()
+            }
+            .frame(height: 100)
         }
     }
     
@@ -167,9 +178,12 @@ struct NewNoteView: View {
                     Spacer()
                     
                     NewNoteMenuView(show: $model.showOptions) { menu in
-                        model.selectMenu(menu)
+                        switch menu {
+                        case .send:
+                            model.share(content.asImage(), scale: displayScale)
+                        default: break
+                        }
                     }
-                    
                     
                 }
                 .padding(.horizontal)
@@ -315,4 +329,62 @@ extension RichTextStyle {
             return Image("italic")
         }
     }
+}
+
+extension View {
+    func asImage() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        
+        // locate far out of screen
+        controller.view.frame = CGRect(x: 0, y: CGFloat(Int.max), width: 1, height: 1)
+        
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(controller.view)
+        
+        let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
+        controller.view.bounds = CGRect(origin: .zero, size: size)
+        controller.view.sizeToFit()
+        
+        let image = controller.view.asImage()
+        controller.view.removeFromSuperview()
+        return image
+    }
+}
+
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let callback: Callback? = nil
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
+        controller.completionWithItemsHandler = callback
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+extension UIApplication {
+    
+    var keyWindow: UIWindow? {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        return  windowScene?.windows.first
+    }
+    
 }

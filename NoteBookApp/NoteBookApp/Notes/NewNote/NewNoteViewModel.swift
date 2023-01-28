@@ -39,8 +39,19 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     @Published var addingNewCategory: Bool = false
     @Published var newCategory = NoteCategory(id: UUID().uuidString, name: "", isNew: true)
     
+    @Published var renderedImage: UIImage?
+    @Published var showSendAcitivity: Bool = false
+    
+    @MainActor
     func selectMenu(_ menu: NewNoteMenuType) {
-        
+//        focusState = nil
+//
+//        switch menu {
+//        case .send:
+//            share(content)
+//        default:
+//            break
+//        }
     }
     
     func onSubmitInTodoItem(currentItem: ToDoItem) {
@@ -107,69 +118,7 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     func getCategories() {
         categories = [
             NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Work", isNew: false),
-            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false),
+            NoteCategory(id: UUID().uuidString, name: "Daily routine", isNew: false)
         ]
         
         selectedCategory = categories.first
@@ -186,6 +135,12 @@ final class NewNoteViewModel: NSObject, ObservableObject {
         if newCategory.name.count > 0 {
             selectedCategory = newCategory
         }
+    }
+    
+    @MainActor
+    func share(_ content: UIImage, scale: CGFloat) {
+        renderedImage = content
+        showSendAcitivity = true
     }
 }
 
