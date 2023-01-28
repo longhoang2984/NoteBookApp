@@ -126,7 +126,7 @@ struct NewNoteView: View {
                 toDoList
                 location(isViewing: isViewing)
                 recordView(isViewing: isViewing)
-                imgListView
+                imgListView(isViewing: isViewing)
             }
             .frame(maxHeight: .infinity)
             
@@ -149,9 +149,9 @@ struct NewNoteView: View {
     }
     
     @ViewBuilder
-    var imgListView: some View {
+    func imgListView(isViewing: Bool = false) -> some View {
         if !model.selectedImages.isEmpty {
-            PhotoListView(images: model.selectedImages) { index in
+            PhotoListView(images: model.selectedImages, isViewing: isViewing) { index in
                 _ = withAnimation {
                     model.selectedImages.remove(at: index)
                 }

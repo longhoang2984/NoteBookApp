@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoListView: View {
     var images: [UIImage] = []
+    var isViewing: Bool = false
     private static let itemSpacing = 12.0
     private static let itemCornerRadius = 15.0
     private static let itemSize = CGSize(width: 137.5, height: 137.5)
@@ -27,20 +28,22 @@ struct PhotoListView: View {
                     .frame(width: Self.itemSize.width, height: Self.itemSize.height)
                     .cornerRadius(Self.itemCornerRadius)
                     .overlay(alignment: .topTrailing) {
-                        Button {
-                            if let index = images.firstIndex(of: img) {
-                                onRemoveImageAtIndex?(index)
-                            }
-                        } label: {
-                            Image(systemName: "x.circle")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .background {
-                                    Color.white.opacity(0.5)
+                        if !isViewing {
+                            Button {
+                                if let index = images.firstIndex(of: img) {
+                                    onRemoveImageAtIndex?(index)
                                 }
-                                .cornerRadius(10)
+                            } label: {
+                                Image(systemName: "x.circle")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .background {
+                                        Color.white.opacity(0.5)
+                                    }
+                                    .cornerRadius(10)
+                            }
+                            .frame(width: 40, height: 40)
                         }
-                        .frame(width: 40, height: 40)
                     }
                     .shadow(color: .mischka, radius: 4.0)
             }
