@@ -22,7 +22,7 @@ struct NewNoteView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .bottom) {
-                content
+                content()
             }
         }.safeAreaInset(edge: .top) {
             header
@@ -57,15 +57,33 @@ struct NewNoteView: View {
         .task {
             model.getCategories()
         }
-        .sheet(isPresented: $model.showSendAcitivity) { [renderedImage = model.renderedImage] in
+        .sheet(isPresented: $model.showSendAcitivity, onDismiss: {
+            model.hideRemoveIcon.toggle()
+        }) { [renderedImage = model.renderedImage] in
             if let img = renderedImage {
                 ShareSheet(activityItems: [img])
             }
         }
+        .sheet(isPresented: $model.showSharePDF, onDismiss: {
+            model.hideRemoveIcon.toggle()
+        }) { [pdf = model.pdf] in
+            if let pdf = pdf {
+                ShareSheet(activityItems: [pdf])
+            }
+        }
     }
     
-    var content: some View {
+    func content(isViewing: Bool = false) -> some View {
         VStack {
+            if isViewing {
+                HStack {
+                    HStack {
+                        Spacer()
+                    }
+                    .frame(height: 30)
+                }
+            }
+            
             InputField(editing: $model.nameEditing , text: $model.noteName, placeHolder: "Note name")
             
             Button {
@@ -101,12 +119,13 @@ struct NewNoteView: View {
                 Color.mischka.opacity(0.5)
             }
             
-            TextFormatView(context: context)
+            textFormat(isViewing: isViewing)
+            
             VStack(alignment: .leading) {
                 editor
                 toDoList
-                location
-                recordView
+                location(isViewing: isViewing)
+                recordView(isViewing: isViewing)
                 imgListView
             }
             .frame(maxHeight: .infinity)
@@ -180,7 +199,9 @@ struct NewNoteView: View {
                     NewNoteMenuView(show: $model.showOptions) { menu in
                         switch menu {
                         case .send:
-                            model.share(content.asImage(), scale: displayScale)
+                            model.share(content(isViewing: true).asImage(), scale: displayScale)
+                        case .pdf:
+                            model.convertPdf(content(isViewing: true).toPDF(title: model.noteName))
                         default: break
                         }
                     }
@@ -261,7 +282,15 @@ struct NewNoteView: View {
     }
     
     @ViewBuilder
-    var recordView: some View {
+    func textFormat(isViewing: Bool = false) -> some View {
+        if !isViewing {
+            TextFormatView(context: context)
+                .hide(isViewing)
+        }
+    }
+    
+    @ViewBuilder
+    func recordView(isViewing: Bool = false) -> some View {
         if let url = model.recordURL {
             HStack(spacing: 8) {
                 RecordedAudioPlayerView(url: url)
@@ -276,12 +305,13 @@ struct NewNoteView: View {
                         .frame(width: 20, height: 20)
                 }
                 .frame(height: 34)
+                .hide(isViewing)
             }
         }
     }
     
     @ViewBuilder
-    var location: some View {
+    func location(isViewing: Bool = false) -> some View {
         if let location = model.location {
             HStack(spacing: 15) {
                 Image("ic_location")
@@ -296,6 +326,7 @@ struct NewNoteView: View {
                         .frame(width: 20, height: 20)
                 }
                 .frame(height: 34)
+                .hide(isViewing)
             }
             .padding(12)
         }
@@ -332,6 +363,16 @@ extension RichTextStyle {
 }
 
 extension View {
+    @ViewBuilder
+    func hide(_ value: Bool = false) -> some View {
+        if value {
+            self
+                .hidden()
+        } else {
+            self
+        }
+    }
+    
     func asImage() -> UIImage {
         let controller = UIHostingController(rootView: self)
         
@@ -348,6 +389,30 @@ extension View {
         controller.view.removeFromSuperview()
         return image
     }
+    
+    func toPDF(title: String) -> Data {
+        let format = UIGraphicsPDFRendererFormat()
+        let metadata = [kCGPDFContextCreator: "Torepa",
+                         kCGPDFContextAuthor: "Torepa",
+                          kCGPDFContextTitle: title,
+                        kCGPDFContextSubject: title]
+        
+        format.documentInfo = metadata as Dictionary<String, Any>
+        
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+        
+        let contentSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: contentSize)
+        view?.backgroundColor = .clear
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: controller.view.bounds, format: format)
+        
+        return renderer.pdfData { context in
+            context.beginPage()
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
+    }
 }
 
 extension UIView {
@@ -355,6 +420,7 @@ extension UIView {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
+            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
         }
     }
 }

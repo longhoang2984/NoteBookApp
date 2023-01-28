@@ -42,6 +42,11 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     @Published var renderedImage: UIImage?
     @Published var showSendAcitivity: Bool = false
     
+    @Published var pdf: Data?
+    @Published var showSharePDF: Bool = false
+    
+    @Published var hideRemoveIcon: Bool = false
+    
     @MainActor
     func selectMenu(_ menu: NewNoteMenuType) {
 //        focusState = nil
@@ -137,10 +142,16 @@ final class NewNoteViewModel: NSObject, ObservableObject {
         }
     }
     
-    @MainActor
     func share(_ content: UIImage, scale: CGFloat) {
         renderedImage = content
         showSendAcitivity = true
+        hideRemoveIcon = true
+    }
+    
+    func convertPdf(_ data: Data) {
+        pdf = data
+        showSharePDF = true
+        hideRemoveIcon = true
     }
 }
 
