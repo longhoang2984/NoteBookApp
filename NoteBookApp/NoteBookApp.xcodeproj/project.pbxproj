@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F46690129859D9B00190DB9 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690029859D9B00190DB9 /* ShareSheet.swift */; };
+		2F46690329859DD400190DB9 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690229859DD400190DB9 /* View+Extensions.swift */; };
 		2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CB297C547200DC03A3 /* LocationView.swift */; };
 		2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */; };
 		2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D0297C69BE00DC03A3 /* MapView.swift */; };
@@ -80,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F46690029859D9B00190DB9 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		2F46690229859DD400190DB9 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		2F4A54CB297C547200DC03A3 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2F4A54D0297C69BE00DC03A3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				2F82C5392959E44E00708795 /* RoundedCorner.swift */,
+				2F46690229859DD400190DB9 /* View+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				2F841A09295ECEA100F3E7CB /* CustomDialog.swift */,
 				2F6E55EE2961E29A005E5757 /* FloatingButton.swift */,
 				2F6E55F229620784005E5757 /* TextView.swift */,
+				2F46690029859D9B00190DB9 /* ShareSheet.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -536,6 +542,7 @@
 				2F91D4FC29781277002433B3 /* ThumbnailView.swift in Sources */,
 				2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */,
 				2F91D4E62977BDB7002433B3 /* CameraViewModel.swift in Sources */,
+				2F46690129859D9B00190DB9 /* ShareSheet.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
 				2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */,
 				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
@@ -545,6 +552,7 @@
 				2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */,
 				2F8E61AB297AAEF000A6153A /* RecordViewModel.swift in Sources */,
 				2F93FB2E2980098B00FAF5D3 /* NewNoteMenuView.swift in Sources */,
+				2F46690329859DD400190DB9 /* View+Extensions.swift in Sources */,
 				2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F91D4E82977C02C002433B3 /* Camera.swift in Sources */,

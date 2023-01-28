@@ -339,14 +339,6 @@ struct NewNoteView_Previews: PreviewProvider {
     }
 }
 
-struct ViewHeightKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue = CGFloat.zero
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
-    }
-}
-
 extension RichTextStyle {
     var iconOne: Image {
         switch self {
@@ -360,97 +352,4 @@ extension RichTextStyle {
             return Image("italic")
         }
     }
-}
-
-extension View {
-    @ViewBuilder
-    func hide(_ value: Bool = false) -> some View {
-        if value {
-            self
-                .hidden()
-        } else {
-            self
-        }
-    }
-    
-    func asImage() -> UIImage {
-        let controller = UIHostingController(rootView: self)
-        
-        // locate far out of screen
-        controller.view.frame = CGRect(x: 0, y: CGFloat(Int.max), width: 1, height: 1)
-        
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(controller.view)
-        
-        let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
-        controller.view.bounds = CGRect(origin: .zero, size: size)
-        controller.view.sizeToFit()
-        
-        let image = controller.view.asImage()
-        controller.view.removeFromSuperview()
-        return image
-    }
-    
-    func toPDF(title: String) -> Data {
-        let format = UIGraphicsPDFRendererFormat()
-        let metadata = [kCGPDFContextCreator: "Torepa",
-                         kCGPDFContextAuthor: "Torepa",
-                          kCGPDFContextTitle: title,
-                        kCGPDFContextSubject: title]
-        
-        format.documentInfo = metadata as Dictionary<String, Any>
-        
-        let controller = UIHostingController(rootView: self)
-        let view = controller.view
-        
-        let contentSize = controller.view.intrinsicContentSize
-        view?.bounds = CGRect(origin: .zero, size: contentSize)
-        view?.backgroundColor = .clear
-        
-        let renderer = UIGraphicsPDFRenderer(bounds: controller.view.bounds, format: format)
-        
-        return renderer.pdfData { context in
-            context.beginPage()
-            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
-        }
-    }
-}
-
-extension UIView {
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-        }
-    }
-}
-
-
-struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-    
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]? = nil
-    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    let callback: Callback? = nil
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(
-            activityItems: activityItems,
-            applicationActivities: applicationActivities)
-        controller.excludedActivityTypes = excludedActivityTypes
-        controller.completionWithItemsHandler = callback
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
-
-extension UIApplication {
-    
-    var keyWindow: UIWindow? {
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        return  windowScene?.windows.first
-    }
-    
 }
