@@ -11,6 +11,7 @@ public struct TextView : UIViewRepresentable {
     @Binding public var text : String
     @Binding public var heightToTransmit: CGFloat
     @Binding public var isEditing: Bool
+    var length: Int = 100
     
     var onReturnAction: (() -> Void)? = nil
     var onFocusAction: ((Bool) -> Void)? = nil
@@ -95,7 +96,7 @@ public struct TextView : UIViewRepresentable {
                 return false
             }
             
-            return true
+            return (textView.text + text).count <= self.parent.length
         }
     }
 }

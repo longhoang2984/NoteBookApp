@@ -99,6 +99,9 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     
     func unFocus() {
         self.focusState = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.todoItems.removeAll(where: { $0.text.isEmpty })
+        }
     }
     
     func getCategories() {
