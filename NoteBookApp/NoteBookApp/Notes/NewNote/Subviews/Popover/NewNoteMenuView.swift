@@ -10,7 +10,7 @@ import Popovers
 
 public enum NewNoteMenuType: Int {
     case send = 0
-    case  pdf = 1
+    case pdf = 1
     case block = 2
     case print = 3
     case delete = 4

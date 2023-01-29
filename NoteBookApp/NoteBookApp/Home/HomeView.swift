@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @StateObject var model = HomeViewModel()
+    
     @State var toDoItems: [ItemViewModel] = [
         ItemViewModel(id: UUID().uuidString, title: "Shopping", images: ["ic_home_location_thumb", "ic_home_audio_thumb", "ic_home_audio_thumb"], deadline: "today", deadlineIcon: "icon_deadline", isLock: true),
         ItemViewModel(id: UUID().uuidString, title: "Study", images: ["ic_home_location_thumb"], deadline: "01:00", deadlineIcon: "icon_deadline", isLock: false),
@@ -26,8 +28,12 @@ struct HomeView: View {
                 }
             }
             
-            ButtonAdd {
-                print("onTapped")
+            AddNewMenu(show: $model.showAddMenu) { menu in
+                switch menu {
+                case .note:
+                    model.showAddNewNote.toggle()
+                default: break
+                }
             }
             
         }
@@ -40,6 +46,9 @@ struct HomeView: View {
                     .scaledToFill()
             }
             .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $model.showAddNewNote) {
+            NewNoteView()
         }
     }
     
