@@ -47,6 +47,10 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     
     @Published var hideRemoveIcon: Bool = false
     
+    @Published var showBlockDialog = false
+    @Published var password: String = ""
+    @Published var confirmPassword: String = ""
+    
     @MainActor
     func selectMenu(_ menu: NewNoteMenuType) {
 //        focusState = nil

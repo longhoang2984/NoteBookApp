@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F46690129859D9B00190DB9 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690029859D9B00190DB9 /* ShareSheet.swift */; };
 		2F46690329859DD400190DB9 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690229859DD400190DB9 /* View+Extensions.swift */; };
+		2F466907298688B600190DB9 /* PasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F466906298688B600190DB9 /* PasswordDialog.swift */; };
+		2F46690929868C4000190DB9 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690829868C4000190DB9 /* PasswordField.swift */; };
 		2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CB297C547200DC03A3 /* LocationView.swift */; };
 		2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */; };
 		2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D0297C69BE00DC03A3 /* MapView.swift */; };
@@ -84,6 +86,8 @@
 /* Begin PBXFileReference section */
 		2F46690029859D9B00190DB9 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		2F46690229859DD400190DB9 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		2F466906298688B600190DB9 /* PasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordDialog.swift; sourceTree = "<group>"; };
+		2F46690829868C4000190DB9 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		2F4A54CB297C547200DC03A3 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		2F4A54CE297C69B400DC03A3 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2F4A54D0297C69BE00DC03A3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				2F6E55EE2961E29A005E5757 /* FloatingButton.swift */,
 				2F6E55F229620784005E5757 /* TextView.swift */,
 				2F46690029859D9B00190DB9 /* ShareSheet.swift */,
+				2F46690829868C4000190DB9 /* PasswordField.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 		2F93FB34298134C000FAF5D3 /* Popover */ = {
 			isa = PBXGroup;
 			children = (
+				2F466906298688B600190DB9 /* PasswordDialog.swift */,
 				2F93FB2D2980098B00FAF5D3 /* NewNoteMenuView.swift */,
 				2F93FB352981459800FAF5D3 /* NewNoteCategoryView.swift */,
 			);
@@ -567,6 +573,7 @@
 				2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */,
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
 				2F6E55F329620784005E5757 /* TextView.swift in Sources */,
+				2F466907298688B600190DB9 /* PasswordDialog.swift in Sources */,
 				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
 				2F91D4F02977E769002433B3 /* PhotoAssetCollection.swift in Sources */,
@@ -577,6 +584,7 @@
 				2F91D4F22977F5C5002433B3 /* PhotoLibrary.swift in Sources */,
 				2F91D4EC2977D726002433B3 /* PhotoAsset.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
+				2F46690929868C4000190DB9 /* PasswordField.swift in Sources */,
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2F8E61A8297AAEC100A6153A /* RecordingAudioView.swift in Sources */,
 				2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */,

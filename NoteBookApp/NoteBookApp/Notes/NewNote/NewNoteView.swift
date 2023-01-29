@@ -71,6 +71,28 @@ struct NewNoteView: View {
                 ShareSheet(activityItems: [pdf])
             }
         }
+        .popover(present: $model.showBlockDialog,
+                 attributes: {
+            $0.blocksBackgroundTouches = true
+            $0.rubberBandingMode = .none
+            $0.position = .relative(
+                popoverAnchors: [
+                    .center,
+                ]
+            )
+            $0.presentation.animation = .easeOut(duration: 0.15)
+            $0.dismissal.mode = .none
+            $0.onTapOutside = {
+                model.showBlockDialog.toggle()
+            }
+        }) {
+            PasswordDialog(show: $model.showBlockDialog) { password in
+                model.password = password
+                model.showBlockDialog.toggle()
+            }
+        } background: {
+            Color.mischka.opacity(0.5)
+        }
     }
     
     func content(isViewing: Bool = false) -> some View {
@@ -202,6 +224,8 @@ struct NewNoteView: View {
                             model.share(content(isViewing: true).asImage(), scale: displayScale)
                         case .pdf:
                             model.convertPdf(content(isViewing: true).toPDF(title: model.noteName))
+                        case .block:
+                            model.showBlockDialog.toggle()
                         default: break
                         }
                     }

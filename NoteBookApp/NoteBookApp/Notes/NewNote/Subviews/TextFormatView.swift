@@ -25,7 +25,6 @@ struct TextFormatView: View {
                         context.isBoldBinding.wrappedValue.toggle()
                     }
                     
-                    
                     editorButton(image: "italic", isActive: context.isItalic) {
                         context.isItalic.toggle()
                     }
