@@ -11,7 +11,7 @@ import SwiftUI
 struct NoteBookApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ReminderView()
         }
     }
 }

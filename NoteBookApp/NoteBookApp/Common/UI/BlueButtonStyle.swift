@@ -15,3 +15,11 @@ struct BlueButtonStyle: ButtonStyle {
             
     }
 }
+
+struct OrangeButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(configuration.isPressed ? .orange : .gullGray)
+            
+    }
+}
