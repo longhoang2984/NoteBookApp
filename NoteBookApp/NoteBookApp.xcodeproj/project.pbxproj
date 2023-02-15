@@ -18,6 +18,7 @@
 		2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D0297C69BE00DC03A3 /* MapView.swift */; };
 		2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */; };
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
+		2F591DC6299D0C4D0007EAF4 /* ReminderTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */; };
 		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
 		2F6E55F329620784005E5757 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55F229620784005E5757 /* TextView.swift */; };
 		2F6E55FB2962170D005E5757 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F52962170D005E5757 /* Roboto-Light.ttf */; };
@@ -101,6 +102,7 @@
 		2F4A54D0297C69BE00DC03A3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTimePicker.swift; sourceTree = "<group>"; };
 		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2F6E55F229620784005E5757 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2F6E55F52962170D005E5757 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		2F591DC2299D0C2F0007EAF4 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		2F6E55F4296216F3005E5757 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +340,7 @@
 		2F9097B4298F881A007F9D7E /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
+				2F591DC2299D0C2F0007EAF4 /* Subviews */,
 				2F9097B5298F8841007F9D7E /* ReminderView.swift */,
 				2F9097B7298F8991007F9D7E /* ReminderViewModel.swift */,
 			);
@@ -635,6 +646,7 @@
 				2F9E870A29576A0C00DD72D6 /* HomeView.swift in Sources */,
 				2F8E61A8297AAEC100A6153A /* RecordingAudioView.swift in Sources */,
 				2FAA133A295DC51E00A87157 /* PasswordItemView.swift in Sources */,
+				2F591DC6299D0C4D0007EAF4 /* ReminderTimePicker.swift in Sources */,
 				2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 				2F93FB362981459800FAF5D3 /* NewNoteCategoryView.swift in Sources */,

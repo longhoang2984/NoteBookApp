@@ -19,6 +19,10 @@ struct ReminderView: View {
                 model.showDatePicker.toggle()
             }
             
+            SelectionField(icon: "ic_time_gray", title: "Time", content: $model.formatedTime) {
+                model.showTimePicker.toggle()
+            }
+            
             Spacer()
         }
         .padding(.vertical)
@@ -47,6 +51,26 @@ struct ReminderView: View {
         }) {
             DatePickerPopover(show: $model.showDatePicker, selectedDate: model.selectedDate) { date in
                 model.selectedDate = date
+            }
+        } background: {
+            Color.black.opacity(0.7)
+        }
+        .popover(present: $model.showTimePicker, attributes: {
+            $0.blocksBackgroundTouches = true
+            $0.rubberBandingMode = .none
+            $0.position = .relative(
+                popoverAnchors: [
+                    .center,
+                ]
+            )
+            $0.presentation.animation = .easeOut(duration: 0.15)
+            $0.dismissal.mode = .none
+            $0.onTapOutside = {
+                model.showTimePicker.toggle()
+            }
+        }) {
+            ReminderTimePicker(show: $model.showTimePicker, timeString: model.formatedTime) { time in
+                model.formatedTime = time
             }
         } background: {
             Color.black.opacity(0.7)

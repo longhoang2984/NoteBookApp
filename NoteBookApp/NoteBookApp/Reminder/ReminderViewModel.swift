@@ -20,6 +20,9 @@ final class ReminderViewModel: ObservableObject {
         }
     }
     
+    @Published var formatedTime: String = "23:00"
+    @Published var showTimePicker: Bool = false
+    
     init() {
         formatDate()
     }
