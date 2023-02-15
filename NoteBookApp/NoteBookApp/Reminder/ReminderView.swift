@@ -11,8 +11,9 @@ struct ReminderView: View {
     @StateObject var model = ReminderViewModel()
     @Environment(\.dismiss) var pop
     
+    
     var body: some View {
-        VStack {
+        VStack{
             InputField(editing: $model.reminderNameEditing, text: $model.reminderName, placeHolder: "Name")
             
             SelectionField(icon: "ic_deadline_gray", title: "Date", content: $model.formatedDate) {
@@ -22,6 +23,20 @@ struct ReminderView: View {
             SelectionField(icon: "ic_time_gray", title: "Time", content: $model.formatedTime) {
                 model.showTimePicker.toggle()
             }
+            
+            VStack(spacing: 0)  {
+                TextView(text: $model.noteContent, heightToTransmit: $model.height, isEditing: $model.isNoteEditing, length: 200, onFocusAction:  { isEditing in
+                    model.isNoteEditing = isEditing
+                })
+                .frame(height: model.height)
+                
+                Rectangle()
+                    .fill(model.isNoteEditing ? Color.bluePrimary : Color.mischka)
+                    .frame(height: 2)
+
+            }
+            .padding(.horizontal, 12)
+            
             
             Spacer()
         }

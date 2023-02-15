@@ -23,6 +23,10 @@ final class ReminderViewModel: ObservableObject {
     @Published var formatedTime: String = "23:00"
     @Published var showTimePicker: Bool = false
     
+    @Published var noteContent: String = ""
+    @Published var height: CGFloat = 40
+    @Published var isNoteEditing: Bool = false
+    
     init() {
         formatDate()
     }
