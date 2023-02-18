@@ -32,6 +32,8 @@ struct HomeView: View {
                 switch menu {
                 case .note:
                     model.showAddNewNote.toggle()
+                case .reminder:
+                    model.showAddNewReminder.toggle()
                 default: break
                 }
             }
@@ -49,6 +51,9 @@ struct HomeView: View {
         }
         .fullScreenCover(isPresented: $model.showAddNewNote) {
             NewNoteView()
+        }
+        .fullScreenCover(isPresented: $model.showAddNewReminder) {
+            ReminderView()
         }
     }
     

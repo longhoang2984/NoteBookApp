@@ -24,7 +24,7 @@ final class ReminderViewModel: ObservableObject {
     @Published var showTimePicker: Bool = false
     
     @Published var noteContent: String = ""
-    @Published var height: CGFloat = 40
+    @Published var height: CGFloat = 35
     @Published var isNoteEditing: Bool = false
     
     init() {

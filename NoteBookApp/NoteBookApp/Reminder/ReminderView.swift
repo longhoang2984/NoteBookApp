@@ -25,7 +25,9 @@ struct ReminderView: View {
             }
             
             VStack(spacing: 0)  {
-                TextView(text: $model.noteContent, heightToTransmit: $model.height, isEditing: $model.isNoteEditing, length: 200, onFocusAction:  { isEditing in
+                TextView(text: $model.noteContent, heightToTransmit: $model.height,
+                         isEditing: $model.isNoteEditing,
+                         placeHolder: "Enter note here", length: 200, onFocusAction:  { isEditing in
                     model.isNoteEditing = isEditing
                 })
                 .frame(height: model.height)

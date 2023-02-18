@@ -11,14 +11,13 @@ import Popovers
 public enum AddNewMenuType: Int {
     case note = 0
     case reminder = 1
-    case todoList = 2
 }
 
 extension AddNewMenuType: Identifiable {
     public var id: Int { self.rawValue }
     
     static var allCases: [AddNewMenuType] {
-        [.note, .reminder, .todoList]
+        [.note, .reminder]
     }
     
     var image: Image {
@@ -27,8 +26,6 @@ extension AddNewMenuType: Identifiable {
             return Image(systemName: "note.text.badge.plus")
         case .reminder:
             return Image(systemName: "calendar.badge.clock")
-        case .todoList:
-            return Image(systemName: "checklist")
         }
     }
     
@@ -39,8 +36,6 @@ extension AddNewMenuType: Identifiable {
             txt = Text("Note")
         case .reminder:
             txt = Text("Reminder")
-        case .todoList:
-            txt = Text("Todo List")
         }
         
         return txt

@@ -11,6 +11,7 @@ public struct TextView : UIViewRepresentable {
     @Binding public var text : String
     @Binding public var heightToTransmit: CGFloat
     @Binding public var isEditing: Bool
+    var placeHolder: String = ""
     var length: Int = 100
     
     var onReturnAction: (() -> Void)? = nil
@@ -27,6 +28,10 @@ public struct TextView : UIViewRepresentable {
         textView.textColor = UIColor(named: "blue_oxford")
         context.coordinator.textView = textView
         textView.text = text
+        if text.isEmpty {
+            textView.text = placeHolder
+            textView.textColor = UIColor(named: "mischka")
+        }
         view.addSubview(textView)
         
         // Auto Layout
@@ -58,31 +63,31 @@ public struct TextView : UIViewRepresentable {
     public class Coordinator : NSObject, UITextViewDelegate {
         var parent: TextView
         var textView : UITextView?
-        var isEditing: Bool = false
         
-        init(_ parent: TextView,
-            textBinding: Binding<String>? = nil,
-             heightBinding: Binding<CGFloat>? = nil,
-             textView: UITextView? = nil,
-             isEditing: Bool = false) {
+        init(_ parent: TextView) {
             self.parent = parent
-            self.textView = textView
-            self.isEditing = isEditing
         }
         
         public func textViewDidChange(_ textView: UITextView) {
-            DispatchQueue.main.async { [weak self] in
-                self?.parent.text = textView.text
-                self?.parent.heightToTransmit = textView.contentSize.height
-            }
+            parent.text = textView.text
+            textView.sizeToFit()
+            parent.heightToTransmit = textView.contentSize.height
         }
         
         public func textViewDidBeginEditing(_ textView: UITextView) {
             parent.onFocusAction?(true)
+            if textView.text == parent.placeHolder {
+                textView.text = ""
+                textView.textColor = UIColor(named: "blue_oxford")
+            }
         }
         
         public func textViewDidEndEditing(_ textView: UITextView) {
             parent.onFocusAction?(false)
+            if textView.text.isEmpty {
+                textView.text = parent.placeHolder
+                textView.textColor = UIColor(named: "mischka")
+            }
         }
         
         public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -110,11 +115,17 @@ struct TextView_Previews: PreviewProvider {
         @State public var isEditing: Bool = false
         
         var body: some View {
-            VStack {
+            VStack(spacing: 0) {
                 TextView(text: $text,
                          heightToTransmit: $heightToTransmit,
                          isEditing: .constant(true))
                     .frame(height: heightToTransmit)
+                
+                Rectangle()
+                    .fill(isEditing ? Color.bluePrimary : Color.mischka)
+                    .frame(height: 2)
+                
+                Text("\(heightToTransmit)")
             }
             .frame(maxHeight: .infinity)
             .background(.red)
