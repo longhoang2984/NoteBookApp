@@ -12,6 +12,8 @@ import HorizonCalendar
 public class CalendarViewModel: ObservableObject {
     
     @Published var selectedDay: Day?
+    @Published var showVerticalCalendar: Bool = true
+    @Published var eventDateMapper: [Date: Date] = [:]
     let startDate = Date.now.startOfDay()
     let endDate = Date.now.startOfDay().adding(days: 365 * 10)
     
