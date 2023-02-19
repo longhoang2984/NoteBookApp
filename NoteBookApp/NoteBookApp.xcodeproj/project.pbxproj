@@ -28,6 +28,9 @@
 		2F6E55FF2962170D005E5757 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F92962170D005E5757 /* Roboto-Regular.ttf */; };
 		2F6E56002962170D005E5757 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55FA2962170D005E5757 /* Roboto-Thin.ttf */; };
 		2F776C3829913DE500C095C0 /* DatePickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F776C3729913DE500C095C0 /* DatePickerPopover.swift */; };
+		2F7C551C29A24D13009E04DD /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 2F7C551B29A24D13009E04DD /* HorizonCalendar */; };
+		2F7C551E29A2701F009E04DD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C551D29A2701F009E04DD /* Date+Extensions.swift */; };
+		2F7C552029A27F70009E04DD /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C551F29A27F70009E04DD /* CalendarViewModel.swift */; };
 		2F82C52D2959DCCC00708795 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C52C2959DCCC00708795 /* MainView.swift */; };
 		2F82C5332959DDB800708795 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5322959DDB800708795 /* NotesView.swift */; };
 		2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82C5342959DDBF00708795 /* CalendarView.swift */; };
@@ -113,6 +116,8 @@
 		2F6E55FA2962170D005E5757 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		2F6E560129621811005E5757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F776C3729913DE500C095C0 /* DatePickerPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopover.swift; sourceTree = "<group>"; };
+		2F7C551D29A2701F009E04DD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		2F7C551F29A27F70009E04DD /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		2F82C52C2959DCCC00708795 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2F82C5322959DDB800708795 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		2F82C5342959DDBF00708795 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 			files = (
 				2F8E61A6297AAC9D00A6153A /* DSWaveformImageViews in Frameworks */,
 				2F8E61A4297AAC9D00A6153A /* DSWaveformImage in Frameworks */,
+				2F7C551C29A24D13009E04DD /* HorizonCalendar in Frameworks */,
 				2F93FB2C2980085800FAF5D3 /* Popovers in Frameworks */,
 				2F841A13295F4BA900F3E7CB /* RichTextKit in Frameworks */,
 			);
@@ -279,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				2F82C5342959DDBF00708795 /* CalendarView.swift */,
+				2F7C551F29A27F70009E04DD /* CalendarViewModel.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -297,6 +304,7 @@
 			children = (
 				2F82C5392959E44E00708795 /* RoundedCorner.swift */,
 				2F46690229859DD400190DB9 /* View+Extensions.swift */,
+				2F7C551D29A2701F009E04DD /* Date+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				2F8E61A3297AAC9D00A6153A /* DSWaveformImage */,
 				2F8E61A5297AAC9D00A6153A /* DSWaveformImageViews */,
 				2F93FB2B2980085800FAF5D3 /* Popovers */,
+				2F7C551B29A24D13009E04DD /* HorizonCalendar */,
 			);
 			productName = NoteBookApp;
 			productReference = 2F9E870429576A0C00DD72D6 /* NoteBookApp.app */;
@@ -553,6 +562,7 @@
 				2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				2F8E61A2297AAC9D00A6153A /* XCRemoteSwiftPackageReference "DSWaveformImage" */,
 				2F93FB2A2980085800FAF5D3 /* XCRemoteSwiftPackageReference "Popovers" */,
+				2F7C551A29A24D12009E04DD /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			productRefGroup = 2F9E870529576A0C00DD72D6 /* Products */;
 			projectDirPath = "";
@@ -618,6 +628,7 @@
 				2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F91D4E82977C02C002433B3 /* Camera.swift in Sources */,
+				2F7C552029A27F70009E04DD /* CalendarViewModel.swift in Sources */,
 				2F91D4FA29781248002433B3 /* CameraView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
 				2F841A0D295EEF8B00F3E7CB /* NewNoteView.swift in Sources */,
@@ -650,6 +661,7 @@
 				2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */,
 				2F9E870829576A0C00DD72D6 /* NoteBookApp.swift in Sources */,
 				2F93FB362981459800FAF5D3 /* NewNoteCategoryView.swift in Sources */,
+				2F7C551E29A2701F009E04DD /* Date+Extensions.swift in Sources */,
 				2F841A08295EC5F800F3E7CB /* InputField.swift in Sources */,
 				2F46690C2986E6B200190DB9 /* AddNewMenu.swift in Sources */,
 			);
@@ -941,6 +953,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2F7C551A29A24D12009E04DD /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
@@ -968,6 +988,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F7C551B29A24D13009E04DD /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F7C551A29A24D12009E04DD /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
+		};
 		2F841A12295F4BA900F3E7CB /* RichTextKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2F841A11295F4BA900F3E7CB /* XCRemoteSwiftPackageReference "RichTextKit" */;

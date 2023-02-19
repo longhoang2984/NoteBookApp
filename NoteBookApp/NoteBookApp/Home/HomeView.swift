@@ -34,7 +34,6 @@ struct HomeView: View {
                     model.showAddNewNote.toggle()
                 case .reminder:
                     model.showAddNewReminder.toggle()
-                default: break
                 }
             }
             
