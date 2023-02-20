@@ -21,12 +21,11 @@ public struct CalendarView: View {
                             onSelectedDay: { day in
                 viewModel.selectedDay = day
             })
-            
-            Text("\(viewModel.selectedDay?.description ?? "")")
         }
         .onAppear {
-            viewModel.eventDateMapper = [.now.startOfDay(): .now.startOfDay()]
-            viewModel.eventDateMapper[.now.adding(days: 3).startOfDay()] = .now.adding(days: 3)
+            Task {
+                self.viewModel.getTasks()
+            }
         }
     }
     
@@ -124,7 +123,9 @@ public struct AppCalendarView: UIViewRepresentable {
                 invariantViewProperties: invariantViewProperties,
                 content: .init(day: day, hasEvent: eventDateMapper[day.toDate()] != nil))
         }
-        .interMonthSpacing(12)
+        .interMonthSpacing(24)
+        .verticalDayMargin(8)
+        .horizontalDayMargin(8)
     }
     
     public func updateUIView(_ uiView: UIView, context: Context) {
@@ -134,7 +135,10 @@ public struct AppCalendarView: UIViewRepresentable {
             isVertical: isVerital,
             selectedDay: selectedDay,
             eventDateMapper: eventDateMapper)
-        calendarView.setContent(content)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.calendarView.setContent(content)
+            context.coordinator.parent.calendarView.setContent(content)
+        }
     }
     
     public class Coordinator: NSObject {
@@ -188,9 +192,8 @@ struct DayLabel: CalendarItemViewRepresentable {
     
 }
 
-class DayItemView: UIView {
-    let label: UILabel = UILabel()
-    let wrapperView: UIView = UIView()
+class DayItemView: UILabel {
+    let circleView: UIView = UIView()
     
     init(properties: DayLabel.InvariantViewProperties,
          frame: CGRect = .zero) {
@@ -200,51 +203,32 @@ class DayItemView: UIView {
     
     func setUpUI(properties: DayLabel.InvariantViewProperties) {
         backgroundColor = properties.backgroundColor
-        label.font = properties.font
-        label.textColor = properties.textColor
         
-        label.textAlignment = .center
+        font = properties.font
+        textColor = properties.textColor
+        
+        textAlignment = .center
         
         clipsToBounds = true
         layer.cornerRadius = 12
         
-        wrapperView.translatesAutoresizingMaskIntoConstraints = false
-        wrapperView.isHidden = true
-        
-        let circleView = UIView()
         circleView.translatesAutoresizingMaskIntoConstraints = false
         circleView.backgroundColor = UIColor(named: "orange")
+        circleView.clipsToBounds = true
+        circleView.layer.cornerRadius = 2
         
-        wrapperView.addSubview(circleView)
-        
-        let stackView = UIStackView(arrangedSubviews: [label, wrapperView])
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .center
-        
-        addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(circleView)
         NSLayoutConstraint.activate([
             circleView.widthAnchor.constraint(equalToConstant: 4),
             circleView.heightAnchor.constraint(equalToConstant: 4),
-            circleView.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 8),
-            
-            wrapperView.topAnchor.constraint(equalTo: topAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            wrapperView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor)
+            circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 4),
         ])
     }
     
     func setContent(_ content: DayLabel.Content) {
-        label.text = "\(content.day.day)"
-        wrapperView.isHidden = !content.hasEvent
+        text = "\(content.day.day)"
+        circleView.isHidden = !content.hasEvent
     }
     
     required init?(coder: NSCoder) {

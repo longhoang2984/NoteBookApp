@@ -17,4 +17,8 @@ public class CalendarViewModel: ObservableObject {
     let startDate = Date.now.startOfDay()
     let endDate = Date.now.startOfDay().adding(days: 365 * 10)
     
+    func getTasks() {
+        eventDateMapper = [.now.startOfDay(): .now.startOfDay(),
+                                          .now.adding(days: 3).startOfDay(): .now.adding(days: 3).startOfDay()]
+    }
 }
