@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F15DFCB29A8E56400946E5B /* NoteBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DFC929A8E56400946E5B /* NoteBook.xcdatamodeld */; };
 		2F46690129859D9B00190DB9 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690029859D9B00190DB9 /* ShareSheet.swift */; };
 		2F46690329859DD400190DB9 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46690229859DD400190DB9 /* View+Extensions.swift */; };
 		2F466907298688B600190DB9 /* PasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F466906298688B600190DB9 /* PasswordDialog.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F15DFCA29A8E56400946E5B /* NoteBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteBook.xcdatamodel; sourceTree = "<group>"; };
 		2F46690029859D9B00190DB9 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		2F46690229859DD400190DB9 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		2F466906298688B600190DB9 /* PasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordDialog.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				2F9E870729576A0C00DD72D6 /* NoteBookApp.swift */,
 				2F9E870B29576A0D00DD72D6 /* Assets.xcassets */,
 				2F9E870D29576A0D00DD72D6 /* Preview Content */,
+				2F15DFC929A8E56400946E5B /* NoteBook.xcdatamodeld */,
 			);
 			path = NoteBookApp;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				2F8E61AD297B2C4400A6153A /* AudioManager.swift in Sources */,
 				2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */,
 				2F91D4E82977C02C002433B3 /* Camera.swift in Sources */,
+				2F15DFCB29A8E56400946E5B /* NoteBook.xcdatamodeld in Sources */,
 				2F7C552029A27F70009E04DD /* CalendarViewModel.swift in Sources */,
 				2F91D4FA29781248002433B3 /* CameraView.swift in Sources */,
 				2F82C5372959DDC700708795 /* PasswordView.swift in Sources */,
@@ -1014,6 +1018,19 @@
 			productName = Popovers;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2F15DFC929A8E56400946E5B /* NoteBook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2F15DFCA29A8E56400946E5B /* NoteBook.xcdatamodel */,
+			);
+			currentVersion = 2F15DFCA29A8E56400946E5B /* NoteBook.xcdatamodel */;
+			path = NoteBook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2F9E86FC29576A0C00DD72D6 /* Project object */;
 }
