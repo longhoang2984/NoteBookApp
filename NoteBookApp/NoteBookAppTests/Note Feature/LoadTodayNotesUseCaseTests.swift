@@ -28,29 +28,19 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         
         let expectedError = anyError()
-        store.completionRetrieval(with: expectedError)
-        let receivedResult = Result { try sut.load() }
         
-        switch receivedResult {
-        case let .failure(error):
-            XCTAssertEqual(error as NSError, expectedError)
-        case .success:
-            XCTFail("Expected \(expectedError), got \(receivedResult) instead")
+        expect(sut, toCompleteWith: .failure(expectedError)) {
+            store.completionRetrieval(with: expectedError)
         }
+
     }
     
     func test_load_deliversNoNoteInDate() {
         let (sut, store) = makeSUT()
         
         let expectedNotes = [Note]()
-        store.completionRetrieval(with: expectedNotes)
-        let receivedResult = Result { try sut.load() }
-        
-        switch receivedResult {
-        case let .success(receivedNotes):
-            XCTAssertEqual(receivedNotes, expectedNotes)
-        case .failure:
-            XCTFail("Expected \(expectedNotes), got \(receivedResult) instead")
+        expect(sut, toCompleteWith: .success(expectedNotes)) {
+            store.completionRetrieval(with: expectedNotes)
         }
     }
     
@@ -63,6 +53,24 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         trackForMemoryLeaks(loader)
         
         return (loader, spy)
+    }
+    
+    private func expect(_ sut: NoteLoader,
+                        toCompleteWith expectedResult: Result<[Note], Error>,
+                        when action: () -> Void,
+                        file: StaticString = #file, line: UInt = #line) {
+        action()
+        
+        let receivedResult = Result { try sut.load() }
+        
+        switch (receivedResult, expectedResult) {
+        case let (.success(receivedNotes), .success(expectedNotes)):
+            XCTAssertEqual(receivedNotes, expectedNotes, file: file, line: line)
+        case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+            XCTAssertEqual(receivedError, expectedError)
+        default:
+            XCTFail("Expected \(expectedResult), got \(receivedResult) instead")
+        }
     }
     
     private class NoteStoreSpy: NoteStore {
