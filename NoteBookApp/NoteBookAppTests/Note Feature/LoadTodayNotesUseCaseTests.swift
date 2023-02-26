@@ -16,6 +16,14 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [])
     }
     
+    func test_load_requestsNoteRetrieval() {
+        let (sut, store) = makeSUT()
+        
+        _ = try? sut.load()
+        
+        XCTAssertEqual(store.receiveMessages, [.retrieve])
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,
                          file: StaticString = #file,
                          line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
