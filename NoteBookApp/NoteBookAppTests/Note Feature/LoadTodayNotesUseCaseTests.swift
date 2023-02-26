@@ -10,9 +10,33 @@ import NoteBookApp
 
 final class LoadTodayNotesUseCaseTests: XCTestCase {
     
+    func test_init_doesNotMessageStoreUponCreation() {
+        let (_, store) = makeSUT()
+        
+        XCTAssertEqual(store.receiveMessages, [])
+    }
+    
+    private func makeSUT(date: @escaping () -> Date = Date.init,
+                         file: StaticString = #file,
+                         line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
+        let spy = NoteStoreSpy()
+        let loader =  NoteLoader(store: spy, date: date)
+        trackForMemoryLeaks(spy)
+        trackForMemoryLeaks(loader)
+        
+        return (loader, spy)
+    }
     
     private class NoteStoreSpy: NoteStore {
+        
+        enum ReceivedMessage: Equatable {
+            case retrieve
+        }
+        
+        var receiveMessages: [ReceivedMessage] = []
+        
         func retrieve(date: Date) throws -> [Note]? {
+            receiveMessages.append(.retrieve)
             return [uniqueNote()]
         }
     }
