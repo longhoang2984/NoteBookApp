@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ManangedCategory" representedClassName="ManangedCategory" syncable="YES">
+    <entity name="ManagedCategory" representedClassName="ManagedCategory" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManangedNote" inverseName="category" inverseEntity="ManangedNote"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedNote" inverseName="category" inverseEntity="ManagedNote"/>
     </entity>
-    <entity name="ManangedLocation" representedClassName="ManangedLocation" syncable="YES">
+    <entity name="ManagedImage" representedClassName="ManagedImage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNote" inverseName="images" inverseEntity="ManagedNote"/>
+    </entity>
+    <entity name="ManagedLocation" representedClassName="ManagedLocation" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManangedNote" inverseName="location" inverseEntity="ManangedNote"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNote" inverseName="location" inverseEntity="ManagedNote"/>
     </entity>
-    <entity name="ManangedNote" representedClassName="ManangedNote" syncable="YES">
+    <entity name="ManagedNote" representedClassName="ManagedNote" syncable="YES">
         <attribute name="content" attributeType="String"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
-        <attribute name="images" optional="YES" attributeType="Transformable"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="recordURL" optional="YES" attributeType="URI"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManangedCategory" inverseName="notes" inverseEntity="ManangedCategory"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManangedLocation" inverseName="note" inverseEntity="ManangedLocation"/>
-        <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManangedToDoItem" inverseName="note" inverseEntity="ManangedToDoItem"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedCategory" inverseName="notes" inverseEntity="ManagedCategory"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedImage" inverseName="note" inverseEntity="ManagedImage"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedLocation" inverseName="note" inverseEntity="ManagedLocation"/>
+        <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedToDoItem" inverseName="note" inverseEntity="ManagedToDoItem"/>
     </entity>
-    <entity name="ManangedPassword" representedClassName="ManangedPassword" syncable="YES">
+    <entity name="ManagedPassword" representedClassName="ManagedPassword" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="login" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="password" attributeType="String" allowsCloudEncryption="YES"/>
         <attribute name="website" optional="YES" attributeType="URI"/>
     </entity>
-    <entity name="ManangedReminder" representedClassName="ManangedReminder" syncable="YES">
+    <entity name="ManagedReminder" representedClassName="ManagedReminder" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -39,10 +44,10 @@
         <attribute name="period" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="ManangedToDoItem" representedClassName="ManangedToDoItem" syncable="YES">
+    <entity name="ManagedToDoItem" representedClassName="ManagedToDoItem" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManangedNote" inverseName="todoList" inverseEntity="ManangedNote"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedNote" inverseName="todoList" inverseEntity="ManagedNote"/>
     </entity>
 </model>

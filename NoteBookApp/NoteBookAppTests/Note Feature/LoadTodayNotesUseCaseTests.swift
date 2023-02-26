@@ -24,6 +24,21 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [.retrieve])
     }
     
+    func test_load_failsOnRetrievalError() {
+        let (sut, store) = makeSUT()
+        
+        let expectedError = anyError()
+        store.completionRetrieval(with: expectedError)
+        let receivedResult = Result { try sut.load() }
+        
+        switch receivedResult {
+        case let .failure(error):
+            XCTAssertEqual(error as NSError, expectedError)
+        case .success:
+            XCTFail("Expected \(expectedError), got \(receivedResult) instead")
+        }
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,
                          file: StaticString = #file,
                          line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
@@ -43,9 +58,15 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         
         var receiveMessages: [ReceivedMessage] = []
         
+        private var retrivalResult: Result<[Note], Error>?
+        
         func retrieve(date: Date) throws -> [Note]? {
             receiveMessages.append(.retrieve)
-            return [uniqueNote()]
+            return try retrivalResult?.get()
+        }
+        
+        func completionRetrieval(with error: Error) {
+            retrivalResult = .failure(error)
         }
     }
 
@@ -59,4 +80,8 @@ func uniqueNote() -> Note {
                 imageURLs: nil,
                 category: Category(id: UUID(), name: "Daily Routine"),
                 location: nil)
+}
+
+func anyError() -> NSError {
+    NSError(domain: "error", code: 400)
 }
