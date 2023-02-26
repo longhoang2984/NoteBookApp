@@ -39,6 +39,21 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNoNoteInDate() {
+        let (sut, store) = makeSUT()
+        
+        let expectedNotes = [Note]()
+        store.completionRetrieval(with: expectedNotes)
+        let receivedResult = Result { try sut.load() }
+        
+        switch receivedResult {
+        case let .success(receivedNotes):
+            XCTAssertEqual(receivedNotes, expectedNotes)
+        case .failure:
+            XCTFail("Expected \(expectedNotes), got \(receivedResult) instead")
+        }
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,
                          file: StaticString = #file,
                          line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
@@ -67,6 +82,10 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         
         func completionRetrieval(with error: Error) {
             retrivalResult = .failure(error)
+        }
+        
+        func completionRetrieval(with notes: [Note]) {
+            retrivalResult = .success(notes)
         }
     }
 
