@@ -44,6 +44,15 @@ final class LoadTodayNotesUseCaseTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNotesInDate() {
+        let (sut, store) = makeSUT()
+        
+        let expectedNotes = [uniqueNote()]
+        expect(sut, toCompleteWith: .success(expectedNotes)) {
+            store.completionRetrieval(with: expectedNotes)
+        }
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,
                          file: StaticString = #file,
                          line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
