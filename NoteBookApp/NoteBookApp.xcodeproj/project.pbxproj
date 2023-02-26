@@ -20,6 +20,13 @@
 		2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */; };
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
 		2F591DC6299D0C4D0007EAF4 /* ReminderTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */; };
+		2F5FAD1929AB450000D336B0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1829AB450000D336B0 /* Note.swift */; };
+		2F5FAD1B29AB49F700D336B0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1A29AB49F700D336B0 /* Location.swift */; };
+		2F5FAD1D29AB4A0600D336B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1C29AB4A0600D336B0 /* Category.swift */; };
+		2F5FAD1F29AB4A1500D336B0 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1E29AB4A1500D336B0 /* TodoItem.swift */; };
+		2F5FAD2129AB6C0600D336B0 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2029AB6C0600D336B0 /* NoteStore.swift */; };
+		2F5FAD2429AB6D4900D336B0 /* NoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */; };
+		2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */; };
 		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
 		2F6E55F329620784005E5757 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55F229620784005E5757 /* TextView.swift */; };
 		2F6E55FB2962170D005E5757 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F52962170D005E5757 /* Roboto-Light.ttf */; };
@@ -108,6 +115,13 @@
 		2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTimePicker.swift; sourceTree = "<group>"; };
+		2F5FAD1829AB450000D336B0 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		2F5FAD1A29AB49F700D336B0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		2F5FAD1C29AB4A0600D336B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2F5FAD1E29AB4A1500D336B0 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		2F5FAD2029AB6C0600D336B0 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
+		2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLoader.swift; sourceTree = "<group>"; };
+		2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTodayNotesUseCaseTests.swift; sourceTree = "<group>"; };
 		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2F6E55F229620784005E5757 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2F6E55F52962170D005E5757 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -250,6 +264,35 @@
 				2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		2F5FAD1729AB443300D336B0 /* Note Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2F5FAD2229AB6D3200D336B0 /* Models */,
+				2F5FAD2029AB6C0600D336B0 /* NoteStore.swift */,
+				2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */,
+			);
+			path = "Note Feature";
+			sourceTree = "<group>";
+		};
+		2F5FAD2229AB6D3200D336B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F5FAD1829AB450000D336B0 /* Note.swift */,
+				2F5FAD1A29AB49F700D336B0 /* Location.swift */,
+				2F5FAD1C29AB4A0600D336B0 /* Category.swift */,
+				2F5FAD1E29AB4A1500D336B0 /* TodoItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F5FAD2529AB788900D336B0 /* Note Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */,
+			);
+			path = "Note Feature";
 			sourceTree = "<group>";
 		};
 		2F6E55F4296216F3005E5757 /* Fonts */ = {
@@ -425,6 +468,7 @@
 		2F9E870629576A0C00DD72D6 /* NoteBookApp */ = {
 			isa = PBXGroup;
 			children = (
+				2F5FAD1729AB443300D336B0 /* Note Feature */,
 				2F6E560129621811005E5757 /* Info.plist */,
 				2F4F6D662958B2D4001614A3 /* Common */,
 				2F4F6D672958B2D4001614A3 /* Home */,
@@ -451,6 +495,7 @@
 		2F9E871729576A0D00DD72D6 /* NoteBookAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				2F5FAD2529AB788900D336B0 /* Note Feature */,
 				2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */,
 			);
 			path = NoteBookAppTests;
@@ -616,10 +661,13 @@
 				2F91D4E62977BDB7002433B3 /* CameraViewModel.swift in Sources */,
 				2F46690129859D9B00190DB9 /* ShareSheet.swift in Sources */,
 				2F82C53D2959E48200708795 /* BlueButtonStyle.swift in Sources */,
+				2F5FAD2129AB6C0600D336B0 /* NoteStore.swift in Sources */,
 				2F4A54CC297C547200DC03A3 /* LocationView.swift in Sources */,
 				2F9097B8298F8991007F9D7E /* ReminderViewModel.swift in Sources */,
 				2F841A0A295ECEA100F3E7CB /* CustomDialog.swift in Sources */,
 				2F776C3829913DE500C095C0 /* DatePickerPopover.swift in Sources */,
+				2F5FAD2429AB6D4900D336B0 /* NoteLoader.swift in Sources */,
+				2F5FAD1B29AB49F700D336B0 /* Location.swift in Sources */,
 				2F91D4EA2977D381002433B3 /* PhotoCollection.swift in Sources */,
 				2FB472722967304A005F335B /* ImageManager.swift in Sources */,
 				2F4A54CF297C69B400DC03A3 /* MapViewModel.swift in Sources */,
@@ -645,6 +693,7 @@
 				2F82C53F2959E4F900708795 /* CardItemView.swift in Sources */,
 				2F9097B6298F8841007F9D7E /* ReminderView.swift in Sources */,
 				2F6E55F329620784005E5757 /* TextView.swift in Sources */,
+				2F5FAD1D29AB4A0600D336B0 /* Category.swift in Sources */,
 				2F466907298688B600190DB9 /* PasswordDialog.swift in Sources */,
 				2FAA133C295DFEA700A87157 /* NewPasswordView.swift in Sources */,
 				2F82C5352959DDBF00708795 /* CalendarView.swift in Sources */,
@@ -654,6 +703,8 @@
 				2F8ABCC22961962F00086755 /* EditableToDoListView.swift in Sources */,
 				2F93FB312981343400FAF5D3 /* TextFormatView.swift in Sources */,
 				2F91D4F22977F5C5002433B3 /* PhotoLibrary.swift in Sources */,
+				2F5FAD1929AB450000D336B0 /* Note.swift in Sources */,
+				2F5FAD1F29AB4A1500D336B0 /* TodoItem.swift in Sources */,
 				2F91D4EC2977D726002433B3 /* PhotoAsset.swift in Sources */,
 				2F82C5332959DDB800708795 /* NotesView.swift in Sources */,
 				2F9097BA298FA222007F9D7E /* SelectionField.swift in Sources */,
@@ -675,6 +726,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */,
 				2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

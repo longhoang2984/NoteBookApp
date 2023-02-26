@@ -17,8 +17,8 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     @Published var content: String = ""
     
     @Published var shouldShowTodoList = false
-    @Published var todoItems: [ToDoItem] = []
-    @Published var focusState: ToDoItem?
+    @Published var todoItems: [TodoItem] = []
+    @Published var focusState: TodoItem?
     @Published var textEditorHeight : CGFloat = 200
     
     @Published var showImageLibrary: Bool = false
@@ -63,10 +63,10 @@ final class NewNoteViewModel: NSObject, ObservableObject {
 //        }
     }
     
-    func onSubmitInTodoItem(currentItem: ToDoItem) {
+    func onSubmitInTodoItem(currentItem: TodoItem) {
         
         if let index = todoItems.firstIndex(where: { $0.id == currentItem.id }) {
-            if todoItems[index].text.isEmpty {
+            if todoItems[index].name.isEmpty {
                 focusState = nil
                 if index < todoItems.count {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
@@ -74,7 +74,7 @@ final class NewNoteViewModel: NSObject, ObservableObject {
                     }
                 }
             } else {
-                let item = ToDoItem()
+                let item = TodoItem(id: UUID(), name: "", isDone: false)
                 if (index == todoItems.count - 1) {
                     todoItems.append(item)
                 } else {
@@ -94,7 +94,7 @@ final class NewNoteViewModel: NSObject, ObservableObject {
             addNewToDoItem(at: index)
         } else {
             focusState = nil
-            if todoItems.count == 1 && todoItems.first?.text.isEmpty == true {
+            if todoItems.count == 1 && todoItems.first?.name.isEmpty == true {
                 todoItems = []
                 shouldShowTodoList = false
             }
@@ -103,7 +103,7 @@ final class NewNoteViewModel: NSObject, ObservableObject {
     }
     
     private func addNewToDoItem(at index: Int? = nil) {
-        let item = ToDoItem()
+        let item = TodoItem(id: UUID(), name: "", isDone: false)
         if let index = index {
             todoItems.insert(item, at: index + 1)
         } else {
@@ -113,14 +113,14 @@ final class NewNoteViewModel: NSObject, ObservableObject {
         self.focusState = item
     }
     
-    func focus(_ state: ToDoItem) {
+    func focus(_ state: TodoItem) {
         self.focusState = state
     }
     
     func unFocus() {
         self.focusState = nil
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.todoItems.removeAll(where: { $0.text.isEmpty })
+            self?.todoItems.removeAll(where: { $0.name.isEmpty })
         }
     }
     

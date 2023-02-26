@@ -7,25 +7,11 @@
 
 import SwiftUI
 
-public struct ToDoItem: Identifiable, Hashable {
-    public var id: String
-    public var text: String
-    public var isComplete: Bool
-    
-    public init(id: String  = UUID().uuidString,
-                text: String = "",
-                isComplete: Bool = false) {
-        self.id = id
-        self.text = text
-        self.isComplete = isComplete
-    }
-}
-
 struct EditableToDoView: View {
     
     var model: NewNoteViewModel
-    @Binding var todo: ToDoItem
-    @Binding var focus: ToDoItem?
+    @Binding var todo: TodoItem
+    @Binding var focus: TodoItem?
     @State var textViewHeight: CGFloat = 30
     
     var isEditing: Bool {
@@ -38,12 +24,12 @@ struct EditableToDoView: View {
         
         HStack(alignment: .top) {
             Button {
-                todo.isComplete.toggle()
+                todo.isDone.toggle()
             } label: {
-                Image(todo.isComplete ? "radio_btn_selected" : "radio_btn")
+                Image(todo.isDone ? "radio_btn_selected" : "radio_btn")
             }
             
-            TextView(text: $todo.text, heightToTransmit: $textViewHeight, isEditing: .constant(focus?.id == todo.id), onReturnAction:  {
+            TextView(text: $todo.name, heightToTransmit: $textViewHeight, isEditing: .constant(focus?.id == todo.id), onReturnAction:  {
                 onSubmit()
             }, onFocusAction: { isFocus in
                 if isFocus && focus?.id != todo.id {
@@ -63,12 +49,12 @@ struct EditableToDoView: View {
 struct EditableToDoListView_Previews: PreviewProvider {
     
     struct Preview: View {
-        @State var item = ToDoItem()
-        var items: [ToDoItem] {
+        @State var item = TodoItem(id: UUID(), name: "", isDone: false)
+        var items: [TodoItem] {
             [item]
         }
         
-        @Binding var focus: ToDoItem?
+        @Binding var focus: TodoItem?
         
         var body: some View {
             VStack {
