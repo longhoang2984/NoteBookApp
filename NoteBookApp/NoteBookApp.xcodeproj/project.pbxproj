@@ -28,6 +28,8 @@
 		2F5FAD2429AB6D4900D336B0 /* NoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */; };
 		2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */; };
 		2F5FAD2A29AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2929AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift */; };
+		2F5FAD2C29ABCEF700D336B0 /* NoteStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */; };
+		2F5FAD2E29ABCF2000D336B0 /* Helpers+ShareInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD2D29ABCF2000D336B0 /* Helpers+ShareInstance.swift */; };
 		2F6E55EF2961E29A005E5757 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55EE2961E29A005E5757 /* FloatingButton.swift */; };
 		2F6E55F329620784005E5757 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E55F229620784005E5757 /* TextView.swift */; };
 		2F6E55FB2962170D005E5757 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E55F52962170D005E5757 /* Roboto-Light.ttf */; };
@@ -124,6 +126,8 @@
 		2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLoader.swift; sourceTree = "<group>"; };
 		2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTodayNotesUseCaseTests.swift; sourceTree = "<group>"; };
 		2F5FAD2929AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift.swift"; sourceTree = "<group>"; };
+		2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStoreSpy.swift; sourceTree = "<group>"; };
+		2F5FAD2D29ABCF2000D336B0 /* Helpers+ShareInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helpers+ShareInstance.swift"; sourceTree = "<group>"; };
 		2F6E55EE2961E29A005E5757 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		2F6E55F229620784005E5757 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2F6E55F52962170D005E5757 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */,
+				2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */,
 			);
 			path = "Note Feature";
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5FAD2929AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift */,
+				2F5FAD2D29ABCF2000D336B0 /* Helpers+ShareInstance.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -737,7 +743,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5FAD2C29ABCEF700D336B0 /* NoteStoreSpy.swift in Sources */,
 				2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */,
+				2F5FAD2E29ABCF2000D336B0 /* Helpers+ShareInstance.swift in Sources */,
 				2F5FAD2A29AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift in Sources */,
 				2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */,
 			);
