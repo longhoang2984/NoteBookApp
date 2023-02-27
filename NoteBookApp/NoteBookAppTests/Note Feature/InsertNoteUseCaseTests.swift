@@ -25,6 +25,20 @@ final class InsertNoteUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [.insert(note)])
     }
     
+    func test_save_failsOnInsertionError() {
+        let (sut, store) = makeSUT()
+        
+        let expectedError = anyError()
+        let note = uniqueNote()
+        
+        store.completionInsertion(with: expectedError)
+        do {
+            try sut.save(note)
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()
         let sut = NoteLoader(store: store, date: date)

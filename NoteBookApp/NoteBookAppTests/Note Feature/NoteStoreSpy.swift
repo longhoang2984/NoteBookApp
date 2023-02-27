@@ -37,4 +37,8 @@ class NoteStoreSpy: NoteStore {
         receiveMessages.append(.insert(note))
         try insertionResult?.get()
     }
+    
+    func completionInsertion(with error: Error) {
+        insertionResult = .failure(error)
+    }
 }
