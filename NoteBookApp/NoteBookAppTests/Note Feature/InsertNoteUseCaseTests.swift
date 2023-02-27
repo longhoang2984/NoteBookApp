@@ -39,6 +39,19 @@ final class InsertNoteUseCaseTests: XCTestCase {
         }
     }
     
+    func test_save_successOnInsertionNote() {
+        let (sut, store) = makeSUT()
+        
+        let note = uniqueNote()
+        
+        store.completionInsertionSuccessfully()
+        do {
+            try sut.save(note)
+        } catch {
+            XCTFail("Expected successfully insert note, got \(error) instead")
+        }
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()
         let sut = NoteLoader(store: store, date: date)

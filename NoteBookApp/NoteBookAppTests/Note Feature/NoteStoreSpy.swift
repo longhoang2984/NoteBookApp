@@ -41,4 +41,8 @@ class NoteStoreSpy: NoteStore {
     func completionInsertion(with error: Error) {
         insertionResult = .failure(error)
     }
+    
+    func completionInsertionSuccessfully() {
+        insertionResult = .success(())
+    }
 }
