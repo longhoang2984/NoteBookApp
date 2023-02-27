@@ -16,6 +16,15 @@ final class InsertNoteUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [])
     }
     
+    func test_save_hasNoSideEffectOnInsertionNote() {
+        let (sut, store) = makeSUT()
+        
+        let note = uniqueNote()
+        try? sut.save(note)
+        
+        XCTAssertEqual(store.receiveMessages, [.insert(note)])
+    }
+    
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()
         let sut = NoteLoader(store: store, date: date)

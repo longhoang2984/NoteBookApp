@@ -25,4 +25,8 @@ extension NoteLoader {
         
         return []
     }
+    
+    public func save(_ note: Note) throws {
+        try store.insert(note)
+    }
 }
