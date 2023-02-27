@@ -9,4 +9,5 @@ import Foundation
 
 public protocol NoteStore {
     func retrieve(date: Date) throws -> [Note]?
+    func insert(_ note: Note) throws
 }

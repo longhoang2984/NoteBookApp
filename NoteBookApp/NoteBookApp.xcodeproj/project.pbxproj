@@ -19,6 +19,7 @@
 		2F4A54D1297C69BE00DC03A3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D0297C69BE00DC03A3 /* MapView.swift */; };
 		2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */; };
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
+		2F58025529AD0315006C50D3 /* InsertNoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */; };
 		2F591DC6299D0C4D0007EAF4 /* ReminderTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */; };
 		2F5FAD1929AB450000D336B0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1829AB450000D336B0 /* Note.swift */; };
 		2F5FAD1B29AB49F700D336B0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1A29AB49F700D336B0 /* Location.swift */; };
@@ -117,6 +118,7 @@
 		2F4A54D0297C69BE00DC03A3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNoteUseCaseTests.swift; sourceTree = "<group>"; };
 		2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTimePicker.swift; sourceTree = "<group>"; };
 		2F5FAD1829AB450000D336B0 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		2F5FAD1A29AB49F700D336B0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */,
 				2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */,
+				2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */,
 			);
 			path = "Note Feature";
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 			files = (
 				2F5FAD2C29ABCEF700D336B0 /* NoteStoreSpy.swift in Sources */,
 				2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */,
+				2F58025529AD0315006C50D3 /* InsertNoteUseCaseTests.swift in Sources */,
 				2F5FAD2E29ABCF2000D336B0 /* Helpers+ShareInstance.swift in Sources */,
 				2F5FAD2A29AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift in Sources */,
 				2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */,
