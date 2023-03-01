@@ -16,6 +16,15 @@ final class UpdateNoteUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [])
     }
     
+    func test_update_hasNoSideEffectOnUpdationNote() {
+        let (sut, store) = makeSUT()
+        
+        let note = uniqueNote()
+        try? sut.update(note)
+        
+        XCTAssertEqual(store.receiveMessages, [.update(note)])
+    }
+    
     func test_update_failsOnUpdationError() {
         let (sut, store) = makeSUT()
         
@@ -27,7 +36,6 @@ final class UpdateNoteUseCaseTests: XCTestCase {
         } catch {
             XCTAssertEqual(error as NSError, expectedError)
         }
-        
     }
     
     // MARK: - Helpers
