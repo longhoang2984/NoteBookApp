@@ -11,9 +11,23 @@ import NoteBookApp
 final class UpdateNoteUseCaseTests: XCTestCase {
 
     func test_init_doesNotMessageStoreUponCreation() {
-        let (_, sut) = makeSUT()
+        let (_, store) = makeSUT()
         
-        XCTAssertEqual(sut.receiveMessages, [])
+        XCTAssertEqual(store.receiveMessages, [])
+    }
+    
+    func test_update_failsOnUpdationError() {
+        let (sut, store) = makeSUT()
+        
+        let expectedError = anyError()
+        store.completionUpdation(with: expectedError)
+        
+        do {
+            try sut.update(uniqueNote())
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
+        
     }
     
     // MARK: - Helpers

@@ -13,12 +13,14 @@ class NoteStoreSpy: NoteStore {
     enum ReceivedMessage: Equatable {
         case retrieve
         case insert(_ note: Note)
+        case update(_ note: Note)
     }
     
     var receiveMessages: [ReceivedMessage] = []
     
     private var retrivalResult: Result<[Note], Error>?
     private var insertionResult: Result<Void, Error>?
+    private var updationResult: Result<Void, Error>?
     
     func retrieve(date: Date) throws -> [Note]? {
         receiveMessages.append(.retrieve)
@@ -44,5 +46,14 @@ class NoteStoreSpy: NoteStore {
     
     func completionInsertionSuccessfully() {
         insertionResult = .success(())
+    }
+    
+    func update(_ note: Note) throws {
+        receiveMessages.append(.update(note))
+        try updationResult?.get()
+    }
+    
+    func completionUpdation(with error: Error) {
+        updationResult = .failure(error)
     }
 }
