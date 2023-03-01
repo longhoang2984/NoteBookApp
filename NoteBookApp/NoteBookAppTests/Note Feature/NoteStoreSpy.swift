@@ -56,4 +56,8 @@ class NoteStoreSpy: NoteStore {
     func completionUpdation(with error: Error) {
         updationResult = .failure(error)
     }
+    
+    func completionUpdationSuccessfully() {
+        updationResult = .success(())
+    }
 }

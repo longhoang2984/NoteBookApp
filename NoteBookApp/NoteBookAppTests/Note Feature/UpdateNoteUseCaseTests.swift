@@ -38,6 +38,19 @@ final class UpdateNoteUseCaseTests: XCTestCase {
         }
     }
     
+    func test_update_successfullyOnUpdationNote() {
+        let (sut, store) = makeSUT()
+        
+        let note = uniqueNote()
+        store.completionUpdationSuccessfully()
+        
+        do {
+            try sut.update(uniqueNote())
+        } catch {
+            XCTFail("Expected update successfully, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()
