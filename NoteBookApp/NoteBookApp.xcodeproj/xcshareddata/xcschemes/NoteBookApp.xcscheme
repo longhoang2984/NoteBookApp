@@ -30,7 +30,7 @@
       <Testables>
          <TestableReference
             skipped = "NO"
-            parallelizable = "YES">
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2F9E871329576A0D00DD72D6"
@@ -38,6 +38,47 @@
                BlueprintName = "NoteBookAppTests"
                ReferencedContainer = "container:NoteBookApp.xcodeproj">
             </BuildableReference>
+            <SelectedTests>
+               <Test
+                  Identifier = "InsertNoteUseCaseTests/test_init_doesNotMessageStoreUponCreation()">
+               </Test>
+               <Test
+                  Identifier = "InsertNoteUseCaseTests/test_save_failsOnInsertionError()">
+               </Test>
+               <Test
+                  Identifier = "InsertNoteUseCaseTests/test_save_hasNoSideEffectOnInsertionNote()">
+               </Test>
+               <Test
+                  Identifier = "InsertNoteUseCaseTests/test_save_successOnInsertionNote()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_init_doesNotMessageStoreUponCreation()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_deliversNoNoteInDate()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_deliversNotesInDate()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_failsOnRetrievalError()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_hasNoSideEffectOnRetrievalTodaysNotes()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_hasNoSideEffectsOnRetrievalError()">
+               </Test>
+               <Test
+                  Identifier = "LoadTodayNotesUseCaseTests/test_load_requestsNoteRetrieval()">
+               </Test>
+               <Test
+                  Identifier = "NoteBookAppTests/testExample()">
+               </Test>
+               <Test
+                  Identifier = "NoteBookAppTests/testPerformanceExample()">
+               </Test>
+            </SelectedTests>
          </TestableReference>
       </Testables>
    </TestAction>

@@ -25,8 +25,14 @@ extension NoteLoader {
         
         return []
     }
-    
+}
+
+extension NoteLoader: NoteCache {
     public func save(_ note: Note) throws {
         try store.insert(note)
+    }
+    
+    public func update(_ note: Note) throws {
+        try store.update(note)
     }
 }

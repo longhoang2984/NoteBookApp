@@ -20,6 +20,8 @@
 		2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */; };
 		2F4F6D692958B2F7001614A3 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F6D682958B2F6001614A3 /* MainTabView.swift */; };
 		2F58025529AD0315006C50D3 /* InsertNoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */; };
+		2F58025729AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58025629AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift */; };
+		2F58025929AFC221006C50D3 /* NoteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58025829AFC221006C50D3 /* NoteCache.swift */; };
 		2F591DC6299D0C4D0007EAF4 /* ReminderTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */; };
 		2F5FAD1929AB450000D336B0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1829AB450000D336B0 /* Note.swift */; };
 		2F5FAD1B29AB49F700D336B0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FAD1A29AB49F700D336B0 /* Location.swift */; };
@@ -119,6 +121,8 @@
 		2F4A54D3297D666C00DC03A3 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 		2F4F6D682958B2F6001614A3 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNoteUseCaseTests.swift; sourceTree = "<group>"; };
+		2F58025629AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteUseCaseTests.swift; sourceTree = "<group>"; };
+		2F58025829AFC221006C50D3 /* NoteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCache.swift; sourceTree = "<group>"; };
 		2F591DC5299D0C4D0007EAF4 /* ReminderTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTimePicker.swift; sourceTree = "<group>"; };
 		2F5FAD1829AB450000D336B0 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		2F5FAD1A29AB49F700D336B0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				2F5FAD2229AB6D3200D336B0 /* Models */,
 				2F5FAD2029AB6C0600D336B0 /* NoteStore.swift */,
 				2F5FAD2329AB6D4900D336B0 /* NoteLoader.swift */,
+				2F58025829AFC221006C50D3 /* NoteCache.swift */,
 			);
 			path = "Note Feature";
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				2F5FAD2629AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift */,
 				2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */,
 				2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */,
+				2F58025629AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift */,
 			);
 			path = "Note Feature";
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F58025929AFC221006C50D3 /* NoteCache.swift in Sources */,
 				2F91D4F42977FBB1002433B3 /* PhotoItemView.swift in Sources */,
 				2F4A54D4297D666C00DC03A3 /* NewNoteViewModel.swift in Sources */,
 				2F82C53A2959E44E00708795 /* RoundedCorner.swift in Sources */,
@@ -752,6 +759,7 @@
 				2F5FAD2E29ABCF2000D336B0 /* Helpers+ShareInstance.swift in Sources */,
 				2F5FAD2A29AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift in Sources */,
 				2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */,
+				2F58025729AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
