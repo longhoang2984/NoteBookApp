@@ -10,4 +10,5 @@ import Foundation
 public protocol NoteCache {
     func save(_ note: Note) throws
     func update(_ note: Note) throws
+    func delete(_ note: Note) throws
 }

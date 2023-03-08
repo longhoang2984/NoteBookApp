@@ -88,6 +88,7 @@
 		2F9E870C29576A0D00DD72D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870B29576A0D00DD72D6 /* Assets.xcassets */; };
 		2F9E870F29576A0D00DD72D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */; };
 		2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */; };
+		2FA3F94C29B7970100075AE5 /* DeleteNoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3F94B29B7970100075AE5 /* DeleteNoteUseCaseTests.swift */; };
 		2FA60C382971C27800D62A98 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA60C372971C27800D62A98 /* ImagePicker.swift */; };
 		2FAA1334295DA6EB00A87157 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */; };
 		2FAA1336295DBF4D00A87157 /* PasswordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAA1335295DBF4D00A87157 /* PasswordListView.swift */; };
@@ -187,6 +188,7 @@
 		2F9E870E29576A0D00DD72D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2F9E871429576A0D00DD72D6 /* NoteBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F9E871829576A0D00DD72D6 /* NoteBookAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookAppTests.swift; sourceTree = "<group>"; };
+		2FA3F94B29B7970100075AE5 /* DeleteNoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNoteUseCaseTests.swift; sourceTree = "<group>"; };
 		2FA60C372971C27800D62A98 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2FAA1333295DA6EB00A87157 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		2FAA1335295DBF4D00A87157 /* PasswordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordListView.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				2F5FAD2B29ABCEF700D336B0 /* NoteStoreSpy.swift */,
 				2F58025429AD0315006C50D3 /* InsertNoteUseCaseTests.swift */,
 				2F58025629AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift */,
+				2FA3F94B29B7970100075AE5 /* DeleteNoteUseCaseTests.swift */,
 			);
 			path = "Note Feature";
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				2F5FAD2729AB78BE00D336B0 /* LoadTodayNotesUseCaseTests.swift in Sources */,
 				2F58025529AD0315006C50D3 /* InsertNoteUseCaseTests.swift in Sources */,
 				2F5FAD2E29ABCF2000D336B0 /* Helpers+ShareInstance.swift in Sources */,
+				2FA3F94C29B7970100075AE5 /* DeleteNoteUseCaseTests.swift in Sources */,
 				2F5FAD2A29AB7B9B00D336B0 /* XCTestCase+MemoryLeakTracking.swift.swift in Sources */,
 				2F9E871929576A0D00DD72D6 /* NoteBookAppTests.swift in Sources */,
 				2F58025729AFC09F006C50D3 /* UpdateNoteUseCaseTests.swift in Sources */,

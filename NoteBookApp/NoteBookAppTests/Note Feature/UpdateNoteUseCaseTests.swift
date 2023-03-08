@@ -41,7 +41,6 @@ final class UpdateNoteUseCaseTests: XCTestCase {
     func test_update_successfullyOnUpdationNote() {
         let (sut, store) = makeSUT()
         
-        let note = uniqueNote()
         store.completionUpdationSuccessfully()
         
         do {

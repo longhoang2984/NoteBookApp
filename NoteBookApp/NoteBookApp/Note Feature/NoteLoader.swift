@@ -35,4 +35,8 @@ extension NoteLoader: NoteCache {
     public func update(_ note: Note) throws {
         try store.update(note)
     }
+    
+    public func delete(_ note: Note) throws {
+        try store.delete(note)
+    }
 }

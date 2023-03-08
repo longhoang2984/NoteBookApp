@@ -14,6 +14,7 @@ class NoteStoreSpy: NoteStore {
         case retrieve
         case insert(_ note: Note)
         case update(_ note: Note)
+        case delete(_ note: Note)
     }
     
     var receiveMessages: [ReceivedMessage] = []
@@ -21,6 +22,7 @@ class NoteStoreSpy: NoteStore {
     private var retrivalResult: Result<[Note], Error>?
     private var insertionResult: Result<Void, Error>?
     private var updationResult: Result<Void, Error>?
+    private var deletionResult: Result<Void, Error>?
     
     func retrieve(date: Date) throws -> [Note]? {
         receiveMessages.append(.retrieve)
@@ -60,4 +62,9 @@ class NoteStoreSpy: NoteStore {
     func completionUpdationSuccessfully() {
         updationResult = .success(())
     }
+    
+    func delete(_ note: Note) throws {
+        receiveMessages.append(.delete(note))
+    }
+    
 }
