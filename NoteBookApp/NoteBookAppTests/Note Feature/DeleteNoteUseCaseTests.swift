@@ -13,7 +13,7 @@ final class DeleteNoteUseCaseTests: XCTestCase {
     func test_does_notMessageStoreUponCreation() {
         let (_, store) = makeSUT()
         
-        XCTAssertEqual(store.receiveMessages, [.delete(uniqueNote())])
+        XCTAssertEqual(store.receiveMessages, [])
     }
     
     func test_delete_failsOnDeletionError() {
@@ -37,6 +37,14 @@ final class DeleteNoteUseCaseTests: XCTestCase {
         } catch {
            XCTFail("Expected delete successfully, got \(error) instead")
         }
+    }
+    
+    func test_delete_hasNoSideEffectOnDeletionNote() {
+        let (sut, store) = makeSUT()
+        
+        try? sut.delete(uniqueNote())
+        
+        XCTAssertEqual(store.receiveMessages, [.delete(uniqueNote())])
     }
     
     // MARK: - Helpers
