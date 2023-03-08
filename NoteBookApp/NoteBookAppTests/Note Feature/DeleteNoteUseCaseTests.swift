@@ -28,6 +28,17 @@ final class DeleteNoteUseCaseTests: XCTestCase {
         }
     }
     
+    func test_delete_successfullyOnDeletionNote() {
+        let (sut, store) = makeSUT()
+        
+        store.completionDeletionSuccessfully()
+        do {
+            try sut.delete(uniqueNote())
+        } catch {
+           XCTFail("Expected delete successfully, got \(error) instead")
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()

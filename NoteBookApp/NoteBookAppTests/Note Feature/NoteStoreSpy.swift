@@ -71,4 +71,8 @@ class NoteStoreSpy: NoteStore {
     func completionDeletion(with error: Error) {
         deletionResult = .failure(error)
     }
+    
+    func completionDeletionSuccessfully() {
+        deletionResult = .success(())
+    }
 }
