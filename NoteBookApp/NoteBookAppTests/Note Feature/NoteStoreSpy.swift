@@ -65,6 +65,10 @@ class NoteStoreSpy: NoteStore {
     
     func delete(_ note: Note) throws {
         receiveMessages.append(.delete(note))
+        try deletionResult?.get()
     }
     
+    func completionDeletion(with error: Error) {
+        deletionResult = .failure(error)
+    }
 }

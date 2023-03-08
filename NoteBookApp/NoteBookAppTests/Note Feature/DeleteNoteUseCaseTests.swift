@@ -16,6 +16,18 @@ final class DeleteNoteUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receiveMessages, [.delete(uniqueNote())])
     }
     
+    func test_delete_failsOnDeletionError() {
+        let (sut, store) = makeSUT()
+        
+        let expectedError = anyError()
+        store.completionDeletion(with: expectedError)
+        do {
+            try sut.delete(uniqueNote())
+        } catch {
+            XCTAssertEqual(error as NSError, expectedError)
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(date: @escaping () -> Date = Date.init,file: StaticString = #file, line: UInt = #line) -> (sut: NoteLoader, store: NoteStoreSpy) {
         let store = NoteStoreSpy()
